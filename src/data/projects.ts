@@ -123,8 +123,170 @@ export const projectsData: Project[] = [
       { label: "GitHub Stars", value: "120+" },
       { label: "Active Users", value: "2.4k" }
     ]
+  },
+  {
+    id: "pulsefit-ai",
+    title: "PULSEFIT AI",
+    tagline: "AI-Powered Fitness, Workout & Biomechanics Platform",
+    description:
+      "A comprehensive AI-powered fitness platform designed to help users discover exercises, generate personalized workouts, track training progress, understand muscle engagement, and receive intelligent fitness guidance through an interactive digital experience.",
+    problemSolved:
+      "People often struggle to create structured workout routines, understand which exercises target specific muscles, track their progress consistently, and maintain proper exercise form.",
+    solution:
+      "Built an interactive fitness ecosystem that combines an extensive exercise library, muscle-focused workout discovery, AI-assisted workout planning, progress tracking, nutrition features, gamification, and intelligent biomechanics guidance in a unified platform.",
+    keyFeatures: [
+      "AI-assisted personalized workout generation",
+      "Interactive muscle anatomy and exercise discovery",
+      "Extensive exercise library with detailed movement information",
+      "Workout tracking and progress analytics",
+      "AI-powered biomechanics and exercise guidance",
+      "Nutrition and fitness planning features",
+      "Gamification and achievement-based progress tracking",
+      "Admin dashboard for managing fitness content"
+    ],
+    technologies: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Prisma",
+      "AI APIs"
+    ],
+    category: "AI / ML",
+    githubUrl: "https://github.com/arifkhadim2024/PULSEFIT-AI",
+    liveUrl: "",
+    image:
+      "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1000&q=80",
+    featured: true,
+    metrics: [
+      { label: "Exercise Library", value: "117+" },
+      { label: "AI Features", value: "Multiple" },
+      { label: "Platform", value: "Full Stack" }
+    ]
+  },
+
+  {
+    id: "mediscan",
+    title: "MediScan",
+    tagline: "AI-Powered Healthcare & Medical Analysis Platform",
+    description:
+      "An intelligent healthcare application designed to make medical information and analysis more accessible through AI-powered features, image-based analysis, and a user-friendly digital healthcare interface.",
+    problemSolved:
+      "Accessing and understanding medical information can be complicated for users, while healthcare workflows often involve large amounts of information that require efficient digital tools for analysis and interpretation.",
+    solution:
+      "Developed MediScan as an AI-assisted healthcare platform that combines modern web technologies with computer vision, OCR, and intelligent analysis capabilities to create a more accessible medical information and analysis workflow.",
+    keyFeatures: [
+      "AI-powered medical image and information analysis",
+      "Computer vision-based image processing",
+      "OCR-based medical text extraction",
+      "Intelligent medical information analysis",
+      "User-friendly healthcare dashboard",
+      "Responsive interface for accessing medical insights"
+    ],
+    technologies: [
+      "Python",
+      "AI / ML",
+      "Computer Vision",
+      "OCR",
+      "React",
+      "TypeScript",
+      "Tailwind CSS"
+    ],
+    category: "AI / ML",
+    githubUrl: "https://github.com/arifkhadim2024/mediscan",
+    liveUrl: "",
+    image:
+      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1000&q=80",
+    featured: true,
+    metrics: [
+      { label: "Domain", value: "Healthcare AI" },
+      { label: "Computer Vision", value: "Yes" },
+      { label: "OCR", value: "Integrated" }
+    ]
+  },
+
+  {
+    id: "cine-verse",
+    title: "Cine-Verse",
+    tagline: "Modern Movie Discovery & Entertainment Platform",
+    description:
+      "A modern movie discovery platform that allows users to explore movies, search for titles, discover entertainment content, and interact with movie information through a responsive and visually engaging interface.",
+    problemSolved:
+      "Movie discovery platforms can become difficult to navigate when users have to search through large collections of content without an intuitive way to discover and explore movies.",
+    solution:
+      "Built Cine-Verse as an engaging movie discovery experience focused on intuitive navigation, movie exploration, search functionality, and a responsive interface that makes entertainment content easy to browse.",
+    keyFeatures: [
+      "Movie search and discovery",
+      "Detailed movie information",
+      "Interactive movie browsing experience",
+      "Responsive user interface",
+      "Modern entertainment-focused design",
+      "Dynamic content presentation"
+    ],
+    technologies: [
+      "React",
+      "JavaScript",
+      "Tailwind CSS",
+      "Vite",
+      "Movie API"
+    ],
+    category: "Web Apps",
+    githubUrl: "https://github.com/arifkhadim2024/Cine-verse",
+    liveUrl: "",
+    image:
+      "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1000&q=80",
+    featured: true,
+    metrics: [
+      { label: "Project Type", value: "Web App" },
+      { label: "Interface", value: "Responsive" },
+      { label: "Domain", value: "Entertainment" }
+    ]
+  },
+
+  {
+    id: "ai-resume-matcher",
+    title: "AI Resume Matcher",
+    tagline: "Intelligent Resume & Job Description Matching System",
+    description:
+      "An AI and NLP-powered application that analyzes resumes against job descriptions to identify relevant skills, measure compatibility, highlight skill gaps, and help users understand how well their profile aligns with a target role.",
+    problemSolved:
+      "Job seekers often struggle to determine whether their resume matches a particular job description and which skills or keywords they need to improve for better alignment with a role.",
+    solution:
+      "Developed an intelligent resume analysis system that processes resume and job-description text using NLP and machine-learning techniques to calculate similarity, identify relevant skills, detect gaps, and provide actionable insights.",
+    keyFeatures: [
+      "Resume and job description text analysis",
+      "TF-IDF-based feature extraction",
+      "Cosine similarity-based matching",
+      "Skill matching and skill-gap identification",
+      "Resume compatibility scoring",
+      "Machine-learning-based analysis",
+      "Interactive results and recommendations"
+    ],
+    technologies: [
+      "Python",
+      "Machine Learning",
+      "NLP",
+      "Scikit-learn",
+      "TF-IDF",
+      "Cosine Similarity",
+      "Streamlit"
+    ],
+    category: "AI / ML",
+    githubUrl: "https://github.com/arifkhadim2024/AI-Resume-Matcher",
+    liveUrl: "",
+    image:
+      "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1000&q=80",
+    featured: true,
+    metrics: [
+      { label: "Domain", value: "NLP / AI" },
+      { label: "Matching", value: "Resume ↔ JD" },
+      { label: "Analysis", value: "Skill Gaps" }
+    ]
   }
 ];
+
+
+
 
 export const projectCategories = [
   { id: 'all', label: 'All Projects' },
