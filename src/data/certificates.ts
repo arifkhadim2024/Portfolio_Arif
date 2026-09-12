@@ -7,7 +7,7 @@ export const certificatesData: Certificate[] = [
     issuer: "FutureSkills Prime / NASSCOM",
     issueDate: "31/08/2026",
     credentialId: "FSP/2026/8/10373991",
-    credentialUrl: "",
+    credentialUrl: "https://github.com/arifkhadim2024/Portfolio_Arif/blob/main/public/Arif%2Bmohammed%2Bkhadim_164470570.pdf",
     image: "/certificates/gen-ai-tools.jpg",
     tags: [
       "Generative AI",
@@ -23,8 +23,8 @@ export const certificatesData: Certificate[] = [
     issuer: "iStudio",
     issueDate: "14/08/2026",
     credentialId: "ISWDT3263817",
-    credentialUrl: "",
-    image: "/WhatsApp Image 2026-09-12 at 23.14.10.jpeg",
+    credentialUrl: "https://github.com/arifkhadim2024/Portfolio_Arif/blob/main/public/WhatsApp%20Image%202026-09-12%20at%2023.14.10%20(1).jpeg",
+    image: "/WhatsApp Image 2026-09-12 at 23.14.10 (1).jpeg",
     tags: [
       "Web Design",
       "Web Development",
@@ -39,7 +39,7 @@ export const certificatesData: Certificate[] = [
     issuer: "Simplilearn SkillUp",
     issueDate: "05/11/2023",
     credentialId: "4629022",
-    credentialUrl: "",
+    credentialUrl: "https://github.com/arifkhadim2024/Portfolio_Arif/blob/main/public/Simplilearn%20Certificate.pdf",
     image: "/certificates/design-thinking-for-beginners.jpg",
     tags: [
       "Design Thinking",
@@ -54,7 +54,7 @@ export const certificatesData: Certificate[] = [
     issuer: "iCAT",
     issueDate: "18/05/2026",
     credentialId: "CIT-P-3263817",
-    credentialUrl: "",
+    credentialUrl: "https://github.com/arifkhadim2024/Portfolio_Arif/blob/main/public/Arif%20Mohammed%20Khadim%20-%20Participation%20Certificate.pdf",
     image: "/certificates/internship-common-aptitude-test.jpg",
     tags: [
       "Aptitude",
@@ -69,7 +69,7 @@ export const certificatesData: Certificate[] = [
     issuer: "Scaler Topics",
     issueDate: "11/12/2025",
     credentialId: "",
-    credentialUrl: "",
+    credentialUrl: "https://github.com/arifkhadim2024/Portfolio_Arif/blob/main/public/scaler.pdf",
     image: "/certificates/python-course-scaler.jpg",
     tags: [
       "Python",

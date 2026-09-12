@@ -25,6 +25,6 @@ export const experienceData: Experience[] = [
       "Web Design",
       "Web Development"
     ],
-    certificateUrl: "/WhatsApp Image 2026-09-12 at 23.14.10.jpeg"
+    certificateUrl: "https://github.com/arifkhadim2024/Portfolio_Arif/blob/main/public/WhatsApp%20Image%202026-09-12%20at%2023.14.10%20(1).jpeg"
   }
 ];
