@@ -3,39 +3,28 @@ import type { Experience } from '../types';
 export const experienceData: Experience[] = [
   {
     id: "exp-1",
-    role: "Full-Stack Developer Intern",
-    company: "TechNova Solutions",
-    companyUrl: "https://example.com",
-    location: "Remote / Hybrid",
+    role: "Website Design and Development Intern",
+    company: "Internship Studio",
+    companyUrl: "",
+    location: "Remote",
     type: "Internship",
-    startDate: "Jan 2024",
-    endDate: "Jun 2024",
+    startDate: "Jun 2026",
+    endDate: "Aug 2026",
     current: false,
-    description: "Contributed to building responsive web applications, RESTful microservices, and automated testing suites in an agile engineering team.",
+    description: "Completed an internship in Website Design and Development at Internship Studio from 10 June 2026 to 14 August 2026, gaining practical experience in designing and developing modern websites and working with web development technologies.",
     achievements: [
-      "Engineered reusable React component libraries and integrated Tailwind CSS design system, improving frontend page load speed by 35%.",
-      "Developed and documented 12+ RESTful API endpoints in Node.js and Express with JWT authentication and role-based permissions.",
-      "Collaborated in bi-weekly sprints, daily standups, and conducted code reviews for team pull requests on GitHub.",
-      "Authored unit and integration test suites achieving 88% coverage on mission-critical payment workflows."
+      "Worked on website design and development tasks as part of the internship program.",
+      "Gained practical exposure to modern web development workflows and website implementation.",
+      "Applied web development concepts to build and improve responsive website interfaces.",
+      "Completed the Website Design and Development Internship program successfully."
     ],
-    technologies: ["React", "TypeScript", "Node.js", "Express", "PostgreSQL", "Tailwind CSS", "Git"],
-    certificateUrl: "https://example.com/certificate"
-  },
-  {
-    id: "exp-2",
-    role: "Open Source Contributor & Technical Lead",
-    company: "University Developer Club",
-    location: "Campus",
-    type: "Leadership",
-    startDate: "Aug 2023",
-    endDate: "Present",
-    current: true,
-    description: "Mentored aspiring developers, organized hands-on hackathons, and spearheaded collaborative open-source web projects.",
-    achievements: [
-      "Mentored 60+ junior students in modern JavaScript, Git version control, and full-stack software development fundamentals.",
-      "Organized annual 24-hour campus hackathon with over 200 participants and industry sponsors.",
-      "Led development of the student chapter portal, automating event registrations and certificate distribution."
+    technologies: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Web Design",
+      "Web Development"
     ],
-    technologies: ["JavaScript", "Python", "React", "Git", "Community Mentorship"]
+    certificateUrl: "/WhatsApp Image 2026-09-12 at 23.14.10.jpeg"
   }
 ];
