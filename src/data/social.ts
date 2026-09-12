@@ -3,8 +3,8 @@ import type { SocialLink } from '../types';
 export const socialLinks: SocialLink[] = [
   {
     platform: "GitHub",
-    url: "https://github.com/arifkhadim",
-    username: "@arifkhadim",
+    url: "https://github.com/arifkhadim2024",
+    username: "@arifkhadim2024",
     icon: "Github",
     isPrimary: true,
   },
