@@ -10,34 +10,34 @@ export const socialLinks: SocialLink[] = [
   },
   {
     platform: "LinkedIn",
-    url: "https://linkedin.com/in/arifkhadim",
-    username: "Arif Khadim",
+    url: "https://www.linkedin.com/in/arif-mohammed-khadim/",
+    username: "Arif Mohammed Khadim",
     icon: "Linkedin",
     isPrimary: true,
   },
   {
     platform: "Email",
-    url: "mailto:arifkhadim.dev@gmail.com",
-    username: "arifkhadim.dev@gmail.com",
+    url: "mailto:arifkhadim9436@gmail.com",
+    username: "arifkhadim9436@gmail.com",
     icon: "Mail",
     isPrimary: true,
   },
   {
-    platform: "Twitter",
-    url: "https://twitter.com/arifkhadim_dev",
-    username: "@arifkhadim_dev",
-    icon: "Twitter",
+    platform: "Instagram",
+    url: "https://www.instagram.com/arif__khadim/",
+    username: "@arif__khadim",
+    icon: "Instagram",
   },
   {
-    platform: "Instagram",
-    url: "https://instagram.com/arifkhadim",
-    username: "@arifkhadim",
-    icon: "Instagram",
+    platform: "Twitter",
+    url: "https://x.com/Arif__khadim",
+    username: "@Arif__khadim",
+    icon: "Twitter",
   }
 ];
 
 export const contactConfig = {
-  email: "arifkhadim.dev@gmail.com",
+  email: "arifkhadim9436@gmail.com",
   location: "India",
   responseTime: "Usually responds within 24 hours",
   availableForFreelance: true,

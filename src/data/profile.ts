@@ -19,7 +19,7 @@ export const profileData: Profile = {
   ],
 
   location: "India",
-  email: "arifkhadim.dev@gmail.com",
+  email: "arifkhadim9436@gmail.com",
   phone: "+91 98765 43210",
   avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
   resumeUrl: "/resume.pdf",
