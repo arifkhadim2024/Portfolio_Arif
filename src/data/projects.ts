@@ -16,8 +16,8 @@ export const projectsData: Project[] = [
     ],
     technologies: ["PyTorch", "Python", "FastAPI", "React", "TypeScript", "Tailwind CSS", "Docker"],
     category: "AI / ML",
-    githubUrl: "https://github.com/arifkhadim2024/neurovision-ai",
-    liveUrl: "https://neurovision-ai.demo.app",
+    githubUrl: "https://github.com/arifkhadim2024/NEUROVISION-AI",
+    liveUrl: "https://neurovision-ai-mri.vercel.app/",
     image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1000&q=80",
     featured: true,
     metrics: [
@@ -154,7 +154,7 @@ export const projectsData: Project[] = [
     ],
     category: "AI / ML",
     githubUrl: "https://github.com/arifkhadim2024/PULSEFIT-AI",
-    liveUrl: "",
+    liveUrl: "https://pulsefit-ai-gilt.vercel.app/",
     image:
       "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1000&q=80",
     featured: true,
@@ -194,7 +194,7 @@ export const projectsData: Project[] = [
     ],
     category: "AI / ML",
     githubUrl: "https://github.com/arifkhadim2024/mediscan",
-    liveUrl: "",
+    liveUrl: "https://mediscan-eight-eta.vercel.app/",
     image:
       "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1000&q=80",
     featured: true,
@@ -232,7 +232,7 @@ export const projectsData: Project[] = [
     ],
     category: "Web Apps",
     githubUrl: "https://github.com/arifkhadim2024/Cine-verse",
-    liveUrl: "",
+    liveUrl: "https://cine-verse-blond.vercel.app/",
     image:
       "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1000&q=80",
     featured: true,
