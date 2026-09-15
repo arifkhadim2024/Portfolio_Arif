@@ -273,7 +273,7 @@ export const projectsData: Project[] = [
     ],
     category: "AI / ML",
     githubUrl: "https://github.com/arifkhadim2024/AI-Resume-Matcher",
-    liveUrl: "",
+    liveUrl: "https://ai-resume-matcher-tszdxlceiozcvzmpxond5k.streamlit.app/",
     image:
       "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1000&q=80",
     featured: true,
