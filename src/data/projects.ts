@@ -41,8 +41,8 @@ export const projectsData: Project[] = [
     ],
     technologies: ["React", "TypeScript", "Node.js", "WebSockets", "Redis", "PostgreSQL", "Tailwind CSS"],
     category: "Full Stack",
-    githubUrl: "https://github.com/arifkhadim2024/devflow-nexus",
-    liveUrl: "https://devflow-nexus.demo.app",
+    githubUrl: "https://github.com/arifkhadim2024/DevFlow-Nexus",
+    liveUrl: "https://dev-flow-nexus-frontend.vercel.app/dashboard",
     image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1000&q=80",
     featured: true,
     metrics: [
