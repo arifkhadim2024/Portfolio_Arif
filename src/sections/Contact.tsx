@@ -80,15 +80,33 @@ export const Contact: React.FC = () => {
 
     try {
       if (contactConfig.formEndpoint) {
-        // Send via configured endpoint (e.g. Formspree)
-        await fetch(contactConfig.formEndpoint, {
+        // Send via configured endpoint (e.g. Formspree / Web3Forms / Formkeep)
+        const response = await fetch(contactConfig.formEndpoint, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formData),
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            subject: formData.subject,
+            message: formData.message,
+            _replyto: formData.email,
+          }),
         });
+
+        if (!response.ok) {
+          throw new Error('Failed to dispatch message to form endpoint');
+        }
       } else {
-        // Simulate a brief dispatch delay and trigger mailto fallback or clear confirmation
-        await new Promise((resolve) => setTimeout(resolve, 800));
+        // Fallback: Open prefilled mailto email directly addressing user's Gmail
+        const mailtoLink = `mailto:${profileData.email}?subject=${encodeURIComponent(
+          `[Portfolio Message] ${formData.subject}`
+        )}&body=${encodeURIComponent(
+          `Hi Arif,\n\n${formData.message}\n\nFrom: ${formData.name} (${formData.email})`
+        )}`;
+        window.location.href = mailtoLink;
       }
 
       setSubmitted(true);
@@ -109,6 +127,14 @@ export const Contact: React.FC = () => {
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
       console.error('Submission error:', error);
+      // If network endpoint fails, trigger direct email link fallback
+      const mailtoLink = `mailto:${profileData.email}?subject=${encodeURIComponent(
+        `[Portfolio Message] ${formData.subject}`
+      )}&body=${encodeURIComponent(
+        `Hi Arif,\n\n${formData.message}\n\nFrom: ${formData.name} (${formData.email})`
+      )}`;
+      window.location.href = mailtoLink;
+      setSubmitted(true);
     } finally {
       setIsSubmitting(false);
     }
