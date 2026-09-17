@@ -7,7 +7,7 @@ export const certificatesData: Certificate[] = [
     issuer: "Ardent Computech Pvt. Ltd. (NASSCOM / MSME / N.E.A.T)",
     issueDate: "08/09/2026",
     credentialId: "ARDENT/221887",
-    credentialUrl: "/ardent-internship-certificate.jpg",
+    credentialUrl: "https://github.com/arifkhadim2024/Portfolio_Arif/blob/main/public/ardent-internship-certificate.jpg",
     image: "/ardent-internship-certificate.jpg",
     tags: [
       "Data Science",

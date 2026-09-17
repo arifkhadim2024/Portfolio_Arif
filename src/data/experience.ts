@@ -27,7 +27,7 @@ export const experienceData: Experience[] = [
       "Pandas",
       "NumPy"
     ],
-    certificateUrl: "/ardent-internship-certificate.jpg"
+    certificateUrl: "https://github.com/arifkhadim2024/Portfolio_Arif/blob/main/public/ardent-internship-certificate.jpg"
   },
   {
     id: "exp-1",
@@ -53,6 +53,6 @@ export const experienceData: Experience[] = [
       "Web Design",
       "Web Development"
     ],
-    certificateUrl: "https://github.com/arifkhadim2024/Portfolio_Arif/blob/main/public/WhatsApp%20Image%202026-09-12%20at%2023.14.10%20(1).jpeg"
+    certificateUrl: "https://github.com/arifkhadim2024/Portfolio_Arif/blob/main/public/WhatsApp%20Image%202026-09-12%20at%2023.14.10.jpeg"
   }
 ];
