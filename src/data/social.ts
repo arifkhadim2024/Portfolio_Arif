@@ -43,5 +43,5 @@ export const contactConfig = {
   availableForFreelance: true,
   availableForInternships: true,
   availableForFulltime: true,
-  formEndpoint: "",
+  formEndpoint: "https://formspree.io/f/xzezbygl",
 };
