@@ -282,6 +282,41 @@ export const projectsData: Project[] = [
       { label: "Matching", value: "Resume ↔ JD" },
       { label: "Analysis", value: "Skill Gaps" }
     ]
+  },
+  {
+    id: "salary-predictor",
+    title: "Salary Predictor",
+    tagline: "Machine Learning Model for Tech Salary Benchmarking & Forecasting",
+    description:
+      "A predictive machine learning application developed during the Industrial Internship at Ardent Computech Pvt. Ltd., designed to predict software industry salaries based on years of experience, job role, education, and technical skill sets.",
+    problemSolved:
+      "Software developers and tech talent face compensation ambiguity across differing roles and experience tiers without transparent predictive benchmarks.",
+    solution:
+      "Implemented a comprehensive ML pipeline in Python using Scikit-learn with exploratory data analysis, feature engineering, categorical encoding, and regression modeling.",
+    keyFeatures: [
+      "Exploratory Data Analysis (EDA) and distribution preprocessing",
+      "Feature engineering and categorical variable encoding",
+      "Multiple regression models evaluated for minimum RMSE and maximum R² score",
+      "Interactive prediction module for instant compensation forecasting"
+    ],
+    technologies: [
+      "Python",
+      "Data Science",
+      "Machine Learning",
+      "Scikit-learn",
+      "Pandas",
+      "NumPy"
+    ],
+    category: "AI / ML",
+    githubUrl: "https://github.com/arifkhadim2024",
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80",
+    featured: true,
+    metrics: [
+      { label: "Domain", value: "Predictive ML" },
+      { label: "Internship Project", value: "Ardent Computech" },
+      { label: "Framework", value: "Scikit-Learn" }
+    ]
   }
 ];
 

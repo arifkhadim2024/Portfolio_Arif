@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { Send, Mail, MapPin, Copy, Check, Clock, Sparkles, MessageSquare, User, AtSign, FileText } from 'lucide-react';
+import { Send, Mail, MapPin, Copy, Check, Clock, Sparkles, MessageSquare, User, AtSign, FileText, Phone } from 'lucide-react';
 import { profileData } from '../data/profile';
 import { socialLinks, contactConfig } from '../data/social';
 import { SectionHeader } from '../components/common/SectionHeader';
@@ -170,6 +170,26 @@ export const Contact: React.FC = () => {
                     {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
                   </button>
                 </div>
+
+                {/* Phone Item */}
+                {profileData.phone && (
+                  <div className="p-4 rounded-xl bg-slate-900/80 dark:bg-slate-900/80 light:bg-slate-100/90 border border-slate-800 dark:border-slate-800 light:border-slate-300 flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-3 overflow-hidden">
+                      <div className="p-2.5 rounded-lg bg-emerald-500/10 text-emerald-400 flex-shrink-0">
+                        <Phone className="w-5 h-5" />
+                      </div>
+                      <div className="overflow-hidden">
+                        <div className="text-xs text-slate-400 font-medium">Phone / WhatsApp</div>
+                        <a
+                          href={`tel:${profileData.phone.replace(/\s+/g, '')}`}
+                          className="text-xs sm:text-sm font-semibold text-white dark:text-white light:text-slate-900 hover:text-primary-400 truncate block transition-colors"
+                        >
+                          {profileData.phone}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                )}
 
                 {/* Location Item */}
                 <div className="p-4 rounded-xl bg-slate-900/80 dark:bg-slate-900/80 light:bg-slate-100/90 border border-slate-800 dark:border-slate-800 light:border-slate-300 flex items-center gap-3">

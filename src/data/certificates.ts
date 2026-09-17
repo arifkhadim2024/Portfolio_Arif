@@ -2,6 +2,24 @@ import type { Certificate } from '../types';
 
 export const certificatesData: Certificate[] = [
   {
+    id: "cert-ardent-ai-ml",
+    title: "Industrial Internship on Data Science, AI & Machine Learning using Python",
+    issuer: "Ardent Computech Pvt. Ltd. (NASSCOM / MSME / N.E.A.T)",
+    issueDate: "08/09/2026",
+    credentialId: "ARDENT/221887",
+    credentialUrl: "/ardent-internship-certificate.jpg",
+    image: "/ardent-internship-certificate.jpg",
+    tags: [
+      "Data Science",
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Python",
+      "Salary Predictor",
+      "NASSCOM",
+      "MSME / N.E.A.T"
+    ]
+  },
+  {
     id: "cert-1",
     title: "Gen AI Tools",
     issuer: "FutureSkills Prime / NASSCOM",

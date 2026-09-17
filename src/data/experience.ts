@@ -2,6 +2,34 @@ import type { Experience } from '../types';
 
 export const experienceData: Experience[] = [
   {
+    id: "exp-ardent-ai-ml",
+    role: "Data Science, AI & ML Intern",
+    company: "Ardent Computech Pvt. Ltd.",
+    companyUrl: "",
+    location: "Kolkata, India",
+    type: "Internship",
+    startDate: "Jul 2026",
+    endDate: "Sep 2026",
+    current: false,
+    description: "Completed an intensive Industrial Internship on Data Science, Artificial Intelligence, and Machine Learning using Python at Ardent Computech Pvt. Ltd. (partnered with NASSCOM, MSME, and N.E.A.T). Developed predictive machine learning models and end-to-end data workflows.",
+    achievements: [
+      "Engineered and implemented an end-to-end Machine Learning project titled 'Salary Predictor' using Python and predictive regression modeling.",
+      "Conducted exploratory data analysis (EDA), data cleaning, feature engineering, and model evaluation on industry datasets.",
+      "Gained hands-on expertise in machine learning algorithms, Scikit-learn, Pandas, NumPy, and AI pipeline deployment.",
+      "Awarded official Industrial Internship Certification (Certificate ID: ARDENT/221887) endorsed by NASSCOM, MSME, and N.E.A.T."
+    ],
+    technologies: [
+      "Python",
+      "Data Science",
+      "Machine Learning",
+      "Artificial Intelligence",
+      "Scikit-learn",
+      "Pandas",
+      "NumPy"
+    ],
+    certificateUrl: "/ardent-internship-certificate.jpg"
+  },
+  {
     id: "exp-1",
     role: "Website Design and Development Intern",
     company: "Internship Studio",

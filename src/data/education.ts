@@ -8,8 +8,8 @@ export const educationData: Education[] = [
     institution: "Adamas University",
     location: "India",
     startDate: "2023",
-    endDate: "Present",
-    grade: "7.41 / 10.0 CGPA",
+    endDate: "Expected 2027",
+    grade: "7.411 / 10.0 CGPA",
     description: "Currently pursuing a Bachelor of Technology in Computer Science & Engineering at Adamas University and studying in the 7th semester. Developing strong foundations in programming, data structures, databases, software development, artificial intelligence, and modern web technologies.",
     relevantCoursework: [
       "Data Structures & Algorithms",

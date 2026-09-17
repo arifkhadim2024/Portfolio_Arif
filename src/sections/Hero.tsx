@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Download, Send, ChevronDown, Brain, Atom, Terminal } from 'lucide-react';
+import { ArrowRight, Download, Send, ChevronDown, Brain, Atom, Terminal, Sparkles } from 'lucide-react';
 import { profileData } from '../data/profile';
 import { Button } from '../components/common/Button';
 import { ParticleBackground } from '../components/visual/ParticleBackground';
@@ -118,6 +118,28 @@ export const Hero: React.FC = () => {
                 Contact Me
               </Button>
             </div>
+
+            {/* Core Tech Stack Strip */}
+            <div className="pt-3 flex flex-wrap items-center justify-center lg:justify-start gap-2">
+              <span className="text-xs font-semibold text-slate-400 mr-1 flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-accent-cyan" /> Core Stack:
+              </span>
+              {[
+                { name: 'Python', color: 'border-yellow-500/30 text-yellow-300 bg-yellow-500/10' },
+                { name: 'FastAPI', color: 'border-emerald-500/30 text-emerald-300 bg-emerald-500/10' },
+                { name: 'React', color: 'border-cyan-500/30 text-cyan-300 bg-cyan-500/10' },
+                { name: 'PyTorch / AI', color: 'border-purple-500/30 text-purple-300 bg-purple-500/10' },
+                { name: 'TypeScript', color: 'border-blue-500/30 text-blue-300 bg-blue-500/10' },
+                { name: 'Docker', color: 'border-sky-500/30 text-sky-300 bg-sky-500/10' },
+              ].map((tech) => (
+                <span
+                  key={tech.name}
+                  className={`px-2.5 py-1 rounded-lg text-xs font-mono font-medium border ${tech.color} backdrop-blur-sm shadow-sm`}
+                >
+                  {tech.name}
+                </span>
+              ))}
+            </div>
           </motion.div>
 
           {/* Right Column: Premium Visual Profile Treatment (5 cols) */}
@@ -141,7 +163,7 @@ export const Hero: React.FC = () => {
                   <img
                     src={profileData.avatarUrl}
                     alt={profileData.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
                 </div>

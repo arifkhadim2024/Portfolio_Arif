@@ -1,27 +1,27 @@
 import type { Profile } from '../types';
 
 export const profileData: Profile = {
-  name: "Arif Khadim",
+  name: "Arif Mohammed Khadim",
   preferredName: "Arif",
-  headline: "Software Engineer | Full-Stack Developer | AI/ML Enthusiast",
+  headline: "Software Developer | Full-Stack Developer | AI/ML Engineer",
   roles: [
     "Full-Stack Developer",
-    "AI/ML Enthusiast",
-    "Software Engineer",
-    "Creative Problem Solver"
+    "AI/ML Engineer",
+    "Software Developer",
+    "Computer Science Engineer"
   ],
-  shortIntro: "Crafting scalable, high-performance web systems and intelligent AI solutions with clean architecture and delightful user experiences.",
+  shortIntro: "Computer Science and Engineering undergraduate with hands-on experience in software development, full-stack applications, and Artificial Intelligence / Machine Learning. Skilled in building practical applications using Python, JavaScript, React, FastAPI, databases, and ML frameworks.",
   
   aboutBio: [
-    "I am a passionate software developer and computer science student with a deep interest in building modern full-stack web applications and applying machine learning to real-world challenges.",
-    "My technical journey revolves around crafting intuitive user interfaces with React and TypeScript, architecting robust backend APIs with Node.js and Python, and experimenting with cutting-edge AI models.",
+    "I am a passionate software developer and computer science student at Adamas University with hands-on experience in software development, full-stack web applications, and artificial intelligence / machine learning.",
+    "My technical journey revolves around crafting intuitive user interfaces with React and Vite, architecting robust backend APIs with FastAPI and Node.js, and training predictive deep learning & machine learning models with PyTorch and Scikit-learn.",
     "I thrive in collaborative environments, love breaking down complex algorithmic problems, and continuously strive to write clean, maintainable, and well-tested code."
   ],
 
   location: "India",
   email: "arifkhadim9436@gmail.com",
-  phone: "+91 98765 43210",
-  avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
+  phone: "+91 87310 89098",
+  avatarUrl: "/profile.jpg",
   resumeUrl: "/resume.pdf",
   openToWork: true,
 
