@@ -5,6 +5,7 @@ import type { Certificate } from '../types';
 import { SectionHeader } from '../components/common/SectionHeader';
 import { Badge } from '../components/common/Badge';
 import { CertificateModal } from '../components/modals/CertificateModal';
+import { SpotlightCard } from '../components/visual/SpotlightCard';
 import { Award, ExternalLink, Eye, ShieldCheck, Calendar } from 'lucide-react';
 
 export const Certificates: React.FC = () => {
@@ -28,7 +29,7 @@ export const Certificates: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
             >
-              <div className="group h-full flex flex-col justify-between rounded-2xl bg-dark-card/90 dark:bg-dark-card/90 light:bg-white/95 border border-slate-800/80 dark:border-slate-800/80 light:border-slate-200 hover:border-primary-500/40 hover:shadow-xl transition-all duration-300 overflow-hidden p-6 space-y-4">
+              <SpotlightCard className="group h-full flex flex-col justify-between hover:shadow-xl transition-all duration-300 overflow-hidden p-6 space-y-4">
                 {/* Header with Icon & Date */}
                 <div className="flex items-start justify-between gap-3">
                   <div className="w-12 h-12 rounded-xl bg-primary-500/10 border border-primary-500/20 text-primary-400 flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -89,7 +90,7 @@ export const Certificates: React.FC = () => {
                     </a>
                   )}
                 </div>
-              </div>
+              </SpotlightCard>
             </motion.div>
           ))}
         </div>

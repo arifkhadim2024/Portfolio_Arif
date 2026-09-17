@@ -54,18 +54,19 @@ export const Skills: React.FC = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.25 }}
+                whileHover={{ y: -6, scale: 1.04 }}
+                transition={{ type: 'spring', stiffness: 350, damping: 22 }}
               >
-                <div className="group relative h-full p-4 rounded-2xl bg-dark-card/90 dark:bg-dark-card/90 light:bg-white/95 border border-slate-800/80 dark:border-slate-800/80 light:border-slate-200 hover:border-primary-500/40 hover:shadow-lg hover:shadow-primary-500/10 transition-all duration-300 flex flex-col items-center text-center justify-between gap-3">
+                <div className="group relative h-full p-4 rounded-2xl bg-dark-card/90 dark:bg-dark-card/90 light:bg-white/95 border border-slate-800/80 dark:border-slate-800/80 light:border-slate-200 hover:border-primary-500/50 hover:shadow-xl hover:shadow-primary-500/15 transition-all duration-300 flex flex-col items-center text-center justify-between gap-3 cursor-default">
                   {/* Top featured dot */}
                   {skill.featured && (
                     <div className="absolute top-2.5 right-2.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-accent-cyan block" title="Featured Skill" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-accent-cyan block shadow-[0_0_8px_#06B6D4]" title="Featured Skill" />
                     </div>
                   )}
 
                   {/* Icon */}
-                  <div className="w-11 h-11 rounded-xl bg-slate-800/80 dark:bg-slate-800/80 light:bg-slate-100 flex items-center justify-center text-primary-400 group-hover:text-accent-cyan group-hover:scale-110 transition-all duration-300 shadow-inner">
+                  <div className="w-12 h-12 rounded-xl bg-slate-800/80 dark:bg-slate-800/80 light:bg-slate-100 flex items-center justify-center text-primary-400 group-hover:text-accent-cyan group-hover:bg-primary-500/10 group-hover:scale-115 transition-all duration-300 shadow-inner">
                     <IconRenderer name={skill.icon} className="w-5 h-5" />
                   </div>
 
