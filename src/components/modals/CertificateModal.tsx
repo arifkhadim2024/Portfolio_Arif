@@ -19,15 +19,15 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
   if (!certificate) return null;
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} maxWidth="2xl">
+    <Modal isOpen={isOpen} onClose={onClose} maxWidth="3xl">
       <div className="space-y-6">
-        {/* Certificate Preview Image */}
+        {/* Certificate Preview Image / Document Viewer */}
         {certificate.image && (
-          <div className="relative rounded-2xl overflow-hidden border border-purple-500/30 aspect-[16/10] bg-[#070709] shadow-2xl">
+          <div className="relative group rounded-2xl overflow-hidden border border-purple-500/30 aspect-[16/11] bg-[#070709] shadow-2xl">
             <img
               src={certificate.image}
               alt={certificate.title}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain bg-[#0D0C12] transition-transform duration-300 group-hover:scale-[1.02]"
               loading="lazy"
             />
             <div className="absolute top-3.5 right-3.5">
@@ -36,6 +36,21 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
                 Verified Credential
               </span>
             </div>
+
+            {certificate.credentialUrl && (
+              <a
+                href={certificate.credentialUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white text-xs font-semibold backdrop-blur-[2px]"
+                title="Open full document in new tab"
+              >
+                <span className="bg-[#13111C]/90 px-4 py-2 rounded-xl border border-white/20 shadow-xl flex items-center gap-2">
+                  <ExternalLink className="w-4 h-4 text-accent-gold" />
+                  <span>Click to Open Full Document</span>
+                </span>
+              </a>
+            )}
           </div>
         )}
 
@@ -97,10 +112,10 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
               size="md"
               href={certificate.credentialUrl}
               target="_blank"
-              icon={<ExternalLink className="w-4 h-4" />}
+              icon={<ExternalLink className="w-4 h-4 text-accent-gold" />}
               iconPosition="right"
             >
-              Verify on Issuer Portal
+              Open Official Document
             </Button>
           )}
         </div>

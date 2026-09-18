@@ -30,7 +30,10 @@ export const Certificates: React.FC = () => {
               transition={{ duration: 0.4, delay: index * 0.1 }}
             >
               <TiltCard maxTilt={8} glareOpacity={0.25} className="h-full">
-                <div className="glass-card-3d group h-full flex flex-col justify-between rounded-3xl border border-white/10 hover:border-purple-500/40 hover:shadow-2xl hover:shadow-purple-900/25 transition-all overflow-hidden p-6 space-y-4">
+                <div
+                  onClick={() => setActiveCert(cert)}
+                  className="glass-card-3d group h-full flex flex-col justify-between rounded-3xl border border-white/10 hover:border-purple-500/40 hover:shadow-2xl hover:shadow-purple-900/25 transition-all overflow-hidden p-6 space-y-4 cursor-pointer"
+                >
                   {/* Header with Icon & Date */}
                   <div className="flex items-start justify-between gap-3">
                     <div className="w-12 h-12 rounded-2xl bg-purple-500/15 border border-purple-500/30 text-purple-400 flex items-center justify-center group-hover:scale-110 transition-transform shadow-inner">
@@ -72,11 +75,15 @@ export const Certificates: React.FC = () => {
                   {/* Footer Action buttons */}
                   <div className="pt-4 border-t border-white/10 flex items-center justify-between gap-2">
                     <button
-                      onClick={() => setActiveCert(cert)}
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-purple-400 hover:text-amber-300 transition-colors cursor-pointer"
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setActiveCert(cert);
+                      }}
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-purple-300 hover:text-amber-300 transition-colors cursor-pointer"
                     >
-                      <Eye className="w-3.5 h-3.5" />
-                      <span>View Credential</span>
+                      <Eye className="w-3.5 h-3.5 text-accent-gold" />
+                      <span>Preview Certificate</span>
                     </button>
 
                     {cert.credentialUrl && (
@@ -84,10 +91,11 @@ export const Certificates: React.FC = () => {
                         href={cert.credentialUrl}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
                         className="inline-flex items-center gap-1 text-xs font-semibold text-slate-400 hover:text-[#FDFBF7] dark:hover:text-[#FDFBF7] light:hover:text-slate-900 transition-colors"
                       >
-                        <span>Verify Link</span>
-                        <ExternalLink className="w-3 h-3" />
+                        <span>Open Document</span>
+                        <ExternalLink className="w-3 h-3 text-purple-400" />
                       </a>
                     )}
                   </div>
