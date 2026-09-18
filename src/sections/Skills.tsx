@@ -37,8 +37,8 @@ export const Skills: React.FC = () => {
                   onClick={() => setSelectedCategory(cat.id as SkillCategory)}
                   className={`relative px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
                     isActive
-                      ? 'text-white bg-primary-600 shadow-lg shadow-primary-500/25 border border-primary-500/50'
-                      : 'text-slate-400 dark:text-slate-400 light:text-slate-600 bg-slate-900/60 dark:bg-slate-900/60 light:bg-slate-100/90 border border-slate-800 dark:border-slate-800 light:border-slate-300 hover:text-white dark:hover:text-white light:hover:text-slate-900 hover:bg-slate-800'
+                      ? 'text-[#FDFBF7] bg-purple-600 shadow-lg shadow-purple-900/40 border border-purple-400/50'
+                      : 'text-slate-400 dark:text-slate-400 light:text-slate-600 bg-[#0D0C12]/80 dark:bg-[#0D0C12]/80 light:bg-slate-100/90 border border-white/10 dark:border-white/10 light:border-slate-300 hover:text-[#FDFBF7] dark:hover:text-[#FDFBF7] light:hover:text-slate-900 hover:bg-[#161421]'
                   }`}
                 >
                   {cat.label}
@@ -47,26 +47,26 @@ export const Skills: React.FC = () => {
             })}
           </div>
 
-          {/* 3D Orbit vs Matrix Grid Switcher (hidden on small mobile to favor optimal view) */}
-          <div className="hidden sm:flex items-center gap-1.5 p-1 rounded-2xl bg-slate-900/80 border border-slate-800 backdrop-blur">
+          {/* 3D Orbit vs Matrix Grid Switcher */}
+          <div className="hidden sm:flex items-center gap-1.5 p-1 rounded-2xl bg-[#0D0C12]/90 border border-white/10 backdrop-blur">
             <button
               onClick={() => setViewMode('3d-orbit')}
-              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
                 viewMode === '3d-orbit'
-                  ? 'bg-primary-600 text-white shadow-md'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-purple-600 text-[#FDFBF7] shadow-md border border-purple-400/40'
+                  : 'text-slate-400 hover:text-[#FDFBF7]'
               }`}
             >
-              <Orbit className="w-3.5 h-3.5 text-accent-cyan" />
+              <Orbit className="w-3.5 h-3.5 text-accent-gold" />
               <span>3D Orbit</span>
             </button>
 
             <button
               onClick={() => setViewMode('grid')}
-              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
                 viewMode === 'grid'
-                  ? 'bg-primary-600 text-white shadow-md'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-purple-600 text-[#FDFBF7] shadow-md border border-purple-400/40'
+                  : 'text-slate-400 hover:text-[#FDFBF7]'
               }`}
             >
               <Grid3X3 className="w-3.5 h-3.5" />
@@ -82,7 +82,7 @@ export const Skills: React.FC = () => {
           </div>
         )}
 
-        {/* Enhanced 3D Perspective Card Grid (Visible in Grid mode or on mobile) */}
+        {/* Enhanced 3D Perspective Card Grid */}
         <div className={viewMode === '3d-orbit' ? 'block sm:hidden' : 'block'}>
           <motion.div
             layout
@@ -99,25 +99,25 @@ export const Skills: React.FC = () => {
                   transition={{ type: 'spring', stiffness: 350, damping: 22 }}
                 >
                   <TiltCard maxTilt={10} glareOpacity={0.25} className="h-full">
-                    <div className="group relative h-full p-4 rounded-2xl glass-card-3d border border-white/10 hover:border-primary-500/50 hover:shadow-2xl hover:shadow-primary-500/20 transition-all duration-300 flex flex-col items-center text-center justify-between gap-3 cursor-default">
+                    <div className="group relative h-full p-4 rounded-2xl glass-card-3d border border-white/10 hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-900/30 transition-all duration-300 flex flex-col items-center text-center justify-between gap-3 cursor-default">
                       {/* Top featured dot */}
                       {skill.featured && (
                         <div className="absolute top-2.5 right-2.5">
                           <span
-                            className="w-2 h-2 rounded-full bg-accent-cyan block shadow-[0_0_10px_#06B6D4]"
+                            className="w-2 h-2 rounded-full bg-accent-gold block shadow-[0_0_10px_#E5C07B]"
                             title="Featured Skill"
                           />
                         </div>
                       )}
 
                       {/* Icon with Glowing Halo */}
-                      <div className="w-12 h-12 rounded-xl bg-slate-800/90 dark:bg-slate-800/90 light:bg-slate-100 flex items-center justify-center text-primary-400 group-hover:text-accent-cyan group-hover:bg-primary-500/15 group-hover:scale-115 transition-all duration-300 border border-white/5 shadow-inner">
+                      <div className="w-12 h-12 rounded-xl bg-[#13111C] flex items-center justify-center text-purple-400 group-hover:text-fuchsia-300 group-hover:bg-purple-500/15 group-hover:scale-115 transition-all duration-300 border border-white/5 shadow-inner">
                         <IconRenderer name={skill.icon} className="w-5 h-5" />
                       </div>
 
                       {/* Skill Name */}
                       <div>
-                        <h4 className="text-xs sm:text-sm font-bold text-white dark:text-white light:text-slate-900 group-hover:text-primary-300 transition-colors">
+                        <h4 className="text-xs sm:text-sm font-bold text-[#FDFBF7] dark:text-[#FDFBF7] light:text-slate-900 group-hover:text-purple-300 transition-colors">
                           {skill.name}
                         </h4>
 

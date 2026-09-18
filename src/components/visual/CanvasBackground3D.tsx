@@ -31,16 +31,17 @@ export const CanvasBackground3D: React.FC = () => {
     renderer.setClearColor(0x000000, 0);
     container.appendChild(renderer.domElement);
 
-    // 2. Geometry: Ambient Dust Particles
+    // 2. Geometry: Ambient Dust Particles (Royal Violet, Soft Magenta, Subtle Champagne Gold)
     const particleCount = prefersReducedMotion ? 40 : 120;
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
     const scales = new Float32Array(particleCount);
 
-    const primaryColor = new THREE.Color('#6366F1');
-    const cyanColor = new THREE.Color('#06B6D4');
-    const emeraldColor = new THREE.Color('#10B981');
-    const colorPalette = [primaryColor, cyanColor, emeraldColor];
+    const violetColor = new THREE.Color('#8B5CF6');
+    const magentaColor = new THREE.Color('#D946EF');
+    const goldColor = new THREE.Color('#E5C07B');
+    const deepPurple = new THREE.Color('#6D28D9');
+    const colorPalette = [violetColor, deepPurple, magentaColor, goldColor];
 
     for (let i = 0; i < particleCount; i++) {
       const i3 = i * 3;
@@ -70,9 +71,9 @@ export const CanvasBackground3D: React.FC = () => {
       if (ctx) {
         const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
         gradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
-        gradient.addColorStop(0.25, 'rgba(255, 255, 255, 0.8)');
-        gradient.addColorStop(0.6, 'rgba(255, 255, 255, 0.2)');
-        gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+        gradient.addColorStop(0.25, 'rgba(235, 220, 255, 0.85)');
+        gradient.addColorStop(0.6, 'rgba(217, 70, 239, 0.25)');
+        gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
         ctx.fillStyle = gradient;
         ctx.fillRect(0, 0, 64, 64);
       }
@@ -94,11 +95,11 @@ export const CanvasBackground3D: React.FC = () => {
     const particles = new THREE.Points(particleGeometry, particleMaterial);
     scene.add(particles);
 
-    // 3. Constellation Lines between nearby particles
+    // 3. Constellation Lines between nearby particles (Soft Violet/Plum)
     const lineMaterial = new THREE.LineBasicMaterial({
-      color: 0x6366f1,
+      color: 0x7c3aed,
       transparent: true,
-      opacity: 0.12,
+      opacity: 0.14,
       blending: THREE.AdditiveBlending,
     });
 
@@ -143,9 +144,8 @@ export const CanvasBackground3D: React.FC = () => {
       mouseY += (targetMouseY - mouseY) * 0.05;
 
       if (!prefersReducedMotion) {
-        // Subtle global rotation
-        particles.rotation.y = elapsedTime * 0.03 + mouseX * 0.2;
-        particles.rotation.x = -mouseY * 0.2;
+        particles.rotation.y = elapsedTime * 0.025 + mouseX * 0.18;
+        particles.rotation.x = -mouseY * 0.18;
         lines.rotation.y = particles.rotation.y;
         lines.rotation.x = particles.rotation.x;
       }

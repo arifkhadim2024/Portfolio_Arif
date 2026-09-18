@@ -31,73 +31,76 @@ export const HeroCore3D: React.FC<HeroCore3DProps> = ({ className = '' }) => {
     renderer.setSize(width, height);
     renderer.setClearColor(0x000000, 0);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.2;
+    renderer.toneMappingExposure = 1.3;
     container.appendChild(renderer.domElement);
 
-    // 2. Lighting Setup
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+    // 2. Realistic Cinematic Lighting (Violet + Magenta + Warm Champagne Gold)
+    const ambientLight = new THREE.AmbientLight(0xd946ef, 0.35);
     scene.add(ambientLight);
 
-    const cyanPointLight = new THREE.PointLight(0x06b6d4, 3, 50);
-    cyanPointLight.position.set(10, 10, 10);
-    scene.add(cyanPointLight);
+    // Warm Champagne Gold Key Light
+    const goldKeyLight = new THREE.PointLight(0xe5c07b, 3.5, 45);
+    goldKeyLight.position.set(10, 12, 10);
+    scene.add(goldKeyLight);
 
-    const violetPointLight = new THREE.PointLight(0x8b5cf6, 3, 50);
-    violetPointLight.position.set(-10, -10, 10);
-    scene.add(violetPointLight);
+    // Soft Violet Rim Light
+    const violetRimLight = new THREE.PointLight(0x8b5cf6, 3.8, 50);
+    violetRimLight.position.set(-10, -10, 10);
+    scene.add(violetRimLight);
 
-    const rimLight = new THREE.DirectionalLight(0xffffff, 1.5);
-    rimLight.position.set(0, 15, -10);
-    scene.add(rimLight);
+    // Subtle Magenta Accent Light
+    const magentaFillLight = new THREE.DirectionalLight(0xd946ef, 1.2);
+    magentaFillLight.position.set(0, 15, -10);
+    scene.add(magentaFillLight);
 
     // 3. Central Developer Core Group
     const coreGroup = new THREE.Group();
     scene.add(coreGroup);
 
-    // A. Inner glowing nucleus sphere
+    // A. Inner warm glowing nucleus sphere (Champagne Gold / Soft Magenta Core)
     const nucleusGeo = new THREE.SphereGeometry(1.8, 32, 32);
     const nucleusMat = new THREE.MeshStandardMaterial({
-      color: 0x06b6d4,
-      emissive: 0x6366f1,
-      emissiveIntensity: 0.8,
-      roughness: 0.2,
-      metalness: 0.8,
+      color: 0x8b5cf6,
+      emissive: 0xd946ef,
+      emissiveIntensity: 0.6,
+      roughness: 0.25,
+      metalness: 0.75,
     });
     const nucleus = new THREE.Mesh(nucleusGeo, nucleusMat);
     coreGroup.add(nucleus);
 
-    // B. Outer Crystalline Icosahedron Lattice
+    // B. Outer Crystalline Icosahedron in Smoked Glass Material
     const icoGeo = new THREE.IcosahedronGeometry(3.2, 0);
     const icoMat = new THREE.MeshPhysicalMaterial({
-      color: 0x6366f1,
+      color: 0x2e1065, // Deep obsidian violet
       transparent: true,
-      opacity: 0.45,
-      roughness: 0.1,
-      metalness: 0.9,
-      transmission: 0.6,
-      ior: 1.5,
+      opacity: 0.5,
+      roughness: 0.15,
+      metalness: 0.85,
+      transmission: 0.55,
+      ior: 1.55,
       wireframe: false,
     });
     const icosahedron = new THREE.Mesh(icoGeo, icoMat);
     coreGroup.add(icosahedron);
 
-    // Wireframe edges overlay
+    // Wireframe edges overlay in Soft Violet
     const icoWireGeo = new THREE.WireframeGeometry(icoGeo);
     const icoWireMat = new THREE.LineBasicMaterial({
-      color: 0x06b6d4,
+      color: 0xa855f7,
       transparent: true,
-      opacity: 0.7,
+      opacity: 0.65,
       linewidth: 2,
     });
     const icoWireframe = new THREE.LineSegments(icoWireGeo, icoWireMat);
     coreGroup.add(icoWireframe);
 
-    // C. Orbital Energy Rings (Torus)
+    // C. Orbital Energy Rings (Brushed dark metal with soft violet & warm gold edge)
     const ring1Geo = new THREE.TorusGeometry(4.8, 0.04, 16, 100);
     const ring1Mat = new THREE.MeshBasicMaterial({
-      color: 0x818cf8,
+      color: 0xc084fc,
       transparent: true,
-      opacity: 0.6,
+      opacity: 0.65,
     });
     const ring1 = new THREE.Mesh(ring1Geo, ring1Mat);
     ring1.rotation.x = Math.PI / 3;
@@ -105,19 +108,19 @@ export const HeroCore3D: React.FC<HeroCore3DProps> = ({ className = '' }) => {
 
     const ring2Geo = new THREE.TorusGeometry(5.6, 0.03, 16, 100);
     const ring2Mat = new THREE.MeshBasicMaterial({
-      color: 0x06b6d4,
+      color: 0xe5c07b, // Subtle Champagne Gold
       transparent: true,
-      opacity: 0.5,
+      opacity: 0.55,
     });
     const ring2 = new THREE.Mesh(ring2Geo, ring2Mat);
     ring2.rotation.x = -Math.PI / 4;
     ring2.rotation.y = Math.PI / 6;
     coreGroup.add(ring2);
 
-    // D. Floating 3D Tech Tokens (Cuboids)
+    // D. Floating 3D Tech Tokens (Deep Violet, Magenta, Champagne Gold, Soft Plum)
     const tokenCount = 4;
     const tokens: THREE.Mesh[] = [];
-    const tokenColors = [0x6366f1, 0x06b6d4, 0x10b981, 0xf59e0b];
+    const tokenColors = [0x7c3aed, 0xd946ef, 0xe5c07b, 0xa21caf];
 
     for (let i = 0; i < tokenCount; i++) {
       const tokenGeo = new THREE.BoxGeometry(0.7, 0.7, 0.7);
@@ -126,14 +129,14 @@ export const HeroCore3D: React.FC<HeroCore3DProps> = ({ className = '' }) => {
         roughness: 0.2,
         metalness: 0.8,
         emissive: tokenColors[i],
-        emissiveIntensity: 0.3,
+        emissiveIntensity: 0.25,
       });
       const tokenMesh = new THREE.Mesh(tokenGeo, tokenMat);
       coreGroup.add(tokenMesh);
       tokens.push(tokenMesh);
     }
 
-    // E. Micro Particle Field
+    // E. Micro Particle Field (Violet & Gold Dust)
     const particleCount = 80;
     const particlePositions = new Float32Array(particleCount * 3);
     for (let i = 0; i < particleCount; i++) {
@@ -149,10 +152,10 @@ export const HeroCore3D: React.FC<HeroCore3DProps> = ({ className = '' }) => {
     const particlesGeo = new THREE.BufferGeometry();
     particlesGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
     const particlesMat = new THREE.PointsMaterial({
-      color: 0x06b6d4,
+      color: 0xc084fc,
       size: 0.12,
       transparent: true,
-      opacity: 0.8,
+      opacity: 0.75,
       blending: THREE.AdditiveBlending,
     });
     const particleField = new THREE.Points(particlesGeo, particlesMat);
@@ -173,10 +176,10 @@ export const HeroCore3D: React.FC<HeroCore3DProps> = ({ className = '' }) => {
       targetRotationY = x * 0.8;
       targetRotationX = -y * 0.8;
 
-      cyanPointLight.position.x = 10 + x * 8;
-      cyanPointLight.position.y = 10 - y * 8;
-      violetPointLight.position.x = -10 - x * 8;
-      violetPointLight.position.y = -10 + y * 8;
+      goldKeyLight.position.x = 10 + x * 8;
+      goldKeyLight.position.y = 12 - y * 8;
+      violetRimLight.position.x = -10 - x * 8;
+      violetRimLight.position.y = -10 + y * 8;
 
       if (isDragging) {
         const deltaX = e.clientX - previousMouseX;
@@ -228,8 +231,8 @@ export const HeroCore3D: React.FC<HeroCore3DProps> = ({ className = '' }) => {
         }
 
         // Rotate individual orbital rings
-        ring1.rotation.z = elapsed * 0.4;
-        ring2.rotation.z = -elapsed * 0.3;
+        ring1.rotation.z = elapsed * 0.35;
+        ring2.rotation.z = -elapsed * 0.28;
 
         // Pulse inner nucleus
         const scale = 1 + Math.sin(elapsed * 2) * 0.06;
@@ -237,17 +240,17 @@ export const HeroCore3D: React.FC<HeroCore3DProps> = ({ className = '' }) => {
 
         // Orbit tech tokens in 3D
         tokens.forEach((token, index) => {
-          const angle = elapsed * 0.6 + (index * (Math.PI * 2)) / tokenCount;
+          const angle = elapsed * 0.5 + (index * (Math.PI * 2)) / tokenCount;
           const radius = 5.2;
           token.position.x = Math.cos(angle) * radius;
           token.position.z = Math.sin(angle) * radius;
           token.position.y = Math.sin(elapsed * 1.5 + index) * 1.5;
-          token.rotation.x = elapsed * 1.2;
-          token.rotation.y = elapsed * 1.2;
+          token.rotation.x = elapsed * 1.1;
+          token.rotation.y = elapsed * 1.1;
         });
 
         // Rotate particles
-        particleField.rotation.y = elapsed * 0.1;
+        particleField.rotation.y = elapsed * 0.08;
       }
 
       renderer.render(scene, camera);

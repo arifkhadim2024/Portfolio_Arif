@@ -24,7 +24,7 @@ export const ThemeToggle: React.FC = () => {
             exit={{ rotate: 90, opacity: 0 }}
             transition={{ duration: 0.2 }}
           >
-            <Moon className="w-5 h-5 text-indigo-300 fill-indigo-400/20" />
+            <Moon className="w-5 h-5 text-primary-300 fill-primary-400/20" />
           </motion.div>
         ) : (
           <motion.div

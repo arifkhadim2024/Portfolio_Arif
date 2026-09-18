@@ -48,7 +48,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
             <div>
               <div className="flex items-center justify-between pb-6 border-b border-slate-800 dark:border-slate-800 light:border-slate-200">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-primary-600 to-accent-cyan flex items-center justify-center font-bold text-white text-sm">
+                  <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-primary-600 via-accent-magenta to-accent-gold flex items-center justify-center font-bold text-white text-sm">
                     AK
                   </div>
                   <span className="font-bold text-base text-white dark:text-white light:text-slate-900">
@@ -80,7 +80,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                       }`}
                     >
                       <span>{item.label}</span>
-                      {isActive && <span className="w-1.5 h-1.5 rounded-full bg-primary-400" />}
+                      {isActive && <span className="w-1.5 h-1.5 rounded-full bg-accent-gold" />}
                     </a>
                   );
                 })}
@@ -92,10 +92,10 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                   href={profileData.resumeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-r from-primary-600 to-accent-cyan text-white text-sm font-semibold shadow-md shadow-primary-500/20"
+                  className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-r from-primary-600 via-accent-magenta to-accent-gold text-white text-sm font-semibold shadow-md shadow-primary-500/20"
                 >
                   <span>View Resume</span>
-                  <ExternalLink className="w-4 h-4" />
+                  <ExternalLink className="w-4 h-4 text-accent-gold" />
                 </a>
               </div>
             </div>

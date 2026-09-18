@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import type { HTMLMotionProps } from 'framer-motion';
 
-type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'glow';
+type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'glow' | 'gold';
 type ButtonSize = 'sm' | 'md' | 'lg';
 
 interface ButtonProps extends Omit<HTMLMotionProps<'button'>, 'children'> {
@@ -33,7 +33,7 @@ export const Button: React.FC<ButtonProps> = ({
   className = '',
   ...props
 }) => {
-  const baseStyles = "inline-flex items-center justify-center font-semibold rounded-xl transition-all duration-200 select-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500/50 disabled:opacity-50 disabled:cursor-not-allowed";
+  const baseStyles = "relative inline-flex items-center justify-center font-semibold rounded-2xl transition-all duration-300 select-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500/40 disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden";
 
   const sizeStyles = {
     sm: "px-3.5 py-1.5 text-xs sm:text-sm gap-1.5",
@@ -42,11 +42,12 @@ export const Button: React.FC<ButtonProps> = ({
   };
 
   const variantStyles = {
-    primary: "bg-gradient-to-r from-primary-600 via-primary-500 to-accent-cyan text-white shadow-lg shadow-primary-500/25 hover:shadow-primary-500/40 hover:brightness-110 active:scale-[0.98]",
-    glow: "bg-primary-500 text-white shadow-glow-primary hover:bg-primary-600 hover:shadow-primary-500/50 active:scale-[0.98]",
-    secondary: "bg-slate-800/90 hover:bg-slate-700/90 text-slate-100 border border-slate-700/80 active:scale-[0.98]",
-    outline: "bg-transparent hover:bg-white/5 text-slate-200 border border-slate-700/80 hover:border-slate-500 active:scale-[0.98]",
-    ghost: "bg-transparent hover:bg-white/5 text-slate-300 hover:text-white active:scale-[0.98]",
+    primary: "bg-gradient-to-r from-purple-700 via-purple-600 to-fuchsia-600 text-[#FDFBF7] shadow-lg shadow-purple-900/40 border border-purple-400/30 hover:shadow-purple-700/50 hover:border-purple-300/60 hover:brightness-110 active:scale-[0.98]",
+    glow: "bg-purple-600 text-[#FDFBF7] shadow-glow-primary hover:bg-purple-700 hover:shadow-purple-500/50 border border-purple-400/40 active:scale-[0.98]",
+    gold: "bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-500 text-[#070709] font-bold shadow-lg shadow-amber-900/30 border border-amber-300/50 hover:brightness-110 active:scale-[0.98]",
+    secondary: "bg-[#0D0C12]/90 hover:bg-[#161421] text-[#FDFBF7] border border-purple-500/25 hover:border-purple-400/50 shadow-md active:scale-[0.98] backdrop-blur-md",
+    outline: "bg-transparent hover:bg-purple-500/10 text-[#FDFBF7] border border-purple-500/30 hover:border-purple-400/60 active:scale-[0.98]",
+    ghost: "bg-transparent hover:bg-purple-500/10 text-slate-300 hover:text-[#FDFBF7] active:scale-[0.98]",
   };
 
   const combinedClasses = `${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${fullWidth ? 'w-full' : ''} ${className}`;

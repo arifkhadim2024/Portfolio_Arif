@@ -23,7 +23,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
       <div className="space-y-6">
         {/* Certificate Preview Image */}
         {certificate.image && (
-          <div className="relative rounded-2xl overflow-hidden border border-white/15 aspect-[16/10] bg-slate-950 shadow-2xl">
+          <div className="relative rounded-2xl overflow-hidden border border-purple-500/30 aspect-[16/10] bg-[#070709] shadow-2xl">
             <img
               src={certificate.image}
               alt={certificate.title}
@@ -31,8 +31,8 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
               loading="lazy"
             />
             <div className="absolute top-3.5 right-3.5">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/90 text-white shadow-lg backdrop-blur border border-white/20">
-                <ShieldCheck className="w-3.5 h-3.5" />
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-purple-950/90 text-amber-300 shadow-lg backdrop-blur border border-amber-400/40">
+                <ShieldCheck className="w-3.5 h-3.5 text-accent-gold" />
                 Verified Credential
               </span>
             </div>
@@ -41,11 +41,11 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
 
         {/* Certificate Title & Issuer */}
         <div className="flex items-start gap-4">
-          <div className="p-3.5 rounded-2xl bg-primary-500/15 border border-primary-500/30 text-primary-400 shadow-inner">
+          <div className="p-3.5 rounded-2xl bg-purple-500/15 border border-purple-500/30 text-purple-400 shadow-inner">
             <Award className="w-7 h-7" />
           </div>
           <div>
-            <h3 className="text-xl sm:text-2xl font-bold text-white dark:text-white light:text-slate-900 tracking-tight">
+            <h3 className="text-xl sm:text-2xl font-bold text-[#FDFBF7] dark:text-[#FDFBF7] light:text-slate-900 tracking-tight">
               {certificate.title}
             </h3>
             <p className="text-sm text-slate-400 dark:text-slate-400 light:text-slate-600 mt-0.5">
@@ -55,16 +55,16 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
         </div>
 
         {/* Metadata Details */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 rounded-2xl bg-slate-900/80 dark:bg-slate-900/80 light:bg-slate-100/90 border border-slate-800 dark:border-slate-800 light:border-slate-300 text-xs sm:text-sm">
-          <div className="flex items-center gap-2 text-slate-300 dark:text-slate-300 light:text-slate-700">
-            <Calendar className="w-4 h-4 text-primary-400 flex-shrink-0" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 rounded-2xl bg-[#0D0C12]/90 dark:bg-[#0D0C12]/90 light:bg-slate-100/90 border border-white/10 text-xs sm:text-sm">
+          <div className="flex items-center gap-2 text-slate-300 dark:text-slate-300 light:text-slate-700 font-mono">
+            <Calendar className="w-4 h-4 text-purple-400 flex-shrink-0" />
             <span>Issued: <strong>{certificate.issueDate}</strong></span>
           </div>
 
           {certificate.credentialId && (
             <div className="flex items-center gap-2 text-slate-300 dark:text-slate-300 light:text-slate-700 font-mono text-xs">
-              <ShieldCheck className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-              <span>ID: <strong className="text-accent-cyan">{certificate.credentialId}</strong></span>
+              <ShieldCheck className="w-4 h-4 text-accent-gold flex-shrink-0" />
+              <span>ID: <strong className="text-amber-300">{certificate.credentialId}</strong></span>
             </div>
           )}
         </div>
@@ -86,7 +86,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
         )}
 
         {/* Actions */}
-        <div className="pt-4 border-t border-slate-800 dark:border-slate-800 light:border-slate-200 flex items-center justify-end gap-3">
+        <div className="pt-4 border-t border-white/10 flex items-center justify-end gap-3">
           <Button variant="outline" size="md" onClick={onClose}>
             Close Preview
           </Button>

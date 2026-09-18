@@ -32,33 +32,37 @@ export const ContactSphere3D: React.FC<ContactSphere3DProps> = ({ className = ''
     renderer.setClearColor(0x000000, 0);
     container.appendChild(renderer.domElement);
 
-    // 2. Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+    // 2. Lighting (Warm Champagne Gold & Soft Violet)
+    const ambientLight = new THREE.AmbientLight(0xd946ef, 0.35);
     scene.add(ambientLight);
 
-    const pointLight = new THREE.PointLight(0x06b6d4, 4, 30);
-    pointLight.position.set(5, 5, 10);
-    scene.add(pointLight);
+    const goldPointLight = new THREE.PointLight(0xe5c07b, 4.5, 35);
+    goldPointLight.position.set(6, 6, 10);
+    scene.add(goldPointLight);
 
-    // 3. Central Pulsing Beacon Sphere
+    const violetRimLight = new THREE.PointLight(0x8b5cf6, 3.5, 35);
+    violetRimLight.position.set(-6, -6, 10);
+    scene.add(violetRimLight);
+
+    // 3. Central Pulsing Beacon Sphere (Deep Royal Violet with Magenta Core)
     const beaconGroup = new THREE.Group();
     scene.add(beaconGroup);
 
     const sphereGeo = new THREE.SphereGeometry(2.5, 32, 32);
     const sphereMat = new THREE.MeshStandardMaterial({
-      color: 0x6366f1,
-      emissive: 0x06b6d4,
-      emissiveIntensity: 0.7,
-      roughness: 0.15,
-      metalness: 0.85,
+      color: 0x6d28d9,
+      emissive: 0xd946ef,
+      emissiveIntensity: 0.65,
+      roughness: 0.2,
+      metalness: 0.8,
     });
     const sphere = new THREE.Mesh(sphereGeo, sphereMat);
     beaconGroup.add(sphere);
 
-    // Outer wireframe shell
+    // Outer wireframe shell in Champagne Gold
     const shellGeo = new THREE.IcosahedronGeometry(3.6, 1);
     const shellMat = new THREE.MeshBasicMaterial({
-      color: 0x8b5cf6,
+      color: 0xe5c07b,
       wireframe: true,
       transparent: true,
       opacity: 0.35,
@@ -66,7 +70,7 @@ export const ContactSphere3D: React.FC<ContactSphere3DProps> = ({ className = ''
     const shell = new THREE.Mesh(shellGeo, shellMat);
     beaconGroup.add(shell);
 
-    // 4. Inward Converging Particle Vortex
+    // 4. Inward Converging Particle Vortex (Champagne & Magenta dust)
     const particleCount = 120;
     const particlePositions = new Float32Array(particleCount * 3);
     const particleInitialRadii = new Float32Array(particleCount);
@@ -90,7 +94,7 @@ export const ContactSphere3D: React.FC<ContactSphere3DProps> = ({ className = ''
     const vortexGeo = new THREE.BufferGeometry();
     vortexGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
     const vortexMat = new THREE.PointsMaterial({
-      color: 0x06b6d4,
+      color: 0xc084fc,
       size: 0.18,
       transparent: true,
       opacity: 0.85,
@@ -134,8 +138,8 @@ export const ContactSphere3D: React.FC<ContactSphere3DProps> = ({ className = ''
         beaconGroup.rotation.y += (targetX * 0.5 - beaconGroup.rotation.y) * 0.05 + 0.005;
         beaconGroup.rotation.x += (targetY * 0.5 - beaconGroup.rotation.x) * 0.05;
 
-        shell.rotation.y = -elapsed * 0.3;
-        shell.rotation.z = elapsed * 0.2;
+        shell.rotation.y = -elapsed * 0.25;
+        shell.rotation.z = elapsed * 0.18;
 
         // Pulse Sphere
         const scale = 1 + Math.sin(elapsed * 2.5) * 0.08;

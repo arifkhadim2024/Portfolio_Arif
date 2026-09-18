@@ -42,34 +42,38 @@ export const SkillEcosystem3D: React.FC<SkillEcosystem3DProps> = ({
     renderer.setClearColor(0x000000, 0);
     container.appendChild(renderer.domElement);
 
-    // 2. Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
+    // 2. Lighting (Violet + Gold)
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.1);
     scene.add(ambientLight);
 
-    const coreLight = new THREE.PointLight(0x06b6d4, 4, 30);
+    const coreLight = new THREE.PointLight(0xd946ef, 4, 30);
     coreLight.position.set(0, 0, 0);
     scene.add(coreLight);
+
+    const keyLight = new THREE.DirectionalLight(0xe5c07b, 1.2);
+    keyLight.position.set(10, 15, 10);
+    scene.add(keyLight);
 
     // 3. Central Core "ARIF KHADIM"
     const centralGroup = new THREE.Group();
     scene.add(centralGroup);
 
-    // Core Sphere
+    // Core Sphere in Royal Purple
     const coreGeo = new THREE.SphereGeometry(2.2, 32, 32);
     const coreMat = new THREE.MeshStandardMaterial({
-      color: 0x6366f1,
-      emissive: 0x06b6d4,
-      emissiveIntensity: 0.6,
-      roughness: 0.2,
+      color: 0x6d28d9,
+      emissive: 0xa855f7,
+      emissiveIntensity: 0.65,
+      roughness: 0.25,
       metalness: 0.8,
     });
     const coreMesh = new THREE.Mesh(coreGeo, coreMat);
     centralGroup.add(coreMesh);
 
-    // Core Outer Wireframe / Halo
+    // Core Outer Wireframe / Halo in Champagne Gold
     const haloGeo = new THREE.IcosahedronGeometry(2.8, 1);
     const haloMat = new THREE.MeshBasicMaterial({
-      color: 0x06b6d4,
+      color: 0xe5c07b,
       wireframe: true,
       transparent: true,
       opacity: 0.35,
@@ -91,9 +95,9 @@ export const SkillEcosystem3D: React.FC<SkillEcosystem3DProps> = ({
       }
       ringGeo.setFromPoints(points);
       const ringMat = new THREE.LineBasicMaterial({
-        color: idx % 2 === 0 ? 0x6366f1 : 0x06b6d4,
+        color: idx % 2 === 0 ? 0x8b5cf6 : 0xe5c07b,
         transparent: true,
-        opacity: 0.2,
+        opacity: idx % 2 === 0 ? 0.22 : 0.15,
       });
       const ringLine = new THREE.Line(ringGeo, ringMat);
       scene.add(ringLine);
@@ -111,8 +115,8 @@ export const SkillEcosystem3D: React.FC<SkillEcosystem3DProps> = ({
       canvas.height = 128;
       const ctx = canvas.getContext('2d');
       if (ctx) {
-        ctx.fillStyle = 'rgba(11, 15, 25, 0.85)';
-        ctx.strokeStyle = isFeatured ? 'rgba(6, 182, 212, 0.8)' : 'rgba(99, 102, 241, 0.5)';
+        ctx.fillStyle = 'rgba(13, 12, 18, 0.88)';
+        ctx.strokeStyle = isFeatured ? 'rgba(229, 192, 123, 0.85)' : 'rgba(139, 92, 246, 0.55)';
         ctx.lineWidth = 4;
         ctx.beginPath();
         ctx.roundRect(8, 8, 240, 112, 24);
@@ -120,7 +124,7 @@ export const SkillEcosystem3D: React.FC<SkillEcosystem3DProps> = ({
         ctx.stroke();
 
         ctx.font = 'bold 30px "JetBrains Mono", monospace';
-        ctx.fillStyle = '#FFFFFF';
+        ctx.fillStyle = '#FDFBF7';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText(text, 128, 64);
@@ -154,13 +158,13 @@ export const SkillEcosystem3D: React.FC<SkillEcosystem3DProps> = ({
       const orbitSpeed = 0.08 / (orbitIndex + 1);
       const orbitInclination = (Math.random() - 0.5) * 0.4;
 
-      // Node Sphere
+      // Node Sphere (Smoked glass violet / magenta)
       const sphereMat = new THREE.MeshStandardMaterial({
-        color: skill.featured ? 0x06b6d4 : 0x6366f1,
-        emissive: skill.featured ? 0x06b6d4 : 0x6366f1,
+        color: skill.featured ? 0xd946ef : 0x7c3aed,
+        emissive: skill.featured ? 0xd946ef : 0x6d28d9,
         emissiveIntensity: 0.4,
         roughness: 0.3,
-        metalness: 0.7,
+        metalness: 0.75,
       });
       const mesh = new THREE.Mesh(sphereGeo, sphereMat);
       mesh.userData = { skill };
@@ -193,15 +197,15 @@ export const SkillEcosystem3D: React.FC<SkillEcosystem3DProps> = ({
       });
     });
 
-    // 5. Active Connection Beam
+    // 5. Active Connection Beam (Soft Magenta)
     const beamGeo = new THREE.BufferGeometry().setFromPoints([
       new THREE.Vector3(0, 0, 0),
       new THREE.Vector3(0, 0, 0),
     ]);
     const beamMat = new THREE.LineBasicMaterial({
-      color: 0x06b6d4,
+      color: 0xd946ef,
       transparent: true,
-      opacity: 0.8,
+      opacity: 0.85,
       linewidth: 3,
     });
     const connectionBeam = new THREE.Line(beamGeo, beamMat);
@@ -372,7 +376,7 @@ export const SkillEcosystem3D: React.FC<SkillEcosystem3DProps> = ({
   }, [filteredSkills, selectedCategory]);
 
   return (
-    <div className="relative w-full h-[450px] sm:h-[520px] lg:h-[600px] select-none rounded-3xl overflow-hidden glass-card-3d border border-white/10">
+    <div className="relative w-full h-[450px] sm:h-[520px] lg:h-[600px] select-none rounded-3xl overflow-hidden glass-card-3d border border-primary-500/20">
       {/* 3D WebGL Canvas */}
       <div
         ref={containerRef}
@@ -382,10 +386,10 @@ export const SkillEcosystem3D: React.FC<SkillEcosystem3DProps> = ({
 
       {/* Floating Info Overlay for Active Skill */}
       {hoveredSkill && (
-        <div className="absolute top-4 left-4 p-4 rounded-2xl bg-slate-900/90 dark:bg-slate-900/90 light:bg-white/95 border border-primary-500/50 shadow-2xl backdrop-blur-md pointer-events-none z-20 max-w-xs animate-fadeIn">
+        <div className="absolute top-4 left-4 p-4 rounded-2xl bg-[#0D0C12]/95 dark:bg-[#0D0C12]/95 light:bg-white/95 border border-primary-500/50 shadow-2xl backdrop-blur-md pointer-events-none z-20 max-w-xs animate-fadeIn">
           <div className="flex items-center gap-2 mb-1">
-            <span className="w-2 h-2 rounded-full bg-accent-cyan animate-ping" />
-            <h4 className="text-base font-bold text-white dark:text-white light:text-slate-900">
+            <span className="w-2 h-2 rounded-full bg-accent-magenta animate-ping" />
+            <h4 className="text-base font-bold text-[#FDFBF7] dark:text-[#FDFBF7] light:text-slate-900">
               {hoveredSkill.name}
             </h4>
           </div>
@@ -399,7 +403,7 @@ export const SkillEcosystem3D: React.FC<SkillEcosystem3DProps> = ({
       )}
 
       {/* Control Hint in Corner */}
-      <div className="absolute bottom-4 right-4 text-[11px] font-mono text-slate-400 bg-slate-900/80 px-3 py-1.5 rounded-xl border border-slate-800 backdrop-blur pointer-events-none hidden sm:block">
+      <div className="absolute bottom-4 right-4 text-[11px] font-mono text-slate-400 bg-[#0D0C12]/80 px-3 py-1.5 rounded-xl border border-white/10 backdrop-blur pointer-events-none hidden sm:block">
         🖱️ Click & Drag to Rotate 3D Ecosystem • Hover nodes to inspect
       </div>
     </div>

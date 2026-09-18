@@ -19,16 +19,16 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
   const isCenter = align === 'center';
 
   return (
-    <div className={`mb-12 md:mb-16 ${isCenter ? 'text-center mx-auto max-w-2xl' : 'max-w-2xl'} ${className}`}>
+    <div className={`mb-12 md:mb-16 ${isCenter ? 'text-center mx-auto max-w-3xl' : 'max-w-3xl'} ${className}`}>
       {badge && (
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4 }}
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase mb-3 bg-primary-500/10 text-primary-400 border border-primary-500/20"
+          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold tracking-widest uppercase mb-4 bg-purple-950/70 text-purple-300 border border-purple-500/30 backdrop-blur-md shadow-sm"
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-primary-400 animate-pulse" />
+          <span className="w-1.5 h-1.5 rounded-full bg-accent-gold animate-pulse" />
           {badge}
         </motion.div>
       )}
@@ -38,7 +38,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white dark:text-white light:text-slate-900"
+        className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#FDFBF7] dark:text-[#FDFBF7] light:text-slate-900"
       >
         {title}
       </motion.h2>
@@ -55,9 +55,9 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
         </motion.p>
       )}
 
-      <div className={`mt-4 flex items-center gap-1.5 ${isCenter ? 'justify-center' : 'justify-start'}`}>
-        <div className="h-1 w-12 rounded-full bg-gradient-to-r from-primary-500 to-accent-cyan" />
-        <div className="h-1 w-2 rounded-full bg-accent-cyan" />
+      <div className={`mt-5 flex items-center gap-1.5 ${isCenter ? 'justify-center' : 'justify-start'}`}>
+        <div className="h-0.5 w-12 rounded-full bg-gradient-to-r from-purple-500 via-fuchsia-500 to-amber-400" />
+        <div className="h-0.5 w-2 rounded-full bg-accent-gold" />
       </div>
     </div>
   );

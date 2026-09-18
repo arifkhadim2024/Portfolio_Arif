@@ -5,7 +5,7 @@ import type { HTMLMotionProps } from 'framer-motion';
 interface GlowingCardProps extends HTMLMotionProps<'div'> {
   children: React.ReactNode;
   className?: string;
-  glowColor?: 'primary' | 'cyan' | 'emerald' | 'violet';
+  glowColor?: 'primary' | 'violet' | 'magenta' | 'gold' | 'plum' | 'cyan' | 'emerald';
   bordered?: boolean;
 }
 
@@ -16,11 +16,14 @@ export const GlowingCard: React.FC<GlowingCardProps> = ({
   bordered = true,
   ...props
 }) => {
-  const glowGradients = {
+  const glowGradients: Record<string, string> = {
     primary: 'from-primary-500/10 via-transparent to-transparent',
-    cyan: 'from-cyan-500/10 via-transparent to-transparent',
-    emerald: 'from-emerald-500/10 via-transparent to-transparent',
-    violet: 'from-purple-500/10 via-transparent to-transparent',
+    violet: 'from-primary-500/10 via-transparent to-transparent',
+    magenta: 'from-fuchsia-500/10 via-transparent to-transparent',
+    gold: 'from-amber-500/10 via-transparent to-transparent',
+    plum: 'from-purple-900/15 via-transparent to-transparent',
+    cyan: 'from-fuchsia-500/10 via-transparent to-transparent',
+    emerald: 'from-amber-500/10 via-transparent to-transparent',
   };
 
   return (

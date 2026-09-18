@@ -48,25 +48,25 @@ export const Navbar: React.FC = () => {
             href="#home"
             className="group flex items-center gap-3 font-bold text-lg text-white dark:text-white light:text-slate-900 tracking-tight"
           >
-            <div className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-primary-600 via-primary-500 to-accent-cyan p-0.5 shadow-lg shadow-primary-500/30 group-hover:scale-105 transition-transform">
-              <div className="w-full h-full rounded-[10px] bg-[#05070B] flex items-center justify-center font-black text-xs text-white font-mono">
+            <div className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-primary-600 via-accent-magenta to-accent-gold p-0.5 shadow-lg shadow-primary-600/30 group-hover:scale-105 transition-transform">
+              <div className="w-full h-full rounded-[10px] bg-[#070709] flex items-center justify-center font-black text-xs text-white font-mono">
                 AK
               </div>
-              <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-400 rounded-full border-2 border-dark-bg dark:border-dark-bg light:border-white shadow-[0_0_8px_#10B981]" />
+              <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-accent-gold rounded-full border-2 border-dark-bg dark:border-dark-bg light:border-white shadow-[0_0_8px_#E5C07B]" />
             </div>
             <div className="flex flex-col">
-              <span className="leading-tight font-black group-hover:text-primary-400 transition-colors text-gradient-cinematic">
+              <span className="leading-tight font-black group-hover:text-primary-300 transition-colors text-gradient-cinematic">
                 {profileData.name}
               </span>
               <span className="text-[10px] font-mono text-slate-400 dark:text-slate-400 light:text-slate-500 flex items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-accent-cyan" />
+                <span className="w-1.5 h-1.5 rounded-full bg-accent-gold" />
                 portfolio.v2
               </span>
             </div>
           </a>
 
           {/* Floating Frosted Navigation Bar */}
-          <nav className="hidden lg:flex items-center gap-1 bg-slate-900/75 dark:bg-slate-900/75 light:bg-slate-100/85 px-4 py-1.5 rounded-full border border-white/10 dark:border-white/10 light:border-slate-300 backdrop-blur-xl shadow-lg">
+          <nav className="hidden lg:flex items-center gap-1 bg-dark-card/85 dark:bg-dark-card/85 light:bg-slate-100/85 px-4 py-1.5 rounded-full border border-white/10 dark:border-white/10 light:border-slate-300 backdrop-blur-xl shadow-lg">
             {navItems.map((item) => {
               const isActive = activeSection === item.id;
               return (
@@ -99,9 +99,9 @@ export const Navbar: React.FC = () => {
             {/* Let's Connect CTA Button */}
             <a
               href="#contact"
-              className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-primary-600 via-primary-500 to-accent-cyan text-white shadow-lg shadow-primary-500/25 hover:shadow-primary-500/40 hover:scale-105 active:scale-95 transition-all"
+              className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-primary-600 via-accent-magenta to-accent-gold text-white shadow-lg shadow-primary-600/25 hover:shadow-primary-600/40 hover:scale-105 active:scale-95 transition-all"
             >
-              <Send className="w-3.5 h-3.5" />
+              <Send className="w-3.5 h-3.5 text-accent-gold" />
               <span>Let's Connect</span>
             </a>
 
