@@ -1,34 +1,136 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, useSpring, useMotionValue } from 'framer-motion';
 
 export const CursorGlow: React.FC = () => {
-  const mouseX = useMotionValue(-500);
-  const mouseY = useMotionValue(-500);
+  const [isVisible, setIsVisible] = useState(false);
+  const [cursorType, setCursorType] = useState<'default' | 'pointer' | 'project' | '3d'>('default');
+  const [cursorLabel, setCursorLabel] = useState<string>('');
+  const [isTouchDevice] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false;
+    return window.matchMedia('(pointer: coarse)').matches || 'ontouchstart' in window;
+  });
 
-  const springConfig = { damping: 25, stiffness: 200, mass: 0.5 };
-  const smoothX = useSpring(mouseX, springConfig);
-  const smoothY = useSpring(mouseY, springConfig);
+  const mouseX = useMotionValue(-100);
+  const mouseY = useMotionValue(-100);
+
+  // High responsiveness for the central micro-dot
+  const dotX = useSpring(mouseX, { damping: 30, stiffness: 450 });
+  const dotY = useSpring(mouseY, { damping: 30, stiffness: 450 });
+
+  // Spring with slight trailing inertia for the outer ring
+  const ringX = useSpring(mouseX, { damping: 24, stiffness: 180, mass: 0.6 });
+  const ringY = useSpring(mouseY, { damping: 24, stiffness: 180, mass: 0.6 });
 
   useEffect(() => {
+    if (isTouchDevice) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
+      if (!isVisible) setIsVisible(true);
+
+      // Check hovered element for cursor type
+      const target = e.target as HTMLElement | null;
+      if (!target) return;
+
+      const clickable = target.closest('a, button, [role="button"], input, textarea, select');
+      const projectCard = target.closest('[data-cursor="project"], .project-card-interactive');
+      const threeDCanvas = target.closest('[data-cursor="3d"], .canvas-3d-interactive');
+
+      if (projectCard) {
+        setCursorType('project');
+        setCursorLabel('VIEW PROJECT');
+      } else if (threeDCanvas) {
+        setCursorType('3d');
+        setCursorLabel('INTERACT 3D');
+      } else if (clickable) {
+        setCursorType('pointer');
+        setCursorLabel('');
+      } else {
+        setCursorType('default');
+        setCursorLabel('');
+      }
     };
 
+    const handleMouseLeave = () => setIsVisible(false);
+    const handleMouseEnter = () => setIsVisible(true);
+
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [mouseX, mouseY]);
+    document.addEventListener('mouseleave', handleMouseLeave);
+    document.addEventListener('mouseenter', handleMouseEnter);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener('mouseenter', handleMouseEnter);
+    };
+  }, [mouseX, mouseY, isVisible, isTouchDevice]);
+
+  if (isTouchDevice || !isVisible) return null;
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-30 overflow-hidden" aria-hidden="true">
+    <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden" aria-hidden="true">
+      {/* 1. Ambient Volumetric Lighting Glow Follower */}
       <motion.div
         style={{
-          x: smoothX,
-          y: smoothY,
+          x: ringX,
+          y: ringY,
           translateX: '-50%',
           translateY: '-50%',
         }}
-        className="w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-primary-500/10 via-accent-cyan/10 to-transparent blur-[90px] opacity-70 dark:opacity-60 light:opacity-25"
+        className="w-[450px] h-[450px] rounded-full bg-gradient-to-tr from-primary-500/15 via-accent-cyan/10 to-transparent blur-[100px] opacity-60 dark:opacity-60 light:opacity-20"
+      />
+
+      {/* 2. Trailing Outer Ring / Badge */}
+      <motion.div
+        style={{
+          x: ringX,
+          y: ringY,
+          translateX: '-50%',
+          translateY: '-50%',
+        }}
+        animate={{
+          scale: cursorType === 'project' ? 2.4 : cursorType === '3d' ? 2.2 : cursorType === 'pointer' ? 1.5 : 1,
+          borderColor:
+            cursorType === 'project'
+              ? 'rgba(6, 182, 212, 0.9)'
+              : cursorType === '3d'
+              ? 'rgba(139, 92, 246, 0.9)'
+              : cursorType === 'pointer'
+              ? 'rgba(99, 102, 241, 0.8)'
+              : 'rgba(255, 255, 255, 0.3)',
+          backgroundColor:
+            cursorType === 'project'
+              ? 'rgba(6, 182, 212, 0.2)'
+              : cursorType === '3d'
+              ? 'rgba(139, 92, 246, 0.2)'
+              : cursorType === 'pointer'
+              ? 'rgba(99, 102, 241, 0.08)'
+              : 'transparent',
+        }}
+        transition={{ type: 'spring', damping: 25, stiffness: 350 }}
+        className="w-8 h-8 rounded-full border border-white/30 backdrop-blur-[2px] flex items-center justify-center shadow-lg"
+      >
+        {cursorLabel && (
+          <span className="text-[7px] font-mono font-bold tracking-widest text-white uppercase text-center px-1">
+            {cursorLabel}
+          </span>
+        )}
+      </motion.div>
+
+      {/* 3. High-Precision Central Micro-Dot */}
+      <motion.div
+        style={{
+          x: dotX,
+          y: dotY,
+          translateX: '-50%',
+          translateY: '-50%',
+        }}
+        animate={{
+          scale: cursorType !== 'default' ? 0 : 1,
+          opacity: cursorType !== 'default' ? 0 : 1,
+        }}
+        className="w-1.5 h-1.5 rounded-full bg-accent-cyan shadow-[0_0_8px_#06B6D4]"
       />
     </div>
   );
