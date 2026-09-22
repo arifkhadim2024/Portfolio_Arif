@@ -9,15 +9,16 @@ export default {
     extend: {
       colors: {
         dark: {
-          bg: '#030304',
-          space: '#070709',
-          card: '#0B0A0E',
-          cardBorder: 'rgba(212, 175, 55, 0.15)',
-          cardHover: '#131118',
-          surface: '#0F0E14',
-          muted: '#A39E93',
+          bg: '#050505',
+          space: '#080808',
+          card: '#0D0C0A',
+          cardBorder: 'rgba(212, 175, 55, 0.16)',
+          cardHover: '#14120E',
+          surface: '#100F0D',
+          muted: '#A89E8D',
           text: '#FFF8E7',
           bronze: '#17120A',
+          charcoal: '#1A1815',
         },
         light: {
           bg: '#FBF9F4',
@@ -33,9 +34,9 @@ export default {
           100: '#FBF6E4',
           200: '#F5EBC5',
           300: '#F3E8CB', // Champagne
-          400: '#F5C542', // Secondary radiant gold
-          500: '#D4AF37', // Primary metallic gold
-          600: '#B89628',
+          400: '#F5C542', // Radiant secondary gold
+          500: '#D4AF37', // Metallic gold primary
+          600: '#C9A227',
           700: '#94771C',
           800: '#6E5713',
           900: '#47370A',
@@ -48,7 +49,7 @@ export default {
           300: '#F3E8CB',
           400: '#F5C542',
           500: '#D4AF37',
-          600: '#B89628',
+          600: '#C9A227',
           700: '#94771C',
           800: '#6E5713',
           900: '#47370A',
@@ -60,12 +61,14 @@ export default {
           amber: '#F59E0B',
           champagne: '#F3E8CB',
           warmWhite: '#FFF8E7',
-          bronze: '#17120A',
-          obsidian: '#070709',
-          void: '#030304',
+          bronze: '#8A7444',
+          obsidian: '#080808',
+          void: '#050505',
         }
       },
       fontFamily: {
+        display: ['"Cinzel"', '"Syne"', 'serif'],
+        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
         sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
       },
@@ -74,7 +77,7 @@ export default {
         'float': 'float 6s ease-in-out infinite',
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'gradient-x': 'gradient-x 15s ease infinite',
-        'spin-slow': 'spin 20s linear infinite',
+        'spin-slow': 'spin 22s linear infinite',
         'shimmer-gold': 'shimmer 3s ease-in-out infinite',
       },
       keyframes: {
