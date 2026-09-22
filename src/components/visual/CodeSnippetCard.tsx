@@ -39,29 +39,29 @@ export const CodeSnippetCard: React.FC = () => {
   };
 
   return (
-    <div className="relative rounded-3xl bg-[#0B0A0E]/95 border border-gold-500/30 shadow-2xl backdrop-blur-2xl overflow-hidden font-mono text-xs sm:text-sm">
+    <div className="relative rounded-3xl bg-[#0D0D0D]/95 border border-[#B9A16B]/20 shadow-2xl backdrop-blur-2xl overflow-hidden font-mono text-xs sm:text-sm">
       {/* Window Controls Bar */}
-      <div className="flex items-center justify-between px-4 py-3.5 bg-[#030304] border-b border-gold-500/20">
+      <div className="flex items-center justify-between px-4 py-3.5 bg-[#080808] border-b border-[#B9A16B]/15">
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-rose-500/80" />
-          <div className="w-3 h-3 rounded-full bg-amber-500/80" />
-          <div className="w-3 h-3 rounded-full bg-gold-500/80" />
+          <div className="w-3 h-3 rounded-full bg-[#333333]" />
+          <div className="w-3 h-3 rounded-full bg-[#555555]" />
+          <div className="w-3 h-3 rounded-full bg-[#B9A16B]/80" />
           <span className="ml-2 text-xs text-slate-400 flex items-center gap-1.5 font-mono">
-            <Terminal className="w-3.5 h-3.5 text-accent-gold" />
+            <Terminal className="w-3.5 h-3.5 text-[#B9A16B]" />
             arif-khadim.ts
           </span>
         </div>
 
         {/* Tab Buttons */}
-        <div className="flex items-center gap-1 bg-[#131118] p-1 rounded-xl border border-gold-500/20">
+        <div className="flex items-center gap-1 bg-[#161616] p-1 rounded-xl border border-[#B9A16B]/15">
           {(['profile', 'skills', 'contact'] as const).map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
               className={`px-3 py-1 rounded-lg text-xs capitalize transition-all cursor-pointer ${
                 activeTab === tab
-                  ? 'bg-gold-500/20 text-gold-300 font-semibold border border-gold-400/40 shadow-sm'
-                  : 'text-slate-400 hover:text-[#FFF8E7]'
+                  ? 'bg-[#B9A16B]/20 text-[#F2F0EA] font-semibold border border-[#B9A16B]/40 shadow-sm'
+                  : 'text-slate-400 hover:text-[#F2F0EA]'
               }`}
             >
               {tab}
@@ -72,7 +72,7 @@ export const CodeSnippetCard: React.FC = () => {
         {/* Copy Button */}
         <button
           onClick={handleCopy}
-          className="p-1.5 rounded-xl text-slate-400 hover:text-[#FFF8E7] hover:bg-[#1A1726] border border-transparent hover:border-gold-500/20 transition-all cursor-pointer"
+          className="p-1.5 rounded-xl text-slate-400 hover:text-[#F2F0EA] hover:bg-[#161616] border border-transparent hover:border-[#B9A16B]/20 transition-all cursor-pointer"
           title="Copy snippet"
           aria-label="Copy code snippet"
         >
@@ -91,16 +91,16 @@ export const CodeSnippetCard: React.FC = () => {
                 </span>
                 <span className="table-cell whitespace-pre">
                   {line.includes('const') && (
-                    <span className="text-gold-400 font-bold">const </span>
+                    <span className="text-[#B9A16B] font-bold">const </span>
                   )}
                   {line.includes('async function') && (
-                    <span className="text-gold-400 font-bold">async function </span>
+                    <span className="text-[#B9A16B] font-bold">async function </span>
                   )}
                   {line.includes('return await') && (
-                    <span className="text-accent-gold font-semibold">return await </span>
+                    <span className="text-[#B9A16B] font-semibold">return await </span>
                   )}
                   {line.includes('true') && (
-                    <span className="text-amber-400 font-semibold">true</span>
+                    <span className="text-[#E8E6E0] font-semibold">true</span>
                   )}
                   {line.includes('false') && (
                     <span className="text-rose-400 font-semibold">false</span>
@@ -116,12 +116,12 @@ export const CodeSnippetCard: React.FC = () => {
       </div>
 
       {/* Footer bar */}
-      <div className="px-4 py-2.5 bg-[#030304] border-t border-gold-500/20 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+      <div className="px-4 py-2.5 bg-[#080808] border-t border-[#B9A16B]/15 flex items-center justify-between text-[11px] text-slate-500 font-mono">
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse" />
+          <span className="w-2 h-2 rounded-full bg-[#B9A16B] animate-pulse" />
           <span>TypeScript Node v26</span>
         </div>
-        <span>UTF-8 // ESM // Cosmic Architecture</span>
+        <span>UTF-8 // ESM // Architecture</span>
       </div>
     </div>
   );

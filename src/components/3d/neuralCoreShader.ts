@@ -8,10 +8,10 @@ export const NeuralCoreShader = {
     uCursorIntensity: { value: 0.0 },
     uRippleOrigin: { value: new THREE.Vector3(0, 0, 0) },
     uRippleTime: { value: 10.0 }, // Large initial value = no active ripple
-    uGoldColor: { value: new THREE.Color('#D4AF37') },
-    uSecondaryGold: { value: new THREE.Color('#F5C542') },
-    uChampagne: { value: new THREE.Color('#F3E8CB') },
-    uDeepBase: { value: new THREE.Color('#070709') },
+    uWarmAccent: { value: new THREE.Color('#B9A16B') },
+    uOffWhite: { value: new THREE.Color('#F2F0EA') },
+    uCharcoal: { value: new THREE.Color('#222222') },
+    uDeepBase: { value: new THREE.Color('#080808') },
     uLightPos: { value: new THREE.Vector3(12.0, 14.0, 10.0) },
   },
 
@@ -133,21 +133,21 @@ export const NeuralCoreShader = {
       }
 
       // 2. Ambient Simplex Noise Breathing
-      float noiseVal = snoise(basePos * 0.8 + vec3(uTime * 0.45));
+      float noiseVal = snoise(basePos * 0.8 + vec3(uTime * 0.4));
       vNoisePattern = noiseVal;
-      vec3 displacedPos = basePos + baseNorm * (noiseVal * 0.08);
+      vec3 displacedPos = basePos + baseNorm * (noiseVal * 0.07);
 
       // 3. True Cursor-Reactive Ferrofluid Magnetic Spiking
       vec3 toCursor = uCursorPos - displacedPos;
       float distToCursor = length(toCursor);
 
-      float ferroSpikeNoise = snoise(basePos * 3.5 + vec3(uTime * 1.5));
-      float ferroFalloff = smoothstep(4.8, 0.0, distToCursor) * (1.0 / (1.0 + 0.3 * distToCursor * distToCursor));
+      float ferroSpikeNoise = snoise(basePos * 3.2 + vec3(uTime * 1.4));
+      float ferroFalloff = smoothstep(4.8, 0.0, distToCursor) * (1.0 / (1.0 + 0.35 * distToCursor * distToCursor));
       float ferroDeform = ferroFalloff * uCursorIntensity;
 
       // Spike displacement along normal + magnetic attraction toward cursor vector
-      vec3 spikeDir = normalize(baseNorm * 0.6 + normalize(toCursor + vec3(0.001)) * 0.4);
-      displacedPos += spikeDir * (ferroDeform * (1.5 + ferroSpikeNoise * 0.8));
+      vec3 spikeDir = normalize(baseNorm * 0.65 + normalize(toCursor + vec3(0.001)) * 0.35);
+      displacedPos += spikeDir * (ferroDeform * (1.4 + ferroSpikeNoise * 0.7));
       vFerroDeform = ferroDeform;
 
       // 4. Radial Click/Tap Ripple Energy Shockwave
@@ -162,7 +162,7 @@ export const NeuralCoreShader = {
       vRippleEnergy = clamp(rippleWave * 2.0 + (1.0 - smoothstep(0.0, 0.8, uRippleTime)) * 0.4, 0.0, 1.5);
 
       // Final normal with perturbation
-      vNormal = normalize(normalMatrix * (baseNorm + vec3(noiseVal * 0.15)));
+      vNormal = normalize(normalMatrix * (baseNorm + vec3(noiseVal * 0.12)));
 
       vec4 worldPosition = modelMatrix * vec4(displacedPos, 1.0);
       vWorldPos = worldPosition.xyz;
@@ -173,9 +173,9 @@ export const NeuralCoreShader = {
 
   fragmentShader: /* glsl */ `
     uniform float uTime;
-    uniform vec3 uGoldColor;
-    uniform vec3 uSecondaryGold;
-    uniform vec3 uChampagne;
+    uniform vec3 uWarmAccent;
+    uniform vec3 uOffWhite;
+    uniform vec3 uCharcoal;
     uniform vec3 uDeepBase;
     uniform vec3 uLightPos;
 
@@ -194,38 +194,37 @@ export const NeuralCoreShader = {
 
       // 1. Physical Fresnel Rim Factor
       float NdotV = max(dot(N, V), 0.0);
-      float fresnel = pow(1.0 - NdotV, 3.2);
+      float fresnel = pow(1.0 - NdotV, 3.4);
 
-      // 2. Diffuse and Specular Reflection (Gold Metallic Core)
+      // 2. Diffuse and Specular Reflection (Restrained Metallic Core)
       float NdotL = max(dot(N, L), 0.0);
       float NdotH = max(dot(N, H), 0.0);
-      float specular = pow(NdotH, 28.0) * 1.8;
+      float specular = pow(NdotH, 32.0) * 1.5;
 
       // 3. Procedural Neural Energy Veins
-      float veinPulse = sin(vUv.x * 24.0 + vUv.y * 18.0 + uTime * 2.0 + vNoisePattern * 3.0) * 0.5 + 0.5;
-      float coreGlow = smoothstep(0.72, 1.0, veinPulse) * 0.9;
+      float veinPulse = sin(vUv.x * 24.0 + vUv.y * 18.0 + uTime * 1.8 + vNoisePattern * 2.8) * 0.5 + 0.5;
+      float coreGlow = smoothstep(0.75, 1.0, veinPulse) * 0.8;
 
-      // 4. Color Compositing: Dark Obsidian Metal -> Liquid Gold -> Radiant Champagne
-      vec3 baseObsidian = uDeepBase + vec3(0.015, 0.012, 0.008);
-      vec3 moltenGold = mix(uGoldColor, uSecondaryGold, vNoisePattern * 0.5 + 0.5);
+      // 4. Color Compositing: Dark Obsidian Metal -> Charcoal -> Subtle Warm Metallic
+      vec3 baseObsidian = uDeepBase + vec3(0.012, 0.012, 0.01);
+      vec3 surfaceColor = mix(baseObsidian, uCharcoal, NdotL * 0.5);
 
-      // Blend surface based on diffuse and vein energy
-      vec3 surfaceColor = mix(baseObsidian, moltenGold, NdotL * 0.45 + coreGlow * 0.6);
+      // Add subtle warm metallic energy on neural veins
+      surfaceColor = mix(surfaceColor, uWarmAccent, coreGlow * 0.5);
 
-      // Add ferrofluid spike heat (spikes glow brighter gold when active)
-      surfaceColor += uSecondaryGold * (vFerroDeform * 1.6);
+      // Add ferrofluid spike highlights
+      surfaceColor += uWarmAccent * (vFerroDeform * 1.2);
 
-      // Add ripple energy shockwave glow
-      surfaceColor += uChampagne * (vRippleEnergy * 1.4);
+      // Add ripple energy shockwave
+      surfaceColor += uOffWhite * (vRippleEnergy * 1.0);
 
-      // Add champagne specular highlights
-      surfaceColor += uChampagne * specular;
+      // Add specular highlights (Off-White)
+      surfaceColor += uOffWhite * (specular * 0.85);
 
-      // Add luxury Fresnel rim lighting (Gold / Champagne border glow)
-      vec3 rimColor = mix(uGoldColor, uChampagne, fresnel);
-      surfaceColor += rimColor * (fresnel * 1.25);
+      // Add subtle Fresnel rim lighting (Subtle Warm Metallic & Off-White)
+      vec3 rimColor = mix(uWarmAccent, uOffWhite, fresnel * 0.6);
+      surfaceColor += rimColor * (fresnel * 0.95);
 
-      // Subtle atmospheric dark depth
       surfaceColor = clamp(surfaceColor, 0.0, 1.0);
 
       gl_FragColor = vec4(surfaceColor, 0.98);

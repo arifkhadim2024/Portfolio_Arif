@@ -37,8 +37,8 @@ export const Skills: React.FC = () => {
                   onClick={() => setSelectedCategory(cat.id as SkillCategory)}
                   className={`relative px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
                     isActive
-                      ? 'text-[#070709] bg-gradient-to-r from-gold-600 via-gold-500 to-gold-400 shadow-lg shadow-gold-950/40 border border-gold-300 font-bold'
-                      : 'text-slate-400 dark:text-slate-400 light:text-slate-600 bg-[#0B0A0E]/80 dark:bg-[#0B0A0E]/80 light:bg-slate-100/90 border border-gold-500/15 dark:border-gold-500/15 light:border-slate-300 hover:text-[#FFF8E7] dark:hover:text-[#FFF8E7] light:hover:text-slate-900 hover:bg-[#131118]'
+                      ? 'text-[#080808] bg-[#B9A16B] shadow-lg shadow-black/60 border border-[#B9A16B] font-bold'
+                      : 'text-slate-400 dark:text-slate-400 light:text-slate-600 bg-[#0F0F0F]/80 dark:bg-[#0F0F0F]/80 light:bg-slate-100/90 border border-[#B9A16B]/15 dark:border-[#B9A16B]/15 light:border-slate-300 hover:text-[#F2F0EA] dark:hover:text-[#F2F0EA] light:hover:text-slate-900 hover:bg-[#161616]'
                   }`}
                 >
                   {cat.label}
@@ -48,16 +48,16 @@ export const Skills: React.FC = () => {
           </div>
 
           {/* 3D Orbit vs Matrix Grid Switcher */}
-          <div className="hidden sm:flex items-center gap-1.5 p-1 rounded-2xl bg-[#0B0A0E]/90 border border-gold-500/20 backdrop-blur">
+          <div className="hidden sm:flex items-center gap-1.5 p-1 rounded-2xl bg-[#0F0F0F]/90 border border-[#B9A16B]/20 backdrop-blur">
             <button
               onClick={() => setViewMode('3d-orbit')}
               className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
                 viewMode === '3d-orbit'
-                  ? 'bg-gold-500 text-[#070709] font-bold shadow-md border border-gold-300'
-                  : 'text-slate-400 hover:text-[#FFF8E7]'
+                  ? 'bg-[#B9A16B] text-[#080808] font-bold shadow-md border border-[#B9A16B]'
+                  : 'text-slate-400 hover:text-[#F2F0EA]'
               }`}
             >
-              <Orbit className="w-3.5 h-3.5 text-accent-gold" />
+              <Orbit className="w-3.5 h-3.5 text-[#B9A16B]" />
               <span>3D Constellation</span>
             </button>
 
@@ -65,8 +65,8 @@ export const Skills: React.FC = () => {
               onClick={() => setViewMode('grid')}
               className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
                 viewMode === 'grid'
-                  ? 'bg-gold-500 text-[#070709] font-bold shadow-md border border-gold-300'
-                  : 'text-slate-400 hover:text-[#FFF8E7]'
+                  ? 'bg-[#B9A16B] text-[#080808] font-bold shadow-md border border-[#B9A16B]'
+                  : 'text-slate-400 hover:text-[#F2F0EA]'
               }`}
             >
               <Grid3X3 className="w-3.5 h-3.5" />
@@ -75,14 +75,14 @@ export const Skills: React.FC = () => {
           </div>
         </div>
 
-        {/* 3D Solar Constellation View */}
+        {/* 3D Constellation View */}
         {viewMode === '3d-orbit' && (
           <div className="mb-12">
             <SkillEcosystem3D selectedCategory={selectedCategory} />
           </div>
         )}
 
-        {/* Enhanced 3D Perspective Card Grid */}
+        {/* Enhanced Perspective Card Grid */}
         <div className={viewMode === '3d-orbit' ? 'block sm:hidden' : 'block'}>
           <motion.div
             layout
@@ -98,26 +98,26 @@ export const Skills: React.FC = () => {
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ type: 'spring', stiffness: 350, damping: 22 }}
                 >
-                  <TiltCard maxTilt={10} glareOpacity={0.25} className="h-full">
-                    <div className="group relative h-full p-4 rounded-2xl glass-card-3d border border-gold-500/15 hover:border-gold-500/50 hover:shadow-2xl hover:shadow-gold-950/40 transition-all duration-300 flex flex-col items-center text-center justify-between gap-3 cursor-default">
+                  <TiltCard maxTilt={10} glareOpacity={0.2} className="h-full">
+                    <div className="group relative h-full p-4 rounded-2xl glass-card-editorial border border-[#B9A16B]/15 hover:border-[#B9A16B]/45 hover:shadow-2xl transition-all duration-300 flex flex-col items-center text-center justify-between gap-3 cursor-default">
                       {/* Top featured dot */}
                       {skill.featured && (
                         <div className="absolute top-2.5 right-2.5">
                           <span
-                            className="w-2 h-2 rounded-full bg-accent-gold block shadow-[0_0_10px_#D4AF37]"
+                            className="w-2 h-2 rounded-full bg-[#B9A16B] block shadow-[0_0_8px_#B9A16B]"
                             title="Featured Skill"
                           />
                         </div>
                       )}
 
                       {/* Icon with Glowing Halo */}
-                      <div className="w-12 h-12 rounded-xl bg-[#17120A] flex items-center justify-center text-gold-400 group-hover:text-gold-200 group-hover:bg-gold-500/20 group-hover:scale-115 transition-all duration-300 border border-gold-500/20 shadow-inner">
+                      <div className="w-12 h-12 rounded-xl bg-[#161616] flex items-center justify-center text-[#B9A16B] group-hover:text-[#F2F0EA] group-hover:bg-[#B9A16B]/20 group-hover:scale-110 transition-all duration-300 border border-[#B9A16B]/20 shadow-inner">
                         <IconRenderer name={skill.icon} className="w-5 h-5" />
                       </div>
 
                       {/* Skill Name */}
                       <div>
-                        <h4 className="text-xs sm:text-sm font-bold text-[#FFF8E7] dark:text-[#FFF8E7] light:text-slate-900 group-hover:text-gold-300 transition-colors">
+                        <h4 className="text-xs sm:text-sm font-bold text-[#F2F0EA] dark:text-[#F2F0EA] light:text-slate-900 group-hover:text-[#B9A16B] transition-colors">
                           {skill.name}
                         </h4>
 

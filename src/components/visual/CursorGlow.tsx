@@ -18,8 +18,8 @@ export const CursorGlow: React.FC = () => {
   const dotY = useSpring(mouseY, { damping: 30, stiffness: 450 });
 
   // Spring with slight trailing inertia for the outer ring
-  const ringX = useSpring(mouseX, { damping: 24, stiffness: 180, mass: 0.6 });
-  const ringY = useSpring(mouseY, { damping: 24, stiffness: 180, mass: 0.6 });
+  const ringX = useSpring(mouseX, { damping: 24, stiffness: 200, mass: 0.5 });
+  const ringY = useSpring(mouseY, { damping: 24, stiffness: 200, mass: 0.5 });
 
   useEffect(() => {
     if (isTouchDevice) return;
@@ -39,10 +39,10 @@ export const CursorGlow: React.FC = () => {
 
       if (projectCard) {
         setCursorType('project');
-        setCursorLabel('EXPLORE');
+        setCursorLabel('VIEW');
       } else if (threeDCanvas) {
         setCursorType('3d');
-        setCursorLabel('DEFORM');
+        setCursorLabel('3D');
       } else if (clickable) {
         setCursorType('pointer');
         setCursorLabel('');
@@ -70,7 +70,7 @@ export const CursorGlow: React.FC = () => {
 
   return (
     <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden" aria-hidden="true">
-      {/* 1. Ambient Volumetric Lighting Glow Follower (Metallic Gold to Warm Champagne) */}
+      {/* 1. Ambient Volumetric Lighting Glow Follower (Subtle Warm Accent) */}
       <motion.div
         style={{
           x: ringX,
@@ -78,7 +78,7 @@ export const CursorGlow: React.FC = () => {
           translateX: '-50%',
           translateY: '-50%',
         }}
-        className="w-[420px] h-[420px] rounded-full bg-gradient-to-tr from-gold-500/15 via-gold-400/10 to-transparent blur-[110px] opacity-60 dark:opacity-60 light:opacity-20"
+        className="w-[380px] h-[380px] rounded-full bg-gradient-to-tr from-[#B9A16B]/10 via-[#B9A16B]/5 to-transparent blur-[100px] opacity-50 dark:opacity-50 light:opacity-15"
       />
 
       {/* 2. Trailing Outer Ring / Badge */}
@@ -90,35 +90,35 @@ export const CursorGlow: React.FC = () => {
           translateY: '-50%',
         }}
         animate={{
-          scale: cursorType === 'project' ? 2.4 : cursorType === '3d' ? 2.2 : cursorType === 'pointer' ? 1.5 : 1,
+          scale: cursorType === 'project' ? 2.2 : cursorType === '3d' ? 2.0 : cursorType === 'pointer' ? 1.4 : 1,
           borderColor:
             cursorType === 'project'
-              ? 'rgba(245, 197, 66, 0.9)'
+              ? 'rgba(185, 161, 107, 0.85)'
               : cursorType === '3d'
-              ? 'rgba(212, 175, 55, 0.9)'
+              ? 'rgba(185, 161, 107, 0.8)'
               : cursorType === 'pointer'
-              ? 'rgba(212, 175, 55, 0.8)'
-              : 'rgba(243, 232, 203, 0.3)',
+              ? 'rgba(185, 161, 107, 0.7)'
+              : 'rgba(242, 240, 234, 0.25)',
           backgroundColor:
             cursorType === 'project'
-              ? 'rgba(245, 197, 66, 0.15)'
+              ? 'rgba(185, 161, 107, 0.12)'
               : cursorType === '3d'
-              ? 'rgba(212, 175, 55, 0.15)'
+              ? 'rgba(185, 161, 107, 0.1)'
               : cursorType === 'pointer'
-              ? 'rgba(212, 175, 55, 0.1)'
+              ? 'rgba(185, 161, 107, 0.08)'
               : 'transparent',
         }}
         transition={{ type: 'spring', damping: 25, stiffness: 350 }}
-        className="w-8 h-8 rounded-full border border-gold-400/40 backdrop-blur-[3px] flex items-center justify-center shadow-xl shadow-gold-900/30"
+        className="w-7 h-7 rounded-full border border-[#B9A16B]/30 backdrop-blur-[2px] flex items-center justify-center shadow-lg shadow-black/40"
       >
         {cursorLabel && (
-          <span className="text-[7px] font-mono font-bold tracking-widest text-[#FFF8E7] uppercase text-center px-1">
+          <span className="text-[7px] font-mono font-bold tracking-widest text-[#F2F0EA] uppercase text-center px-1">
             {cursorLabel}
           </span>
         )}
       </motion.div>
 
-      {/* 3. High-Precision Central Micro-Dot (Metallic Gold) */}
+      {/* 3. High-Precision Central Micro-Dot (Subtle Warm Accent) */}
       <motion.div
         style={{
           x: dotX,
@@ -130,7 +130,7 @@ export const CursorGlow: React.FC = () => {
           scale: cursorType !== 'default' ? 0 : 1,
           opacity: cursorType !== 'default' ? 0 : 1,
         }}
-        className="w-1.5 h-1.5 rounded-full bg-accent-gold shadow-[0_0_8px_#D4AF37]"
+        className="w-1.5 h-1.5 rounded-full bg-[#B9A16B] shadow-[0_0_6px_#B9A16B]"
       />
     </div>
   );

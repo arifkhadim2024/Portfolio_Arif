@@ -31,18 +31,17 @@ export const CanvasBackground3D: React.FC = () => {
     renderer.setClearColor(0x000000, 0);
     container.appendChild(renderer.domElement);
 
-    // 2. Cosmic Dust & Micro Starfield (Metallic Gold, Radiant Champagne, Warm Bronze)
-    const particleCount = prefersReducedMotion ? 45 : 140;
+    // 2. Cosmic Dust & Micro Constellation (Restrained Editorial Colors)
+    const particleCount = prefersReducedMotion ? 40 : 120;
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
     const scales = new Float32Array(particleCount);
 
-    const goldColor = new THREE.Color('#D4AF37');
-    const radiantColor = new THREE.Color('#F5C542');
-    const champagneColor = new THREE.Color('#F3E8CB');
-    const bronzeColor = new THREE.Color('#94771C');
-    const softWarmWhite = new THREE.Color('#FFF8E7');
-    const colorPalette = [goldColor, radiantColor, champagneColor, bronzeColor, softWarmWhite];
+    const warmAccentCol = new THREE.Color('#B9A16B');
+    const offWhiteCol = new THREE.Color('#F2F0EA');
+    const champagneCol = new THREE.Color('#E8E6E0');
+    const deepBronzeCol = new THREE.Color('#695730');
+    const colorPalette = [warmAccentCol, offWhiteCol, champagneCol, deepBronzeCol];
 
     for (let i = 0; i < particleCount; i++) {
       const i3 = i * 3;
@@ -55,7 +54,7 @@ export const CanvasBackground3D: React.FC = () => {
       colors[i3 + 1] = selectedColor.g;
       colors[i3 + 2] = selectedColor.b;
 
-      scales[i] = Math.random() * 2 + 1;
+      scales[i] = Math.random() * 1.8 + 0.8;
     }
 
     const particleGeometry = new THREE.BufferGeometry();
@@ -63,7 +62,7 @@ export const CanvasBackground3D: React.FC = () => {
     particleGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
     particleGeometry.setAttribute('scale', new THREE.BufferAttribute(scales, 1));
 
-    // Custom Particle Canvas Texture (soft radiant glow dot)
+    // Custom Particle Canvas Texture
     const createParticleTexture = () => {
       const canvas = document.createElement('canvas');
       canvas.width = 64;
@@ -71,9 +70,9 @@ export const CanvasBackground3D: React.FC = () => {
       const ctx = canvas.getContext('2d');
       if (ctx) {
         const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
-        gradient.addColorStop(0, 'rgba(255, 248, 231, 1)');
-        gradient.addColorStop(0.3, 'rgba(245, 197, 66, 0.8)');
-        gradient.addColorStop(0.7, 'rgba(212, 175, 55, 0.2)');
+        gradient.addColorStop(0, 'rgba(242, 240, 234, 1)');
+        gradient.addColorStop(0.35, 'rgba(185, 161, 107, 0.7)');
+        gradient.addColorStop(0.75, 'rgba(185, 161, 107, 0.15)');
         gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
         ctx.fillStyle = gradient;
         ctx.fillRect(0, 0, 64, 64);
@@ -84,11 +83,11 @@ export const CanvasBackground3D: React.FC = () => {
     const particleTexture = createParticleTexture();
 
     const particleMaterial = new THREE.PointsMaterial({
-      size: 1.4,
+      size: 1.2,
       vertexColors: true,
       map: particleTexture,
       transparent: true,
-      opacity: 0.65,
+      opacity: 0.6,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
     });
@@ -96,11 +95,11 @@ export const CanvasBackground3D: React.FC = () => {
     const particles = new THREE.Points(particleGeometry, particleMaterial);
     scene.add(particles);
 
-    // 3. Faint Cosmic Constellation Lines (Metallic Gold / Champagne)
+    // 3. Faint Constellation Lines
     const lineMaterial = new THREE.LineBasicMaterial({
-      color: 0xd4af37,
+      color: 0xb9a16b,
       transparent: true,
-      opacity: 0.12,
+      opacity: 0.1,
       blending: THREE.AdditiveBlending,
     });
 
@@ -110,7 +109,7 @@ export const CanvasBackground3D: React.FC = () => {
     const lines = new THREE.LineSegments(lineGeometry, lineMaterial);
     scene.add(lines);
 
-    // Mouse Tracking with smooth spring-like dampening
+    // Mouse Tracking
     let targetMouseX = 0;
     let targetMouseY = 0;
     let mouseX = 0;
@@ -145,8 +144,8 @@ export const CanvasBackground3D: React.FC = () => {
       mouseY += (targetMouseY - mouseY) * 0.05;
 
       if (!prefersReducedMotion) {
-        particles.rotation.y = elapsedTime * 0.02 + mouseX * 0.14;
-        particles.rotation.x = -mouseY * 0.14;
+        particles.rotation.y = elapsedTime * 0.015 + mouseX * 0.12;
+        particles.rotation.x = -mouseY * 0.12;
         lines.rotation.y = particles.rotation.y;
         lines.rotation.x = particles.rotation.x;
       }
@@ -205,7 +204,7 @@ export const CanvasBackground3D: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-70 dark:opacity-70 light:opacity-25"
+      className="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-60 dark:opacity-60 light:opacity-20"
       aria-hidden="true"
     />
   );

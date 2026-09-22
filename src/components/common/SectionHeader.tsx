@@ -26,9 +26,9 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4 }}
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold tracking-widest uppercase mb-4 bg-gold-950/70 text-gold-300 border border-gold-500/30 backdrop-blur-md shadow-sm shadow-gold-950/50"
+          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold tracking-widest uppercase mb-4 bg-[#161616] text-[#E8E6E0] border border-[#B9A16B]/25 backdrop-blur-md shadow-sm"
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-accent-gold animate-pulse shadow-[0_0_8px_#D4AF37]" />
+          <span className="w-1.5 h-1.5 rounded-full bg-[#B9A16B] animate-pulse shadow-[0_0_6px_#B9A16B]" />
           {badge}
         </motion.div>
       )}
@@ -38,9 +38,9 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#FFF8E7] dark:text-[#FFF8E7] light:text-slate-900"
+        className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#F2F0EA] dark:text-[#F2F0EA] light:text-slate-900 font-display"
       >
-        <span className="text-gradient-cinematic">{title}</span>
+        <span className="text-gradient-editorial">{title}</span>
       </motion.h2>
 
       {subtitle && (
@@ -56,8 +56,8 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
       )}
 
       <div className={`mt-5 flex items-center gap-1.5 ${isCenter ? 'justify-center' : 'justify-start'}`}>
-        <div className="h-0.5 w-12 rounded-full bg-gradient-to-r from-gold-600 via-gold-400 to-amber-300" />
-        <div className="h-0.5 w-2 rounded-full bg-accent-gold shadow-[0_0_6px_#D4AF37]" />
+        <div className="h-0.5 w-12 rounded-full bg-gradient-to-r from-[#B9A16B] via-[#E8E6E0] to-transparent" />
+        <div className="h-0.5 w-2 rounded-full bg-[#B9A16B] shadow-[0_0_6px_#B9A16B]" />
       </div>
     </div>
   );

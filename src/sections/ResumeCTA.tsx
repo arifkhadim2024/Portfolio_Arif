@@ -9,27 +9,27 @@ export const ResumeCTA: React.FC = () => {
   return (
     <section className="py-20 lg:py-28 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <TiltCard maxTilt={6} glareOpacity={0.35}>
+        <TiltCard maxTilt={6} glareOpacity={0.25}>
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative rounded-3xl overflow-hidden glass-card-3d border border-gold-500/30 p-8 sm:p-14 shadow-2xl backdrop-blur-2xl"
+            className="relative rounded-3xl overflow-hidden glass-card-editorial border border-[#B9A16B]/25 p-8 sm:p-14 shadow-2xl backdrop-blur-2xl"
           >
-            {/* Ambient Lighting Volumetric Glows (Gold & Amber) */}
-            <div className="absolute -top-32 -right-32 w-96 h-96 bg-gold-500/10 rounded-full blur-[130px] pointer-events-none" />
-            <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-amber-500/10 rounded-full blur-[130px] pointer-events-none" />
+            {/* Ambient Lighting Volumetric Glows */}
+            <div className="absolute -top-32 -right-32 w-96 h-96 bg-[#B9A16B]/5 rounded-full blur-[140px] pointer-events-none" />
+            <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-[#B9A16B]/5 rounded-full blur-[140px] pointer-events-none" />
 
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              {/* Left Narrative & 3D Document Highlights (8 cols) */}
+              {/* Left Narrative & Document Highlights (8 cols) */}
               <div className="lg:col-span-8 space-y-5 text-center lg:text-left">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold bg-gold-950/80 text-gold-300 border border-gold-500/40 shadow-md backdrop-blur">
-                  <FileText className="w-3.5 h-3.5 text-accent-gold" />
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold bg-[#161616] text-[#E8E6E0] border border-[#B9A16B]/30 shadow-md backdrop-blur">
+                  <FileText className="w-3.5 h-3.5 text-[#B9A16B]" />
                   <span>Curriculum Vitae & Credentials</span>
                 </div>
 
-                <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#FFF8E7] dark:text-[#FFF8E7] light:text-slate-900 tracking-tight leading-[1.15]">
+                <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#F2F0EA] dark:text-[#F2F0EA] light:text-slate-900 tracking-tight leading-[1.12] font-display">
                   Interested in my technical capabilities & experience?
                 </h3>
 
@@ -39,21 +39,21 @@ export const ResumeCTA: React.FC = () => {
 
                 <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs sm:text-sm text-slate-300 dark:text-slate-300 light:text-slate-700 pt-2">
                   <span className="flex items-center gap-1.5 font-medium">
-                    <CheckCircle2 className="w-4 h-4 text-accent-gold" />
+                    <CheckCircle2 className="w-4 h-4 text-[#B9A16B]" />
                     Full-Stack Architecture
                   </span>
                   <span className="flex items-center gap-1.5 font-medium">
-                    <CheckCircle2 className="w-4 h-4 text-accent-gold" />
+                    <CheckCircle2 className="w-4 h-4 text-[#B9A16B]" />
                     Applied AI & ML Models
                   </span>
                   <span className="flex items-center gap-1.5 font-medium">
-                    <ShieldCheck className="w-4 h-4 text-accent-gold" />
+                    <ShieldCheck className="w-4 h-4 text-[#B9A16B]" />
                     Verified Credentials
                   </span>
                 </div>
               </div>
 
-              {/* Right Floating Holographic Action Matrix (4 cols) */}
+              {/* Right Action Matrix (4 cols) */}
               <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col items-center justify-center gap-3.5 w-full">
                 <Button
                   variant="primary"

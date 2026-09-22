@@ -111,19 +111,18 @@ export const Contact: React.FC = () => {
 
       setSubmitted(true);
 
-      // Trigger Celebration Confetti explosion in Metallic Gold, Champagne, and Radiant Gold
+      // Celebration Confetti with subtle warm metallic and off-white colors
       try {
         confetti({
-          particleCount: 90,
-          spread: 80,
+          particleCount: 80,
+          spread: 75,
           origin: { y: 0.6 },
-          colors: ['#D4AF37', '#F5C542', '#F3E8CB', '#F59E0B'],
+          colors: ['#B9A16B', '#F2F0EA', '#E8E6E0', '#9E8652'],
         });
       } catch {
         // ignore confetti error if canvas is restricted
       }
 
-      // Reset form fields
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
       console.error('Submission error:', error);
@@ -145,8 +144,8 @@ export const Contact: React.FC = () => {
 
   return (
     <section id="contact" className="py-24 lg:py-32 relative bg-dark-bg/70 overflow-hidden">
-      {/* 3D Pulsating Equilibrium Sphere in background */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] opacity-45 dark:opacity-45 light:opacity-15 pointer-events-none z-0">
+      {/* 3D Pulsating Calm Sphere in background */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] opacity-35 dark:opacity-35 light:opacity-15 pointer-events-none z-0">
         <ContactSphere3D />
       </div>
 
@@ -166,25 +165,25 @@ export const Contact: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="lg:col-span-5 space-y-6"
           >
-            <TiltCard maxTilt={6} glareOpacity={0.25}>
-              <div className="glass-card-3d p-6 sm:p-8 rounded-3xl space-y-6 border border-gold-500/15 shadow-2xl">
-                <h3 className="text-xl font-bold text-[#FFF8E7] dark:text-[#FFF8E7] light:text-slate-900 flex items-center gap-2.5">
-                  <Sparkles className="w-5 h-5 text-accent-gold" />
+            <TiltCard maxTilt={6} glareOpacity={0.2}>
+              <div className="glass-card-editorial p-6 sm:p-8 rounded-3xl space-y-6 border border-[#B9A16B]/15 shadow-2xl">
+                <h3 className="text-xl font-bold text-[#F2F0EA] dark:text-[#F2F0EA] light:text-slate-900 flex items-center gap-2.5 font-display">
+                  <Sparkles className="w-5 h-5 text-[#B9A16B]" />
                   <span>Direct Communication</span>
                 </h3>
 
                 <div className="space-y-3.5">
                   {/* Email Item */}
-                  <div className="p-4 rounded-2xl bg-[#17120A]/90 dark:bg-[#17120A]/90 light:bg-slate-100/90 border border-gold-500/15 flex items-center justify-between gap-3">
+                  <div className="p-4 rounded-2xl bg-[#161616]/90 dark:bg-[#161616]/90 light:bg-slate-100/90 border border-[#B9A16B]/15 flex items-center justify-between gap-3">
                     <div className="flex items-center gap-3 overflow-hidden">
-                      <div className="p-2.5 rounded-xl bg-gold-500/15 text-gold-300 flex-shrink-0">
+                      <div className="p-2.5 rounded-xl bg-[#B9A16B]/15 text-[#B9A16B] flex-shrink-0">
                         <Mail className="w-5 h-5" />
                       </div>
                       <div className="overflow-hidden">
                         <div className="text-xs text-slate-400 font-medium">Email Address</div>
                         <a
                           href={`mailto:${profileData.email}`}
-                          className="text-xs sm:text-sm font-semibold text-[#FFF8E7] dark:text-[#FFF8E7] light:text-slate-900 hover:text-gold-300 truncate block transition-colors"
+                          className="text-xs sm:text-sm font-semibold text-[#F2F0EA] dark:text-[#F2F0EA] light:text-slate-900 hover:text-[#B9A16B] truncate block transition-colors font-mono"
                         >
                           {profileData.email}
                         </a>
@@ -193,7 +192,7 @@ export const Contact: React.FC = () => {
 
                     <button
                       onClick={handleCopyEmail}
-                      className="p-2 rounded-xl bg-[#221B10] hover:bg-[#2C2314] text-slate-300 hover:text-[#FFF8E7] border border-gold-500/20 transition-colors flex-shrink-0 cursor-pointer"
+                      className="p-2 rounded-xl bg-[#222222] hover:bg-[#2a2a2a] text-slate-300 hover:text-[#F2F0EA] border border-[#B9A16B]/20 transition-colors flex-shrink-0 cursor-pointer"
                       title="Copy Email to Clipboard"
                       aria-label="Copy email"
                     >
@@ -203,16 +202,16 @@ export const Contact: React.FC = () => {
 
                   {/* Phone Item */}
                   {profileData.phone && (
-                    <div className="p-4 rounded-2xl bg-[#17120A]/90 dark:bg-[#17120A]/90 light:bg-slate-100/90 border border-gold-500/15 flex items-center justify-between gap-3">
+                    <div className="p-4 rounded-2xl bg-[#161616]/90 dark:bg-[#161616]/90 light:bg-slate-100/90 border border-[#B9A16B]/15 flex items-center justify-between gap-3">
                       <div className="flex items-center gap-3 overflow-hidden">
-                        <div className="p-2.5 rounded-xl bg-amber-500/15 text-amber-300 flex-shrink-0">
+                        <div className="p-2.5 rounded-xl bg-[#B9A16B]/15 text-[#B9A16B] flex-shrink-0">
                           <Phone className="w-5 h-5" />
                         </div>
                         <div className="overflow-hidden">
                           <div className="text-xs text-slate-400 font-medium">Phone / WhatsApp</div>
                           <a
                             href={`tel:${profileData.phone.replace(/\s+/g, '')}`}
-                            className="text-xs sm:text-sm font-semibold text-[#FFF8E7] dark:text-[#FFF8E7] light:text-slate-900 hover:text-gold-300 truncate block transition-colors"
+                            className="text-xs sm:text-sm font-semibold text-[#F2F0EA] dark:text-[#F2F0EA] light:text-slate-900 hover:text-[#B9A16B] truncate block transition-colors font-mono"
                           >
                             {profileData.phone}
                           </a>
@@ -222,26 +221,26 @@ export const Contact: React.FC = () => {
                   )}
 
                   {/* Location Item */}
-                  <div className="p-4 rounded-2xl bg-[#17120A]/90 dark:bg-[#17120A]/90 light:bg-slate-100/90 border border-gold-500/15 flex items-center gap-3">
-                    <div className="p-2.5 rounded-xl bg-gold-500/15 text-gold-300 flex-shrink-0">
+                  <div className="p-4 rounded-2xl bg-[#161616]/90 dark:bg-[#161616]/90 light:bg-slate-100/90 border border-[#B9A16B]/15 flex items-center gap-3">
+                    <div className="p-2.5 rounded-xl bg-[#B9A16B]/15 text-[#B9A16B] flex-shrink-0">
                       <MapPin className="w-5 h-5" />
                     </div>
                     <div>
                       <div className="text-xs text-slate-400 font-medium">Location</div>
-                      <div className="text-xs sm:text-sm font-semibold text-[#FFF8E7] dark:text-[#FFF8E7] light:text-slate-900">
+                      <div className="text-xs sm:text-sm font-semibold text-[#F2F0EA] dark:text-[#F2F0EA] light:text-slate-900 font-mono">
                         {profileData.location}
                       </div>
                     </div>
                   </div>
 
                   {/* Response SLA */}
-                  <div className="p-4 rounded-2xl bg-[#17120A]/90 dark:bg-[#17120A]/90 light:bg-slate-100/90 border border-gold-500/15 flex items-center gap-3">
-                    <div className="p-2.5 rounded-xl bg-amber-500/15 text-amber-300 flex-shrink-0">
+                  <div className="p-4 rounded-2xl bg-[#161616]/90 dark:bg-[#161616]/90 light:bg-slate-100/90 border border-[#B9A16B]/15 flex items-center gap-3">
+                    <div className="p-2.5 rounded-xl bg-[#B9A16B]/15 text-[#B9A16B] flex-shrink-0">
                       <Clock className="w-5 h-5" />
                     </div>
                     <div>
                       <div className="text-xs text-slate-400 font-medium">Response SLA</div>
-                      <div className="text-xs sm:text-sm font-semibold text-amber-300 font-mono">
+                      <div className="text-xs sm:text-sm font-semibold text-[#B9A16B] font-mono">
                         {contactConfig.responseTime}
                       </div>
                     </div>
@@ -250,7 +249,7 @@ export const Contact: React.FC = () => {
 
                 {/* Social Channels */}
                 <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 font-mono">
                     Verified Social Channels
                   </h4>
                   <div className="flex flex-wrap gap-2.5">
@@ -260,9 +259,9 @@ export const Contact: React.FC = () => {
                         href={social.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#17120A] dark:bg-[#17120A] light:bg-slate-100 text-slate-300 hover:text-[#FFF8E7] dark:hover:text-[#FFF8E7] light:hover:text-gold-600 border border-gold-500/15 hover:border-gold-500/50 text-xs font-semibold transition-all hover:scale-105"
+                        className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#161616] dark:bg-[#161616] light:bg-slate-100 text-slate-300 hover:text-[#F2F0EA] dark:hover:text-[#F2F0EA] light:hover:text-gold-700 border border-[#B9A16B]/15 hover:border-[#B9A16B]/40 text-xs font-semibold transition-all hover:scale-105"
                       >
-                        <IconRenderer name={social.icon} className="w-4 h-4 text-gold-400" />
+                        <IconRenderer name={social.icon} className="w-4 h-4 text-[#B9A16B]" />
                         <span>{social.platform}</span>
                       </a>
                     ))}
@@ -280,10 +279,10 @@ export const Contact: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="lg:col-span-7"
           >
-            <TiltCard maxTilt={5} glareOpacity={0.25}>
-              <div className="glass-card-3d p-6 sm:p-8 rounded-3xl border border-gold-500/15 shadow-2xl relative">
-                <h3 className="text-xl font-bold text-[#FFF8E7] dark:text-[#FFF8E7] light:text-slate-900 mb-2 flex items-center gap-2">
-                  <MessageSquare className="w-5 h-5 text-gold-400" />
+            <TiltCard maxTilt={5} glareOpacity={0.2}>
+              <div className="glass-card-editorial p-6 sm:p-8 rounded-3xl border border-[#B9A16B]/15 shadow-2xl relative">
+                <h3 className="text-xl font-bold text-[#F2F0EA] dark:text-[#F2F0EA] light:text-slate-900 mb-2 flex items-center gap-2 font-display">
+                  <MessageSquare className="w-5 h-5 text-[#B9A16B]" />
                   <span>Send a Direct Message</span>
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-400 mb-6">
@@ -294,19 +293,19 @@ export const Contact: React.FC = () => {
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="p-8 rounded-2xl bg-gold-950/30 border border-gold-500/40 text-center space-y-3"
+                    className="p-8 rounded-2xl bg-[#161616]/80 border border-[#B9A16B]/30 text-center space-y-3"
                   >
-                    <div className="w-12 h-12 rounded-full bg-gold-500/20 text-gold-300 flex items-center justify-center mx-auto shadow-[0_0_20px_#D4AF37]">
-                      <Check className="w-6 h-6 text-accent-gold" />
+                    <div className="w-12 h-12 rounded-full bg-[#B9A16B]/20 text-[#B9A16B] flex items-center justify-center mx-auto shadow-[0_0_16px_#B9A16B]">
+                      <Check className="w-6 h-6 text-[#B9A16B]" />
                     </div>
-                    <h4 className="text-lg font-bold text-[#FFF8E7]">Message Transmitted!</h4>
+                    <h4 className="text-lg font-bold text-[#F2F0EA]">Message Transmitted!</h4>
                     <p className="text-sm text-slate-300 max-w-md mx-auto">
                       Thank you for reaching out! You can also email me directly at{' '}
-                      <strong className="text-gold-300">{profileData.email}</strong>.
+                      <strong className="text-[#B9A16B]">{profileData.email}</strong>.
                     </p>
                     <button
                       onClick={() => setSubmitted(false)}
-                      className="mt-4 px-5 py-2.5 rounded-xl text-xs font-semibold bg-[#17120A] text-slate-200 hover:bg-[#221B10] border border-gold-500/20 transition-colors cursor-pointer"
+                      className="mt-4 px-5 py-2.5 rounded-xl text-xs font-semibold bg-[#161616] text-slate-200 hover:bg-[#222222] border border-[#B9A16B]/20 transition-colors cursor-pointer"
                     >
                       Send Another Note
                     </button>
@@ -316,7 +315,7 @@ export const Contact: React.FC = () => {
                     {/* Name & Email Row */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-xs font-semibold text-slate-300 dark:text-slate-300 light:text-slate-700 mb-1.5 flex items-center gap-1.5">
+                        <label className="block text-xs font-semibold text-slate-300 dark:text-slate-300 light:text-slate-700 mb-1.5 flex items-center gap-1.5 font-mono">
                           <User className="w-3.5 h-3.5 text-slate-400" />
                           <span>Your Name</span>
                         </label>
@@ -326,17 +325,17 @@ export const Contact: React.FC = () => {
                           value={formData.name}
                           onChange={handleChange}
                           placeholder="John Doe"
-                          className={`w-full px-4 py-2.5 rounded-xl bg-[#030304] dark:bg-[#030304] light:bg-slate-50 border ${
+                          className={`w-full px-4 py-2.5 rounded-xl bg-[#080808] dark:bg-[#080808] light:bg-slate-50 border ${
                             errors.name
                               ? 'border-rose-500 focus:ring-rose-500'
-                              : 'border-gold-500/20 dark:border-gold-500/20 light:border-slate-300 focus:border-gold-400'
-                          } text-sm text-[#FFF8E7] dark:text-[#FFF8E7] light:text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-gold-500 transition-all`}
+                              : 'border-[#B9A16B]/20 dark:border-[#B9A16B]/20 light:border-slate-300 focus:border-[#B9A16B]'
+                          } text-sm text-[#F2F0EA] dark:text-[#F2F0EA] light:text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-[#B9A16B] transition-all`}
                         />
                         {errors.name && <p className="text-xs text-rose-400 mt-1">{errors.name}</p>}
                       </div>
 
                       <div>
-                        <label className="block text-xs font-semibold text-slate-300 dark:text-slate-300 light:text-slate-700 mb-1.5 flex items-center gap-1.5">
+                        <label className="block text-xs font-semibold text-slate-300 dark:text-slate-300 light:text-slate-700 mb-1.5 flex items-center gap-1.5 font-mono">
                           <AtSign className="w-3.5 h-3.5 text-slate-400" />
                           <span>Your Email</span>
                         </label>
@@ -346,11 +345,11 @@ export const Contact: React.FC = () => {
                           value={formData.email}
                           onChange={handleChange}
                           placeholder="john@example.com"
-                          className={`w-full px-4 py-2.5 rounded-xl bg-[#030304] dark:bg-[#030304] light:bg-slate-50 border ${
+                          className={`w-full px-4 py-2.5 rounded-xl bg-[#080808] dark:bg-[#080808] light:bg-slate-50 border ${
                             errors.email
                               ? 'border-rose-500 focus:ring-rose-500'
-                              : 'border-gold-500/20 dark:border-gold-500/20 light:border-slate-300 focus:border-gold-400'
-                          } text-sm text-[#FFF8E7] dark:text-[#FFF8E7] light:text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-gold-500 transition-all`}
+                              : 'border-[#B9A16B]/20 dark:border-[#B9A16B]/20 light:border-slate-300 focus:border-[#B9A16B]'
+                          } text-sm text-[#F2F0EA] dark:text-[#F2F0EA] light:text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-[#B9A16B] transition-all`}
                         />
                         {errors.email && <p className="text-xs text-rose-400 mt-1">{errors.email}</p>}
                       </div>
@@ -358,7 +357,7 @@ export const Contact: React.FC = () => {
 
                     {/* Subject */}
                     <div>
-                      <label className="block text-xs font-semibold text-slate-300 dark:text-slate-300 light:text-slate-700 mb-1.5 flex items-center gap-1.5">
+                      <label className="block text-xs font-semibold text-slate-300 dark:text-slate-300 light:text-slate-700 mb-1.5 flex items-center gap-1.5 font-mono">
                         <FileText className="w-3.5 h-3.5 text-slate-400" />
                         <span>Subject</span>
                       </label>
@@ -368,18 +367,18 @@ export const Contact: React.FC = () => {
                         value={formData.subject}
                         onChange={handleChange}
                         placeholder="Internship opportunity / Project inquiry"
-                        className={`w-full px-4 py-2.5 rounded-xl bg-[#030304] dark:bg-[#030304] light:bg-slate-50 border ${
+                        className={`w-full px-4 py-2.5 rounded-xl bg-[#080808] dark:bg-[#080808] light:bg-slate-50 border ${
                           errors.subject
                             ? 'border-rose-500 focus:ring-rose-500'
-                            : 'border-gold-500/20 dark:border-gold-500/20 light:border-slate-300 focus:border-gold-400'
-                        } text-sm text-[#FFF8E7] dark:text-[#FFF8E7] light:text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-gold-500 transition-all`}
+                            : 'border-[#B9A16B]/20 dark:border-[#B9A16B]/20 light:border-slate-300 focus:border-[#B9A16B]'
+                        } text-sm text-[#F2F0EA] dark:text-[#F2F0EA] light:text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-[#B9A16B] transition-all`}
                       />
                       {errors.subject && <p className="text-xs text-rose-400 mt-1">{errors.subject}</p>}
                     </div>
 
                     {/* Message */}
                     <div>
-                      <label className="block text-xs font-semibold text-slate-300 dark:text-slate-300 light:text-slate-700 mb-1.5 flex items-center gap-1.5">
+                      <label className="block text-xs font-semibold text-slate-300 dark:text-slate-300 light:text-slate-700 mb-1.5 flex items-center gap-1.5 font-mono">
                         <MessageSquare className="w-3.5 h-3.5 text-slate-400" />
                         <span>Message</span>
                       </label>
@@ -389,11 +388,11 @@ export const Contact: React.FC = () => {
                         value={formData.message}
                         onChange={handleChange}
                         placeholder="Hi Arif, I saw your portfolio and would like to discuss..."
-                        className={`w-full px-4 py-2.5 rounded-xl bg-[#030304] dark:bg-[#030304] light:bg-slate-50 border ${
+                        className={`w-full px-4 py-2.5 rounded-xl bg-[#080808] dark:bg-[#080808] light:bg-slate-50 border ${
                           errors.message
                             ? 'border-rose-500 focus:ring-rose-500'
-                            : 'border-gold-500/20 dark:border-gold-500/20 light:border-slate-300 focus:border-gold-400'
-                        } text-sm text-[#FFF8E7] dark:text-[#FFF8E7] light:text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-gold-500 transition-all custom-scrollbar`}
+                            : 'border-[#B9A16B]/20 dark:border-[#B9A16B]/20 light:border-slate-300 focus:border-[#B9A16B]'
+                        } text-sm text-[#F2F0EA] dark:text-[#F2F0EA] light:text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-[#B9A16B] transition-all custom-scrollbar`}
                       />
                       {errors.message && <p className="text-xs text-rose-400 mt-1">{errors.message}</p>}
                     </div>

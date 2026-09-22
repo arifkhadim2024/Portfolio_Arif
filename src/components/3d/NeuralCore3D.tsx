@@ -38,24 +38,24 @@ export const NeuralCore3D: React.FC<NeuralCore3DProps> = ({
     renderer.setSize(width, height);
     renderer.setClearColor(0x000000, 0);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.25;
+    renderer.toneMappingExposure = 1.2;
     container.appendChild(renderer.domElement);
 
-    // 2. Cinematic Cosmic Lights (Metallic Gold + Champagne + Amber Rim)
-    const ambientLight = new THREE.AmbientLight(0xfff8e7, 0.6);
+    // 2. Restrained Editorial Cosmic Lights (Charcoal + Subtle Warm Metallic + Off-White)
+    const ambientLight = new THREE.AmbientLight(0xf2f0ea, 0.5);
     scene.add(ambientLight);
 
-    const goldKeyLight = new THREE.PointLight(0xd4af37, 5.0, 50);
-    goldKeyLight.position.set(10, 12, 12);
-    scene.add(goldKeyLight);
+    const warmKeyLight = new THREE.PointLight(0xb9a16b, 4.2, 50);
+    warmKeyLight.position.set(10, 12, 12);
+    scene.add(warmKeyLight);
 
-    const champagneRimLight = new THREE.PointLight(0xf3e8cb, 4.2, 50);
-    champagneRimLight.position.set(-10, -8, 10);
-    scene.add(champagneRimLight);
+    const offWhiteRimLight = new THREE.PointLight(0xf2f0ea, 3.2, 50);
+    offWhiteRimLight.position.set(-10, -8, 10);
+    scene.add(offWhiteRimLight);
 
-    const amberFillLight = new THREE.DirectionalLight(0xf59e0b, 1.2);
-    amberFillLight.position.set(0, 15, -10);
-    scene.add(amberFillLight);
+    const charcoalFillLight = new THREE.DirectionalLight(0x222222, 1.0);
+    charcoalFillLight.position.set(0, 15, -10);
+    scene.add(charcoalFillLight);
 
     // 3. Central Living Neural Core Group
     const coreGroup = new THREE.Group();
@@ -78,33 +78,33 @@ export const NeuralCore3D: React.FC<NeuralCore3DProps> = ({
     const coreMesh = new THREE.Mesh(geometry, coreMaterial);
     coreGroup.add(coreMesh);
 
-    // B. Inner Glowing Molten Star Nucleus
+    // B. Inner Subtle Glowing Nucleus
     const innerNucleusGeo = new THREE.SphereGeometry(1.6, 24, 24);
     const innerNucleusMat = new THREE.MeshBasicMaterial({
-      color: 0xf5c542,
+      color: 0xb9a16b,
       wireframe: true,
       transparent: true,
-      opacity: 0.3,
+      opacity: 0.25,
     });
     const innerNucleus = new THREE.Mesh(innerNucleusGeo, innerNucleusMat);
     coreGroup.add(innerNucleus);
 
-    // C. Orbital Magnetic Energy Rings
-    const ring1Geo = new THREE.TorusGeometry(4.6, 0.03, 16, 100);
+    // C. Orbital Magnetic Energy Rings (Subtle Warm Metallic & Off-White)
+    const ring1Geo = new THREE.TorusGeometry(4.6, 0.025, 16, 100);
     const ring1Mat = new THREE.MeshBasicMaterial({
-      color: 0xd4af37,
+      color: 0xb9a16b,
       transparent: true,
-      opacity: 0.55,
+      opacity: 0.45,
     });
     const ring1 = new THREE.Mesh(ring1Geo, ring1Mat);
     ring1.rotation.x = Math.PI / 3;
     coreGroup.add(ring1);
 
-    const ring2Geo = new THREE.TorusGeometry(5.4, 0.025, 16, 100);
+    const ring2Geo = new THREE.TorusGeometry(5.4, 0.02, 16, 100);
     const ring2Mat = new THREE.MeshBasicMaterial({
-      color: 0xf3e8cb,
+      color: 0xf2f0ea,
       transparent: true,
-      opacity: 0.45,
+      opacity: 0.35,
     });
     const ring2 = new THREE.Mesh(ring2Geo, ring2Mat);
     ring2.rotation.x = -Math.PI / 4;
@@ -234,15 +234,15 @@ export const NeuralCore3D: React.FC<NeuralCore3DProps> = ({
 
       if (!prefersReducedMotion) {
         // Slow ambient core rotation
-        coreGroup.rotation.y = elapsed * 0.15;
-        coreGroup.rotation.x = Math.sin(elapsed * 0.3) * 0.1;
+        coreGroup.rotation.y = elapsed * 0.14;
+        coreGroup.rotation.x = Math.sin(elapsed * 0.3) * 0.08;
 
         // Individual orbital ring counter-rotations
-        ring1.rotation.z = elapsed * 0.3;
-        ring2.rotation.z = -elapsed * 0.25;
+        ring1.rotation.z = elapsed * 0.25;
+        ring2.rotation.z = -elapsed * 0.2;
 
         // Inner nucleus pulse
-        const pulse = 1.0 + Math.sin(elapsed * 2.5) * 0.05;
+        const pulse = 1.0 + Math.sin(elapsed * 2.0) * 0.04;
         innerNucleus.scale.set(pulse, pulse, pulse);
 
         // Update magnetic filings particle system

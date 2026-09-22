@@ -33,7 +33,7 @@ export const Button: React.FC<ButtonProps> = ({
   className = '',
   ...props
 }) => {
-  const baseStyles = "relative inline-flex items-center justify-center font-semibold rounded-2xl transition-all duration-300 select-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-gold-500/40 disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden";
+  const baseStyles = "relative inline-flex items-center justify-center font-semibold rounded-2xl transition-all duration-300 select-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#B9A16B]/40 disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden";
 
   const sizeStyles = {
     sm: "px-3.5 py-1.5 text-xs sm:text-sm gap-1.5",
@@ -42,12 +42,12 @@ export const Button: React.FC<ButtonProps> = ({
   };
 
   const variantStyles = {
-    primary: "bg-gradient-to-r from-gold-700 via-gold-500 to-gold-400 text-[#070709] font-bold shadow-lg shadow-gold-950/40 border border-gold-300/60 hover:shadow-gold-500/30 hover:brightness-110 active:scale-[0.98]",
-    glow: "bg-gold-500 text-[#070709] font-bold shadow-glow-gold hover:bg-gold-400 hover:shadow-gold-400/60 border border-gold-300/70 active:scale-[0.98]",
-    gold: "bg-gradient-to-r from-gold-600 via-gold-400 to-gold-300 text-[#030304] font-bold shadow-lg shadow-gold-950/50 border border-gold-200/80 hover:brightness-110 active:scale-[0.98]",
-    secondary: "bg-[#0B0A0E]/90 hover:bg-[#131118] text-[#FFF8E7] border border-gold-500/30 hover:border-gold-400/60 shadow-md active:scale-[0.98] backdrop-blur-md",
-    outline: "bg-transparent hover:bg-gold-500/10 text-[#FFF8E7] border border-gold-500/30 hover:border-gold-400/70 active:scale-[0.98]",
-    ghost: "bg-transparent hover:bg-gold-500/10 text-slate-300 hover:text-[#FFF8E7] active:scale-[0.98]",
+    primary: "bg-[#B9A16B] text-[#080808] font-bold shadow-lg shadow-black/70 border border-[#B9A16B] hover:bg-[#9E8652] hover:shadow-[#B9A16B]/20 active:scale-[0.98]",
+    glow: "bg-[#B9A16B] text-[#080808] font-bold shadow-editorial-accent hover:bg-[#9E8652] border border-[#B9A16B] active:scale-[0.98]",
+    gold: "bg-[#B9A16B] text-[#080808] font-bold shadow-lg shadow-black/70 border border-[#B9A16B] hover:bg-[#9E8652] active:scale-[0.98]",
+    secondary: "bg-[#0F0F0F]/90 hover:bg-[#161616] text-[#F2F0EA] border border-[#B9A16B]/25 hover:border-[#B9A16B]/50 shadow-md active:scale-[0.98] backdrop-blur-md",
+    outline: "bg-transparent hover:bg-[#B9A16B]/10 text-[#F2F0EA] border border-[#B9A16B]/25 hover:border-[#B9A16B]/60 active:scale-[0.98]",
+    ghost: "bg-transparent hover:bg-[#B9A16B]/10 text-slate-300 hover:text-[#F2F0EA] active:scale-[0.98]",
   };
 
   const combinedClasses = `${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${fullWidth ? 'w-full' : ''} ${className}`;

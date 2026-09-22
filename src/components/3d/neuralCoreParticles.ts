@@ -9,7 +9,7 @@ export interface MagneticParticlesSystem {
 /**
  * Magnetic Iron Filings Particle System
  * Simulates iron filings drifting along magnetic field lines around the Neural Core,
- * reacting to the cursor position and fluid curl dynamics.
+ * reacting to the cursor position and fluid curl dynamics with restrained editorial colors.
  */
 export function createMagneticParticles(
   particleCount: number = 750
@@ -22,11 +22,11 @@ export function createMagneticParticles(
   const speeds = new Float32Array(particleCount);
   const inclinations = new Float32Array(particleCount);
 
-  const goldCol = new THREE.Color('#D4AF37');
-  const radiantCol = new THREE.Color('#F5C542');
-  const champagneCol = new THREE.Color('#F3E8CB');
-  const bronzeCol = new THREE.Color('#94771C');
-  const palette = [goldCol, radiantCol, champagneCol, bronzeCol];
+  const warmAccentCol = new THREE.Color('#B9A16B');
+  const offWhiteCol = new THREE.Color('#F2F0EA');
+  const champagneCol = new THREE.Color('#E8E6E0');
+  const deepBronzeCol = new THREE.Color('#695730');
+  const palette = [warmAccentCol, offWhiteCol, champagneCol, deepBronzeCol];
 
   for (let i = 0; i < particleCount; i++) {
     const i3 = i * 3;
@@ -56,7 +56,7 @@ export function createMagneticParticles(
   geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
   geometry.setAttribute('scale', new THREE.BufferAttribute(scales, 1));
 
-  // Generate circular particle texture with soft radiant falloff
+  // Generate circular particle texture with soft falloff
   const createDotTexture = () => {
     const canvas = document.createElement('canvas');
     canvas.width = 64;
@@ -64,9 +64,9 @@ export function createMagneticParticles(
     const ctx = canvas.getContext('2d');
     if (ctx) {
       const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
-      gradient.addColorStop(0, 'rgba(255, 248, 231, 1)');
-      gradient.addColorStop(0.3, 'rgba(245, 197, 66, 0.85)');
-      gradient.addColorStop(0.7, 'rgba(212, 175, 55, 0.25)');
+      gradient.addColorStop(0, 'rgba(242, 240, 234, 1)');
+      gradient.addColorStop(0.35, 'rgba(185, 161, 107, 0.8)');
+      gradient.addColorStop(0.75, 'rgba(185, 161, 107, 0.2)');
       gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, 64, 64);
@@ -78,11 +78,11 @@ export function createMagneticParticles(
   const particleTexture = createDotTexture();
 
   const material = new THREE.PointsMaterial({
-    size: 0.24,
+    size: 0.22,
     vertexColors: true,
     map: particleTexture,
     transparent: true,
-    opacity: 0.8,
+    opacity: 0.75,
     blending: THREE.AdditiveBlending,
     depthWrite: false,
   });
