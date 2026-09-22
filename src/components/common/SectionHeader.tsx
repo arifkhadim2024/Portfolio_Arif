@@ -26,9 +26,9 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4 }}
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold tracking-widest uppercase mb-4 bg-purple-950/70 text-purple-300 border border-purple-500/30 backdrop-blur-md shadow-sm"
+          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold tracking-widest uppercase mb-4 bg-gold-950/70 text-gold-300 border border-gold-500/30 backdrop-blur-md shadow-sm shadow-gold-950/50"
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-accent-gold animate-pulse" />
+          <span className="w-1.5 h-1.5 rounded-full bg-accent-gold animate-pulse shadow-[0_0_8px_#D4AF37]" />
           {badge}
         </motion.div>
       )}
@@ -38,9 +38,9 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#FDFBF7] dark:text-[#FDFBF7] light:text-slate-900"
+        className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#FFF8E7] dark:text-[#FFF8E7] light:text-slate-900"
       >
-        {title}
+        <span className="text-gradient-cinematic">{title}</span>
       </motion.h2>
 
       {subtitle && (
@@ -49,15 +49,15 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-4 text-base sm:text-lg text-slate-400 dark:text-slate-400 light:text-slate-600 leading-relaxed font-normal"
+          className="mt-4 text-base sm:text-lg text-slate-300 dark:text-slate-300 light:text-slate-600 leading-relaxed font-normal"
         >
           {subtitle}
         </motion.p>
       )}
 
       <div className={`mt-5 flex items-center gap-1.5 ${isCenter ? 'justify-center' : 'justify-start'}`}>
-        <div className="h-0.5 w-12 rounded-full bg-gradient-to-r from-purple-500 via-fuchsia-500 to-amber-400" />
-        <div className="h-0.5 w-2 rounded-full bg-accent-gold" />
+        <div className="h-0.5 w-12 rounded-full bg-gradient-to-r from-gold-600 via-gold-400 to-amber-300" />
+        <div className="h-0.5 w-2 rounded-full bg-accent-gold shadow-[0_0_6px_#D4AF37]" />
       </div>
     </div>
   );

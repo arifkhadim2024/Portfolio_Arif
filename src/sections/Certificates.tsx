@@ -32,14 +32,14 @@ export const Certificates: React.FC = () => {
               <TiltCard maxTilt={8} glareOpacity={0.25} className="h-full">
                 <div
                   onClick={() => setActiveCert(cert)}
-                  className="glass-card-3d group h-full flex flex-col justify-between rounded-3xl border border-white/10 hover:border-purple-500/40 hover:shadow-2xl hover:shadow-purple-900/25 transition-all overflow-hidden p-6 space-y-4 cursor-pointer"
+                  className="glass-card-3d group h-full flex flex-col justify-between rounded-3xl border border-gold-500/15 hover:border-gold-500/40 hover:shadow-2xl hover:shadow-gold-950/30 transition-all overflow-hidden p-6 space-y-4 cursor-pointer"
                 >
                   {/* Header with Icon & Date */}
                   <div className="flex items-start justify-between gap-3">
-                    <div className="w-12 h-12 rounded-2xl bg-purple-500/15 border border-purple-500/30 text-purple-400 flex items-center justify-center group-hover:scale-110 transition-transform shadow-inner">
+                    <div className="w-12 h-12 rounded-2xl bg-gold-500/15 border border-gold-500/30 text-gold-400 flex items-center justify-center group-hover:scale-110 transition-transform shadow-inner">
                       <Award className="w-6 h-6" />
                     </div>
-                    <span className="flex items-center gap-1.5 text-xs font-mono text-slate-400 bg-[#13111C] px-3 py-1 rounded-full border border-white/10">
+                    <span className="flex items-center gap-1.5 text-xs font-mono text-slate-400 bg-[#17120A] px-3 py-1 rounded-full border border-gold-500/20">
                       <Calendar className="w-3.5 h-3.5 text-accent-gold" />
                       {cert.issueDate}
                     </span>
@@ -47,7 +47,7 @@ export const Certificates: React.FC = () => {
 
                   {/* Title & Issuer */}
                   <div>
-                    <h3 className="text-lg font-bold text-[#FDFBF7] dark:text-[#FDFBF7] light:text-slate-900 group-hover:text-purple-300 transition-colors line-clamp-2">
+                    <h3 className="text-lg font-bold text-[#FFF8E7] dark:text-[#FFF8E7] light:text-slate-900 group-hover:text-gold-300 transition-colors line-clamp-2">
                       {cert.title}
                     </h3>
                     <p className="text-xs text-slate-400 dark:text-slate-400 light:text-slate-500 font-medium mt-1">
@@ -55,9 +55,9 @@ export const Certificates: React.FC = () => {
                     </p>
                   </div>
 
-                  {/* Credential ID in Champagne Gold / Soft Violet */}
+                  {/* Credential ID in Metallic Gold */}
                   {cert.credentialId && (
-                    <div className="flex items-center gap-1.5 text-xs font-mono text-amber-300 bg-amber-500/10 px-3 py-1 rounded-xl border border-amber-500/30 w-fit">
+                    <div className="flex items-center gap-1.5 text-xs font-mono text-gold-300 bg-gold-500/15 px-3 py-1 rounded-xl border border-gold-500/30 w-fit">
                       <ShieldCheck className="w-3.5 h-3.5 text-accent-gold" />
                       <span>ID: {cert.credentialId}</span>
                     </div>
@@ -73,14 +73,14 @@ export const Certificates: React.FC = () => {
                   </div>
 
                   {/* Footer Action buttons */}
-                  <div className="pt-4 border-t border-white/10 flex items-center justify-between gap-2">
+                  <div className="pt-4 border-t border-gold-500/15 flex items-center justify-between gap-2">
                     <button
                       type="button"
                       onClick={(e) => {
                         e.stopPropagation();
                         setActiveCert(cert);
                       }}
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-purple-300 hover:text-amber-300 transition-colors cursor-pointer"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-gold-400 hover:text-gold-300 transition-colors cursor-pointer"
                     >
                       <Eye className="w-3.5 h-3.5 text-accent-gold" />
                       <span>Preview Certificate</span>
@@ -92,10 +92,10 @@ export const Certificates: React.FC = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-1 text-xs font-semibold text-slate-400 hover:text-[#FDFBF7] dark:hover:text-[#FDFBF7] light:hover:text-slate-900 transition-colors"
+                        className="inline-flex items-center gap-1 text-xs font-semibold text-slate-400 hover:text-[#FFF8E7] dark:hover:text-[#FFF8E7] light:hover:text-slate-900 transition-colors"
                       >
                         <span>Open Document</span>
-                        <ExternalLink className="w-3 h-3 text-purple-400" />
+                        <ExternalLink className="w-3 h-3 text-gold-400" />
                       </a>
                     )}
                   </div>

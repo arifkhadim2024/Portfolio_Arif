@@ -24,14 +24,14 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
     <Modal isOpen={isOpen} onClose={onClose} maxWidth="3xl">
       <div className="space-y-6">
         {/* Project Thematic Visual Banner */}
-        <div className="relative rounded-2xl overflow-hidden border border-purple-500/30 shadow-2xl">
+        <div className="relative rounded-2xl overflow-hidden border border-gold-500/30 shadow-2xl">
           <ProjectVisualBanner project={project} isModal />
           <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between z-20">
-            <Badge variant="magenta" size="md">
+            <Badge variant="gold" size="md">
               {project.category}
             </Badge>
             {project.featured && (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-purple-950/90 text-amber-300 backdrop-blur shadow-lg border border-amber-400/40">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#0B0A0E]/95 text-gold-300 backdrop-blur shadow-lg border border-gold-400/40">
                 <Sparkles className="w-3.5 h-3.5 text-accent-gold" />
                 Featured Project
               </span>
@@ -41,20 +41,20 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
 
         {/* Title & Tagline */}
         <div>
-          <h3 className="text-2xl sm:text-3xl font-extrabold text-[#FDFBF7] dark:text-[#FDFBF7] light:text-slate-900 tracking-tight">
+          <h3 className="text-2xl sm:text-3xl font-extrabold text-[#FFF8E7] dark:text-[#FFF8E7] light:text-slate-900 tracking-tight">
             {project.title}
           </h3>
-          <p className="text-sm sm:text-base text-purple-400 font-medium mt-1">
+          <p className="text-sm sm:text-base text-gold-400 font-medium mt-1">
             {project.tagline}
           </p>
         </div>
 
         {/* Metrics Grid if available */}
         {project.metrics && project.metrics.length > 0 && (
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 p-4 rounded-2xl bg-[#0D0C12]/90 dark:bg-[#0D0C12]/90 light:bg-slate-100/90 border border-white/10 shadow-inner">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 p-4 rounded-2xl bg-[#0B0A0E]/90 dark:bg-[#0B0A0E]/90 light:bg-slate-100/90 border border-gold-500/20 shadow-inner">
             {project.metrics.map((metric, idx) => (
-              <div key={idx} className="text-center p-2.5 rounded-xl bg-[#13111C]/80 border border-white/5">
-                <div className="text-lg sm:text-xl font-extrabold text-amber-300 flex items-center justify-center gap-1.5 font-mono">
+              <div key={idx} className="text-center p-2.5 rounded-xl bg-[#17120A]/80 border border-gold-500/15">
+                <div className="text-lg sm:text-xl font-extrabold text-gold-300 flex items-center justify-center gap-1.5 font-mono">
                   <TrendingUp className="w-4 h-4 text-accent-gold" />
                   <span>{metric.value}</span>
                 </div>
@@ -75,8 +75,8 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
         {(project.problemSolved || project.solution) && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {project.problemSolved && (
-              <div className="p-4 rounded-2xl bg-rose-950/20 border border-rose-500/25 space-y-2">
-                <div className="flex items-center gap-2 text-rose-400 font-bold text-sm">
+              <div className="p-4 rounded-2xl bg-amber-950/20 border border-amber-500/25 space-y-2">
+                <div className="flex items-center gap-2 text-amber-400 font-bold text-sm">
                   <AlertCircle className="w-4 h-4 flex-shrink-0" />
                   <span>The Engineering Challenge</span>
                 </div>
@@ -87,8 +87,8 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             )}
 
             {project.solution && (
-              <div className="p-4 rounded-2xl bg-purple-950/25 border border-purple-500/30 space-y-2">
-                <div className="flex items-center gap-2 text-fuchsia-300 font-bold text-sm">
+              <div className="p-4 rounded-2xl bg-gold-950/25 border border-gold-500/30 space-y-2">
+                <div className="flex items-center gap-2 text-gold-300 font-bold text-sm">
                   <Sparkles className="w-4 h-4 flex-shrink-0 text-accent-gold" />
                   <span>Architecture & Solution</span>
                 </div>
@@ -104,7 +104,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
         {project.keyFeatures && project.keyFeatures.length > 0 && (
           <div className="space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-400 light:text-slate-600 flex items-center gap-2">
-              <Cpu className="w-4 h-4 text-purple-400" />
+              <Cpu className="w-4 h-4 text-gold-400" />
               <span>Key Technical Highlights</span>
             </h4>
             <ul className="space-y-2">
@@ -136,7 +136,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
         </div>
 
         {/* Action Buttons */}
-        <div className="pt-4 border-t border-white/10 flex flex-wrap items-center justify-end gap-3">
+        <div className="pt-4 border-t border-gold-500/20 flex flex-wrap items-center justify-end gap-3">
           {project.githubUrl && (
             <Button
               variant="secondary"

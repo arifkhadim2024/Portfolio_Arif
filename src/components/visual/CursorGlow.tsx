@@ -39,10 +39,10 @@ export const CursorGlow: React.FC = () => {
 
       if (projectCard) {
         setCursorType('project');
-        setCursorLabel('VIEW PROJECT');
+        setCursorLabel('EXPLORE');
       } else if (threeDCanvas) {
         setCursorType('3d');
-        setCursorLabel('EXPLORE 3D');
+        setCursorLabel('DEFORM');
       } else if (clickable) {
         setCursorType('pointer');
         setCursorLabel('');
@@ -70,7 +70,7 @@ export const CursorGlow: React.FC = () => {
 
   return (
     <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden" aria-hidden="true">
-      {/* 1. Ambient Volumetric Lighting Glow Follower (Deep Violet to Plum) */}
+      {/* 1. Ambient Volumetric Lighting Glow Follower (Metallic Gold to Warm Champagne) */}
       <motion.div
         style={{
           x: ringX,
@@ -78,7 +78,7 @@ export const CursorGlow: React.FC = () => {
           translateX: '-50%',
           translateY: '-50%',
         }}
-        className="w-[450px] h-[450px] rounded-full bg-gradient-to-tr from-primary-600/15 via-accent-magenta/10 to-transparent blur-[110px] opacity-60 dark:opacity-60 light:opacity-20"
+        className="w-[420px] h-[420px] rounded-full bg-gradient-to-tr from-gold-500/15 via-gold-400/10 to-transparent blur-[110px] opacity-60 dark:opacity-60 light:opacity-20"
       />
 
       {/* 2. Trailing Outer Ring / Badge */}
@@ -93,32 +93,32 @@ export const CursorGlow: React.FC = () => {
           scale: cursorType === 'project' ? 2.4 : cursorType === '3d' ? 2.2 : cursorType === 'pointer' ? 1.5 : 1,
           borderColor:
             cursorType === 'project'
-              ? 'rgba(217, 70, 239, 0.9)'
+              ? 'rgba(245, 197, 66, 0.9)'
               : cursorType === '3d'
-              ? 'rgba(229, 192, 123, 0.9)'
+              ? 'rgba(212, 175, 55, 0.9)'
               : cursorType === 'pointer'
-              ? 'rgba(139, 92, 246, 0.8)'
-              : 'rgba(253, 251, 247, 0.3)',
+              ? 'rgba(212, 175, 55, 0.8)'
+              : 'rgba(243, 232, 203, 0.3)',
           backgroundColor:
             cursorType === 'project'
-              ? 'rgba(217, 70, 239, 0.18)'
+              ? 'rgba(245, 197, 66, 0.15)'
               : cursorType === '3d'
-              ? 'rgba(229, 192, 123, 0.15)'
+              ? 'rgba(212, 175, 55, 0.15)'
               : cursorType === 'pointer'
-              ? 'rgba(139, 92, 246, 0.1)'
+              ? 'rgba(212, 175, 55, 0.1)'
               : 'transparent',
         }}
         transition={{ type: 'spring', damping: 25, stiffness: 350 }}
-        className="w-8 h-8 rounded-full border border-white/30 backdrop-blur-[3px] flex items-center justify-center shadow-xl"
+        className="w-8 h-8 rounded-full border border-gold-400/40 backdrop-blur-[3px] flex items-center justify-center shadow-xl shadow-gold-900/30"
       >
         {cursorLabel && (
-          <span className="text-[7px] font-mono font-bold tracking-widest text-[#FDFBF7] uppercase text-center px-1">
+          <span className="text-[7px] font-mono font-bold tracking-widest text-[#FFF8E7] uppercase text-center px-1">
             {cursorLabel}
           </span>
         )}
       </motion.div>
 
-      {/* 3. High-Precision Central Micro-Dot (Champagne Gold / Soft Ivory) */}
+      {/* 3. High-Precision Central Micro-Dot (Metallic Gold) */}
       <motion.div
         style={{
           x: dotX,
@@ -130,7 +130,7 @@ export const CursorGlow: React.FC = () => {
           scale: cursorType !== 'default' ? 0 : 1,
           opacity: cursorType !== 'default' ? 0 : 1,
         }}
-        className="w-1.5 h-1.5 rounded-full bg-accent-gold shadow-[0_0_8px_#E5C07B]"
+        className="w-1.5 h-1.5 rounded-full bg-accent-gold shadow-[0_0_8px_#D4AF37]"
       />
     </div>
   );

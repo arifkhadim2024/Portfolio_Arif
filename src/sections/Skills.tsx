@@ -37,8 +37,8 @@ export const Skills: React.FC = () => {
                   onClick={() => setSelectedCategory(cat.id as SkillCategory)}
                   className={`relative px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
                     isActive
-                      ? 'text-[#FDFBF7] bg-purple-600 shadow-lg shadow-purple-900/40 border border-purple-400/50'
-                      : 'text-slate-400 dark:text-slate-400 light:text-slate-600 bg-[#0D0C12]/80 dark:bg-[#0D0C12]/80 light:bg-slate-100/90 border border-white/10 dark:border-white/10 light:border-slate-300 hover:text-[#FDFBF7] dark:hover:text-[#FDFBF7] light:hover:text-slate-900 hover:bg-[#161421]'
+                      ? 'text-[#070709] bg-gradient-to-r from-gold-600 via-gold-500 to-gold-400 shadow-lg shadow-gold-950/40 border border-gold-300 font-bold'
+                      : 'text-slate-400 dark:text-slate-400 light:text-slate-600 bg-[#0B0A0E]/80 dark:bg-[#0B0A0E]/80 light:bg-slate-100/90 border border-gold-500/15 dark:border-gold-500/15 light:border-slate-300 hover:text-[#FFF8E7] dark:hover:text-[#FFF8E7] light:hover:text-slate-900 hover:bg-[#131118]'
                   }`}
                 >
                   {cat.label}
@@ -48,25 +48,25 @@ export const Skills: React.FC = () => {
           </div>
 
           {/* 3D Orbit vs Matrix Grid Switcher */}
-          <div className="hidden sm:flex items-center gap-1.5 p-1 rounded-2xl bg-[#0D0C12]/90 border border-white/10 backdrop-blur">
+          <div className="hidden sm:flex items-center gap-1.5 p-1 rounded-2xl bg-[#0B0A0E]/90 border border-gold-500/20 backdrop-blur">
             <button
               onClick={() => setViewMode('3d-orbit')}
               className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
                 viewMode === '3d-orbit'
-                  ? 'bg-purple-600 text-[#FDFBF7] shadow-md border border-purple-400/40'
-                  : 'text-slate-400 hover:text-[#FDFBF7]'
+                  ? 'bg-gold-500 text-[#070709] font-bold shadow-md border border-gold-300'
+                  : 'text-slate-400 hover:text-[#FFF8E7]'
               }`}
             >
               <Orbit className="w-3.5 h-3.5 text-accent-gold" />
-              <span>3D Orbit</span>
+              <span>3D Constellation</span>
             </button>
 
             <button
               onClick={() => setViewMode('grid')}
               className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
                 viewMode === 'grid'
-                  ? 'bg-purple-600 text-[#FDFBF7] shadow-md border border-purple-400/40'
-                  : 'text-slate-400 hover:text-[#FDFBF7]'
+                  ? 'bg-gold-500 text-[#070709] font-bold shadow-md border border-gold-300'
+                  : 'text-slate-400 hover:text-[#FFF8E7]'
               }`}
             >
               <Grid3X3 className="w-3.5 h-3.5" />
@@ -75,7 +75,7 @@ export const Skills: React.FC = () => {
           </div>
         </div>
 
-        {/* 3D Solar Ecosystem View */}
+        {/* 3D Solar Constellation View */}
         {viewMode === '3d-orbit' && (
           <div className="mb-12">
             <SkillEcosystem3D selectedCategory={selectedCategory} />
@@ -99,25 +99,25 @@ export const Skills: React.FC = () => {
                   transition={{ type: 'spring', stiffness: 350, damping: 22 }}
                 >
                   <TiltCard maxTilt={10} glareOpacity={0.25} className="h-full">
-                    <div className="group relative h-full p-4 rounded-2xl glass-card-3d border border-white/10 hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-900/30 transition-all duration-300 flex flex-col items-center text-center justify-between gap-3 cursor-default">
+                    <div className="group relative h-full p-4 rounded-2xl glass-card-3d border border-gold-500/15 hover:border-gold-500/50 hover:shadow-2xl hover:shadow-gold-950/40 transition-all duration-300 flex flex-col items-center text-center justify-between gap-3 cursor-default">
                       {/* Top featured dot */}
                       {skill.featured && (
                         <div className="absolute top-2.5 right-2.5">
                           <span
-                            className="w-2 h-2 rounded-full bg-accent-gold block shadow-[0_0_10px_#E5C07B]"
+                            className="w-2 h-2 rounded-full bg-accent-gold block shadow-[0_0_10px_#D4AF37]"
                             title="Featured Skill"
                           />
                         </div>
                       )}
 
                       {/* Icon with Glowing Halo */}
-                      <div className="w-12 h-12 rounded-xl bg-[#13111C] flex items-center justify-center text-purple-400 group-hover:text-fuchsia-300 group-hover:bg-purple-500/15 group-hover:scale-115 transition-all duration-300 border border-white/5 shadow-inner">
+                      <div className="w-12 h-12 rounded-xl bg-[#17120A] flex items-center justify-center text-gold-400 group-hover:text-gold-200 group-hover:bg-gold-500/20 group-hover:scale-115 transition-all duration-300 border border-gold-500/20 shadow-inner">
                         <IconRenderer name={skill.icon} className="w-5 h-5" />
                       </div>
 
                       {/* Skill Name */}
                       <div>
-                        <h4 className="text-xs sm:text-sm font-bold text-[#FDFBF7] dark:text-[#FDFBF7] light:text-slate-900 group-hover:text-purple-300 transition-colors">
+                        <h4 className="text-xs sm:text-sm font-bold text-[#FFF8E7] dark:text-[#FFF8E7] light:text-slate-900 group-hover:text-gold-300 transition-colors">
                           {skill.name}
                         </h4>
 

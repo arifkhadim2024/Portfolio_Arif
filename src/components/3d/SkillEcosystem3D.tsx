@@ -37,20 +37,20 @@ export const SkillEcosystem3D: React.FC<SkillEcosystem3DProps> = ({
       antialias: true,
       powerPreference: 'high-performance',
     });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderer.setSize(width, height);
     renderer.setClearColor(0x000000, 0);
     container.appendChild(renderer.domElement);
 
-    // 2. Lighting (Violet + Gold)
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.1);
+    // 2. Lighting (Metallic Gold + Champagne)
+    const ambientLight = new THREE.AmbientLight(0xfff8e7, 0.9);
     scene.add(ambientLight);
 
-    const coreLight = new THREE.PointLight(0xd946ef, 4, 30);
+    const coreLight = new THREE.PointLight(0xf5c542, 4.5, 35);
     coreLight.position.set(0, 0, 0);
     scene.add(coreLight);
 
-    const keyLight = new THREE.DirectionalLight(0xe5c07b, 1.2);
+    const keyLight = new THREE.DirectionalLight(0xd4af37, 1.5);
     keyLight.position.set(10, 15, 10);
     scene.add(keyLight);
 
@@ -58,22 +58,22 @@ export const SkillEcosystem3D: React.FC<SkillEcosystem3DProps> = ({
     const centralGroup = new THREE.Group();
     scene.add(centralGroup);
 
-    // Core Sphere in Royal Purple
+    // Core Sphere in Molten Metallic Gold
     const coreGeo = new THREE.SphereGeometry(2.2, 32, 32);
     const coreMat = new THREE.MeshStandardMaterial({
-      color: 0x6d28d9,
-      emissive: 0xa855f7,
-      emissiveIntensity: 0.65,
+      color: 0xd4af37,
+      emissive: 0xb89628,
+      emissiveIntensity: 0.5,
       roughness: 0.25,
-      metalness: 0.8,
+      metalness: 0.85,
     });
     const coreMesh = new THREE.Mesh(coreGeo, coreMat);
     centralGroup.add(coreMesh);
 
-    // Core Outer Wireframe / Halo in Champagne Gold
+    // Core Outer Wireframe / Halo in Radiant Gold
     const haloGeo = new THREE.IcosahedronGeometry(2.8, 1);
     const haloMat = new THREE.MeshBasicMaterial({
-      color: 0xe5c07b,
+      color: 0xf5c542,
       wireframe: true,
       transparent: true,
       opacity: 0.35,
@@ -95,9 +95,9 @@ export const SkillEcosystem3D: React.FC<SkillEcosystem3DProps> = ({
       }
       ringGeo.setFromPoints(points);
       const ringMat = new THREE.LineBasicMaterial({
-        color: idx % 2 === 0 ? 0x8b5cf6 : 0xe5c07b,
+        color: idx % 2 === 0 ? 0xd4af37 : 0xf3e8cb,
         transparent: true,
-        opacity: idx % 2 === 0 ? 0.22 : 0.15,
+        opacity: idx % 2 === 0 ? 0.22 : 0.14,
       });
       const ringLine = new THREE.Line(ringGeo, ringMat);
       scene.add(ringLine);
@@ -115,16 +115,16 @@ export const SkillEcosystem3D: React.FC<SkillEcosystem3DProps> = ({
       canvas.height = 128;
       const ctx = canvas.getContext('2d');
       if (ctx) {
-        ctx.fillStyle = 'rgba(13, 12, 18, 0.88)';
-        ctx.strokeStyle = isFeatured ? 'rgba(229, 192, 123, 0.85)' : 'rgba(139, 92, 246, 0.55)';
+        ctx.fillStyle = 'rgba(11, 10, 14, 0.92)';
+        ctx.strokeStyle = isFeatured ? 'rgba(245, 197, 66, 0.9)' : 'rgba(212, 175, 55, 0.45)';
         ctx.lineWidth = 4;
         ctx.beginPath();
         ctx.roundRect(8, 8, 240, 112, 24);
         ctx.fill();
         ctx.stroke();
 
-        ctx.font = 'bold 30px "JetBrains Mono", monospace';
-        ctx.fillStyle = '#FDFBF7';
+        ctx.font = 'bold 28px "JetBrains Mono", monospace';
+        ctx.fillStyle = '#FFF8E7';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText(text, 128, 64);
@@ -158,13 +158,13 @@ export const SkillEcosystem3D: React.FC<SkillEcosystem3DProps> = ({
       const orbitSpeed = 0.08 / (orbitIndex + 1);
       const orbitInclination = (Math.random() - 0.5) * 0.4;
 
-      // Node Sphere (Smoked glass violet / magenta)
+      // Node Sphere (Metallic Gold / Dark Bronze)
       const sphereMat = new THREE.MeshStandardMaterial({
-        color: skill.featured ? 0xd946ef : 0x7c3aed,
-        emissive: skill.featured ? 0xd946ef : 0x6d28d9,
-        emissiveIntensity: 0.4,
-        roughness: 0.3,
-        metalness: 0.75,
+        color: skill.featured ? 0xf5c542 : 0xd4af37,
+        emissive: skill.featured ? 0xd4af37 : 0x94771c,
+        emissiveIntensity: 0.45,
+        roughness: 0.25,
+        metalness: 0.8,
       });
       const mesh = new THREE.Mesh(sphereGeo, sphereMat);
       mesh.userData = { skill };
@@ -197,13 +197,13 @@ export const SkillEcosystem3D: React.FC<SkillEcosystem3DProps> = ({
       });
     });
 
-    // 5. Active Connection Beam (Soft Magenta)
+    // 5. Active Connection Beam (Radiant Gold)
     const beamGeo = new THREE.BufferGeometry().setFromPoints([
       new THREE.Vector3(0, 0, 0),
       new THREE.Vector3(0, 0, 0),
     ]);
     const beamMat = new THREE.LineBasicMaterial({
-      color: 0xd946ef,
+      color: 0xf5c542,
       transparent: true,
       opacity: 0.85,
       linewidth: 3,
@@ -256,7 +256,7 @@ export const SkillEcosystem3D: React.FC<SkillEcosystem3DProps> = ({
       camera.aspect = newWidth / newHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(newWidth, newHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     };
 
     window.addEventListener('mousemove', handlePointerMove, { passive: true });
@@ -376,7 +376,7 @@ export const SkillEcosystem3D: React.FC<SkillEcosystem3DProps> = ({
   }, [filteredSkills, selectedCategory]);
 
   return (
-    <div className="relative w-full h-[450px] sm:h-[520px] lg:h-[600px] select-none rounded-3xl overflow-hidden glass-card-3d border border-primary-500/20">
+    <div className="relative w-full h-[450px] sm:h-[520px] lg:h-[600px] select-none rounded-3xl overflow-hidden glass-card-3d border border-gold-500/25">
       {/* 3D WebGL Canvas */}
       <div
         ref={containerRef}
@@ -386,15 +386,15 @@ export const SkillEcosystem3D: React.FC<SkillEcosystem3DProps> = ({
 
       {/* Floating Info Overlay for Active Skill */}
       {hoveredSkill && (
-        <div className="absolute top-4 left-4 p-4 rounded-2xl bg-[#0D0C12]/95 dark:bg-[#0D0C12]/95 light:bg-white/95 border border-primary-500/50 shadow-2xl backdrop-blur-md pointer-events-none z-20 max-w-xs animate-fadeIn">
+        <div className="absolute top-4 left-4 p-4 rounded-2xl bg-[#0B0A0E]/95 dark:bg-[#0B0A0E]/95 light:bg-white/95 border border-gold-400/60 shadow-2xl backdrop-blur-md pointer-events-none z-20 max-w-xs animate-fadeIn">
           <div className="flex items-center gap-2 mb-1">
-            <span className="w-2 h-2 rounded-full bg-accent-magenta animate-ping" />
-            <h4 className="text-base font-bold text-[#FDFBF7] dark:text-[#FDFBF7] light:text-slate-900">
+            <span className="w-2 h-2 rounded-full bg-accent-gold animate-ping" />
+            <h4 className="text-base font-bold text-[#FFF8E7] dark:text-[#FFF8E7] light:text-slate-900">
               {hoveredSkill.name}
             </h4>
           </div>
           <div className="flex items-center gap-2 text-xs text-slate-400 font-mono">
-            <span className="px-2 py-0.5 rounded-md bg-primary-500/20 text-primary-300 capitalize">
+            <span className="px-2 py-0.5 rounded-md bg-gold-500/20 text-gold-300 capitalize border border-gold-500/30">
               {hoveredSkill.category}
             </span>
             {hoveredSkill.level && <span>• {hoveredSkill.level}</span>}
@@ -403,8 +403,8 @@ export const SkillEcosystem3D: React.FC<SkillEcosystem3DProps> = ({
       )}
 
       {/* Control Hint in Corner */}
-      <div className="absolute bottom-4 right-4 text-[11px] font-mono text-slate-400 bg-[#0D0C12]/80 px-3 py-1.5 rounded-xl border border-white/10 backdrop-blur pointer-events-none hidden sm:block">
-        🖱️ Click & Drag to Rotate 3D Ecosystem • Hover nodes to inspect
+      <div className="absolute bottom-4 right-4 text-[11px] font-mono text-slate-400 bg-[#0B0A0E]/85 px-3 py-1.5 rounded-xl border border-gold-500/20 backdrop-blur pointer-events-none hidden sm:block">
+        ✨ Click & Drag to Rotate 3D Constellation • Hover nodes to inspect
       </div>
     </div>
   );

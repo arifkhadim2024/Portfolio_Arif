@@ -45,7 +45,7 @@ export const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-dark-bg text-dark-text dark:bg-dark-bg dark:text-dark-text light:bg-light-bg light:text-light-text font-sans antialiased selection:bg-primary-500/30 selection:text-primary-300">
+    <div className="relative min-h-screen bg-dark-bg text-dark-text dark:bg-dark-bg dark:text-dark-text light:bg-light-bg light:text-light-text font-sans antialiased selection:bg-gold-500/30 selection:text-gold-200">
       {/* Short Cinematic Loading Sequence */}
       {isLoading && <LoadingScreen onLoaded={() => setIsLoading(false)} />}
 
@@ -56,7 +56,7 @@ export const App: React.FC = () => {
       <CursorGlow />
 
       {/* Subtle Analog Film Grain Texture */}
-      <div className="fixed inset-0 pointer-events-none z-30 film-grain opacity-40" aria-hidden="true" />
+      <div className="fixed inset-0 pointer-events-none z-30 film-grain opacity-30" aria-hidden="true" />
 
       {/* Scroll indicator bar */}
       <ScrollProgress />

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Download, Send, ChevronDown, Brain, Atom, Sparkles, Layers, Zap, Terminal } from 'lucide-react';
 import { profileData } from '../data/profile';
 import { Button } from '../components/common/Button';
-import { HeroCore3D } from '../components/3d/HeroCore3D';
+import { NeuralCore3D } from '../components/3d/NeuralCore3D';
 import { TiltCard } from '../components/visual/TiltCard';
 
 export const Hero: React.FC = () => {
@@ -46,9 +46,9 @@ export const Hero: React.FC = () => {
       {/* Radial vignette mask for depth blending */}
       <div className="absolute inset-0 bg-radial-vignette pointer-events-none" />
 
-      {/* Floating 3D WebGL Background Scene */}
-      <div className="absolute top-1/2 right-4 lg:right-16 -translate-y-1/2 w-[320px] sm:w-[420px] lg:w-[540px] h-[320px] sm:h-[420px] lg:h-[540px] opacity-75 dark:opacity-75 light:opacity-30 pointer-events-auto z-0 hidden md:block">
-        <HeroCore3D />
+      {/* Centerpiece 3D Neural Core Interactive Scene */}
+      <div className="absolute top-1/2 right-4 lg:right-16 -translate-y-1/2 w-[340px] sm:w-[440px] lg:w-[560px] h-[340px] sm:h-[440px] lg:h-[560px] opacity-85 dark:opacity-85 light:opacity-40 pointer-events-auto z-0 hidden md:block">
+        <NeuralCore3D />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -65,11 +65,11 @@ export const Hero: React.FC = () => {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.5 }}
-              className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#0D0C12]/90 dark:bg-[#0D0C12]/90 light:bg-white/90 border border-purple-500/30 dark:border-purple-500/30 light:border-slate-300 shadow-lg shadow-purple-900/10 backdrop-blur-md"
+              className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#0B0A0E]/90 dark:bg-[#0B0A0E]/90 light:bg-white/90 border border-gold-500/30 dark:border-gold-500/30 light:border-slate-300 shadow-lg shadow-gold-950/40 backdrop-blur-md"
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-gold opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-gold" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-gold shadow-[0_0_6px_#D4AF37]" />
               </span>
               <span className="text-xs font-mono font-medium text-slate-200 dark:text-slate-200 light:text-slate-800 tracking-wide">
                 {profileData.openToWork ? 'Available for new engineering opportunities' : 'Software Developer'}
@@ -80,23 +80,23 @@ export const Hero: React.FC = () => {
             <div className="space-y-3">
               <div className="flex items-center justify-center lg:justify-start gap-2 text-xs font-mono tracking-widest uppercase text-slate-400">
                 <Terminal className="w-3.5 h-3.5 text-accent-gold" />
-                <span>STUDIO.ARCH // PORTFOLIO</span>
+                <span>NEURAL.CORE // DIGITAL MATRIX</span>
               </div>
 
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-[#FDFBF7] dark:text-[#FDFBF7] light:text-slate-900 leading-[1.1]">
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-[#FFF8E7] dark:text-[#FFF8E7] light:text-slate-900 leading-[1.1]">
                 <span className="text-gradient-cinematic">{profileData.name}</span>
               </h1>
 
-              {/* Dynamic Typewriter Role in Violet to Magenta */}
+              {/* Dynamic Typewriter Role in Metallic Gold to Radiant Gold */}
               <div className="pt-1 flex items-center justify-center lg:justify-start gap-2 h-10 sm:h-12">
-                <span className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gradient-violet drop-shadow-sm font-sans">
+                <span className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gradient-gold drop-shadow-sm font-sans">
                   {currentText}
                 </span>
-                <span className="w-1 h-7 sm:h-9 bg-accent-gold animate-pulse shadow-[0_0_12px_#E5C07B] rounded-full" />
+                <span className="w-1 h-7 sm:h-9 bg-accent-gold animate-pulse shadow-[0_0_12px_#D4AF37] rounded-full" />
               </div>
             </div>
 
-            {/* Short Bio Introduction in Soft Ivory */}
+            {/* Short Bio Introduction in Soft Warm Ivory */}
             <p className="text-sm sm:text-base lg:text-lg text-slate-300 dark:text-slate-300 light:text-slate-600 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
               {profileData.shortIntro}
             </p>
@@ -139,12 +139,12 @@ export const Hero: React.FC = () => {
                 <Sparkles className="w-3.5 h-3.5 text-accent-gold" /> Core Stack:
               </span>
               {[
-                { name: 'Python', color: 'border-amber-500/30 text-amber-300 bg-amber-500/10' },
-                { name: 'FastAPI', color: 'border-purple-500/30 text-purple-300 bg-purple-500/10' },
-                { name: 'React', color: 'border-fuchsia-500/30 text-fuchsia-300 bg-fuchsia-500/10' },
-                { name: 'PyTorch / AI', color: 'border-pink-500/30 text-pink-300 bg-pink-500/10' },
-                { name: 'TypeScript', color: 'border-violet-500/30 text-violet-300 bg-violet-500/10' },
-                { name: 'Docker', color: 'border-amber-500/30 text-amber-300 bg-amber-500/10' },
+                { name: 'Python', color: 'border-gold-500/40 text-gold-300 bg-gold-500/10' },
+                { name: 'FastAPI', color: 'border-gold-500/40 text-gold-300 bg-gold-500/10' },
+                { name: 'React', color: 'border-gold-400/40 text-gold-200 bg-gold-400/10' },
+                { name: 'PyTorch / AI', color: 'border-amber-500/40 text-amber-300 bg-amber-500/10' },
+                { name: 'TypeScript', color: 'border-gold-500/40 text-gold-300 bg-gold-500/10' },
+                { name: 'Docker', color: 'border-amber-500/40 text-amber-300 bg-amber-500/10' },
               ].map((tech) => (
                 <span
                   key={tech.name}
@@ -165,25 +165,25 @@ export const Hero: React.FC = () => {
           >
             <div className="relative w-80 sm:w-96 lg:w-[27rem] aspect-square flex items-center justify-center select-none">
               {/* Outer Orbit Ring 1 (Smooth Clockwise Spin) */}
-              <div className="absolute inset-0 rounded-full border border-dashed border-purple-500/25 animate-orbit-cw">
+              <div className="absolute inset-0 rounded-full border border-dashed border-gold-500/25 animate-orbit-cw">
                 {/* Orbiting Satellite Particle */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full bg-accent-magenta shadow-[0_0_15px_#D946EF]" />
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full bg-accent-radiant shadow-[0_0_15px_#F5C542]" />
               </div>
 
               {/* Outer Orbit Ring 2 (Counter Clockwise Spin) */}
-              <div className="absolute inset-6 rounded-full border border-amber-500/25 animate-orbit-ccw">
+              <div className="absolute inset-6 rounded-full border border-gold-300/25 animate-orbit-ccw">
                 {/* Second Satellite Particle */}
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-3 h-3 rounded-full bg-accent-gold shadow-[0_0_12px_#E5C07B]" />
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-3 h-3 rounded-full bg-accent-gold shadow-[0_0_12px_#D4AF37]" />
               </div>
 
-              {/* Pulsing Ambient Back Glow in Deep Violet */}
-              <div className="absolute inset-10 rounded-full bg-gradient-to-tr from-purple-700/25 via-fuchsia-600/20 to-amber-500/15 blur-3xl animate-pulse-slow pointer-events-none" />
+              {/* Pulsing Ambient Back Glow in Gold & Bronze */}
+              <div className="absolute inset-10 rounded-full bg-gradient-to-tr from-gold-600/20 via-gold-400/15 to-amber-500/10 blur-3xl animate-pulse-slow pointer-events-none" />
 
               {/* 3D Tilt Card Container */}
-              <TiltCard maxTilt={14} glareOpacity={0.4} className="relative z-10 w-64 sm:w-72 lg:w-80 aspect-square">
+              <TiltCard maxTilt={14} glareOpacity={0.35} className="relative z-10 w-64 sm:w-72 lg:w-80 aspect-square">
                 {/* Multi-gradient frame border */}
-                <div className="w-full h-full rounded-3xl p-1 bg-gradient-to-tr from-purple-600 via-fuchsia-600 to-amber-500 shadow-2xl shadow-purple-950/40 relative group">
-                  <div className="w-full h-full rounded-[22px] overflow-hidden bg-gradient-to-b from-[#13111C] via-[#0D0C12] to-[#070709] relative">
+                <div className="w-full h-full rounded-3xl p-1 bg-gradient-to-tr from-gold-600 via-gold-400 to-amber-500 shadow-2xl shadow-gold-950/40 relative group">
+                  <div className="w-full h-full rounded-[22px] overflow-hidden bg-gradient-to-b from-[#17120A] via-[#0B0A0E] to-[#030304] relative">
                     {/* Portrait Image with studio lighting & subtle vignette */}
                     <img
                       src={profileData.avatarUrl}
@@ -193,11 +193,11 @@ export const Hero: React.FC = () => {
                     />
 
                     {/* Studio Gradient Overlay for Seamless Dark Integration */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#070709] via-transparent to-transparent opacity-80 pointer-events-none" />
-                    <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[22px] pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#030304] via-transparent to-transparent opacity-80 pointer-events-none" />
+                    <div className="absolute inset-0 ring-1 ring-inset ring-gold-400/20 rounded-[22px] pointer-events-none" />
 
-                    {/* Laser scan line effect in soft magenta */}
-                    <div className="absolute inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-fuchsia-400 to-transparent animate-laser-scan pointer-events-none" />
+                    {/* Laser scan line effect in metallic gold */}
+                    <div className="absolute inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-gold-400 to-transparent animate-laser-scan pointer-events-none" />
                   </div>
                 </div>
               </TiltCard>
@@ -206,12 +206,12 @@ export const Hero: React.FC = () => {
               <motion.div
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute -top-3 -left-2 sm:left-2 px-3.5 py-1.5 rounded-xl bg-[#0D0C12]/90 dark:bg-[#0D0C12]/90 light:bg-white/95 border border-purple-500/30 dark:border-purple-500/30 light:border-slate-300 shadow-xl backdrop-blur-md flex items-center gap-2 z-20 hover:scale-110 transition-transform cursor-pointer"
+                className="absolute -top-3 -left-2 sm:left-2 px-3.5 py-1.5 rounded-xl bg-[#0B0A0E]/90 dark:bg-[#0B0A0E]/90 light:bg-white/95 border border-gold-500/30 dark:border-gold-500/30 light:border-slate-300 shadow-xl backdrop-blur-md flex items-center gap-2 z-20 hover:scale-110 transition-transform cursor-pointer"
               >
-                <div className="p-1.5 rounded-lg bg-purple-500/20 text-purple-300">
+                <div className="p-1.5 rounded-lg bg-gold-500/20 text-gold-300">
                   <Atom className="w-4 h-4 animate-spin-slow" />
                 </div>
-                <span className="text-xs font-bold text-[#FDFBF7] dark:text-[#FDFBF7] light:text-slate-800">
+                <span className="text-xs font-bold text-[#FFF8E7] dark:text-[#FFF8E7] light:text-slate-800">
                   React & TS
                 </span>
               </motion.div>
@@ -220,12 +220,12 @@ export const Hero: React.FC = () => {
               <motion.div
                 animate={{ y: [0, 8, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-                className="absolute -bottom-3 right-0 sm:right-2 px-3.5 py-1.5 rounded-xl bg-[#0D0C12]/90 dark:bg-[#0D0C12]/90 light:bg-white/95 border border-fuchsia-500/30 dark:border-fuchsia-500/30 light:border-slate-300 shadow-xl backdrop-blur-md flex items-center gap-2 z-20 hover:scale-110 transition-transform cursor-pointer"
+                className="absolute -bottom-3 right-0 sm:right-2 px-3.5 py-1.5 rounded-xl bg-[#0B0A0E]/90 dark:bg-[#0B0A0E]/90 light:bg-white/95 border border-gold-500/30 dark:border-gold-500/30 light:border-slate-300 shadow-xl backdrop-blur-md flex items-center gap-2 z-20 hover:scale-110 transition-transform cursor-pointer"
               >
-                <div className="p-1.5 rounded-lg bg-fuchsia-500/20 text-fuchsia-300">
+                <div className="p-1.5 rounded-lg bg-gold-500/20 text-gold-300">
                   <Brain className="w-4 h-4 animate-pulse" />
                 </div>
-                <span className="text-xs font-bold text-[#FDFBF7] dark:text-[#FDFBF7] light:text-slate-800">
+                <span className="text-xs font-bold text-[#FFF8E7] dark:text-[#FFF8E7] light:text-slate-800">
                   AI & ML
                 </span>
               </motion.div>
@@ -234,12 +234,12 @@ export const Hero: React.FC = () => {
               <motion.div
                 animate={{ x: [0, 6, 0] }}
                 transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
-                className="absolute top-6 -right-4 sm:-right-6 px-3 py-1.5 rounded-xl bg-[#0D0C12]/90 dark:bg-[#0D0C12]/90 light:bg-white/95 border border-amber-500/30 dark:border-amber-500/30 light:border-slate-300 shadow-xl backdrop-blur-md hidden sm:flex items-center gap-2 z-20 hover:scale-110 transition-transform cursor-pointer"
+                className="absolute top-6 -right-4 sm:-right-6 px-3 py-1.5 rounded-xl bg-[#0B0A0E]/90 dark:bg-[#0B0A0E]/90 light:bg-white/95 border border-gold-500/30 dark:border-gold-500/30 light:border-slate-300 shadow-xl backdrop-blur-md hidden sm:flex items-center gap-2 z-20 hover:scale-110 transition-transform cursor-pointer"
               >
-                <div className="p-1 rounded-lg bg-amber-500/20 text-amber-300">
+                <div className="p-1 rounded-lg bg-gold-500/20 text-gold-300">
                   <Zap className="w-3.5 h-3.5" />
                 </div>
-                <span className="text-xs font-bold text-[#FDFBF7] dark:text-[#FDFBF7] light:text-slate-800">
+                <span className="text-xs font-bold text-[#FFF8E7] dark:text-[#FFF8E7] light:text-slate-800">
                   FastAPI
                 </span>
               </motion.div>
@@ -248,12 +248,12 @@ export const Hero: React.FC = () => {
               <motion.div
                 animate={{ x: [0, -6, 0] }}
                 transition={{ duration: 4.8, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-                className="absolute bottom-6 -left-4 sm:-left-6 px-3 py-1.5 rounded-xl bg-[#0D0C12]/90 dark:bg-[#0D0C12]/90 light:bg-white/95 border border-purple-500/30 dark:border-purple-500/30 light:border-slate-300 shadow-xl backdrop-blur-md hidden sm:flex items-center gap-2 z-20 hover:scale-110 transition-transform cursor-pointer"
+                className="absolute bottom-6 -left-4 sm:-left-6 px-3 py-1.5 rounded-xl bg-[#0B0A0E]/90 dark:bg-[#0B0A0E]/90 light:bg-white/95 border border-gold-500/30 dark:border-gold-500/30 light:border-slate-300 shadow-xl backdrop-blur-md hidden sm:flex items-center gap-2 z-20 hover:scale-110 transition-transform cursor-pointer"
               >
-                <div className="p-1 rounded-lg bg-purple-500/20 text-purple-300">
+                <div className="p-1 rounded-lg bg-gold-500/20 text-gold-300">
                   <Layers className="w-3.5 h-3.5" />
                 </div>
-                <span className="text-xs font-bold text-[#FDFBF7] dark:text-[#FDFBF7] light:text-slate-800">
+                <span className="text-xs font-bold text-[#FFF8E7] dark:text-[#FFF8E7] light:text-slate-800">
                   Full Stack
                 </span>
               </motion.div>

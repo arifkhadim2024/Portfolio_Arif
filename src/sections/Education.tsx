@@ -26,18 +26,18 @@ export const Education: React.FC = () => {
               transition={{ duration: 0.5, delay: index * 0.12 }}
             >
               <TiltCard maxTilt={6} glareOpacity={0.2}>
-                <div className="glass-card-3d p-6 sm:p-8 rounded-3xl space-y-5 border border-white/10 hover:border-purple-500/40 hover:shadow-xl transition-all">
+                <div className="glass-card-3d p-6 sm:p-8 rounded-3xl space-y-5 border border-gold-500/15 hover:border-gold-500/40 hover:shadow-xl transition-all">
                   {/* Degree & Institution */}
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-gold-500/15">
                     <div className="flex items-start gap-4">
-                      <div className="p-3.5 rounded-2xl bg-purple-500/15 border border-purple-500/30 text-purple-400 shadow-inner">
+                      <div className="p-3.5 rounded-2xl bg-gold-500/15 border border-gold-500/30 text-gold-400 shadow-inner">
                         <GraduationCap className="w-6 h-6" />
                       </div>
                       <div>
-                        <h3 className="text-xl sm:text-2xl font-bold text-[#FDFBF7] dark:text-[#FDFBF7] light:text-slate-900">
+                        <h3 className="text-xl sm:text-2xl font-bold text-[#FFF8E7] dark:text-[#FFF8E7] light:text-slate-900">
                           {item.degree}
                         </h3>
-                        <div className="text-sm font-semibold text-purple-400 dark:text-purple-400 light:text-purple-600 mt-0.5">
+                        <div className="text-sm font-semibold text-gold-400 dark:text-gold-400 light:text-gold-600 mt-0.5">
                           {item.field}
                         </div>
                         <div className="text-xs text-slate-400 dark:text-slate-400 light:text-slate-500 mt-1 flex items-center gap-2">
@@ -52,12 +52,12 @@ export const Education: React.FC = () => {
                     </div>
 
                     <div className="flex flex-col sm:items-end gap-2">
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-[#13111C] text-slate-300 border border-white/10 w-fit">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-[#17120A] text-slate-300 border border-gold-500/20 w-fit">
                         <Calendar className="w-3.5 h-3.5 text-accent-gold" />
                         {item.startDate} — {item.endDate}
                       </span>
                       {item.grade && (
-                        <span className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-300 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/30 w-fit shadow-sm font-mono">
+                        <span className="inline-flex items-center gap-1.5 text-xs font-bold text-gold-300 bg-gold-500/15 px-3 py-1 rounded-full border border-gold-400/40 w-fit shadow-sm font-mono">
                           <Award className="w-3.5 h-3.5 text-accent-gold" />
                           {item.grade}
                         </span>
@@ -76,7 +76,7 @@ export const Education: React.FC = () => {
                   {item.relevantCoursework && item.relevantCoursework.length > 0 && (
                     <div className="space-y-2.5 pt-2">
                       <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-400 light:text-slate-600">
-                        <BookOpen className="w-3.5 h-3.5 text-purple-400" />
+                        <BookOpen className="w-3.5 h-3.5 text-gold-400" />
                         <span>Key Subjects & Engineering Foundations</span>
                       </div>
                       <div className="flex flex-wrap gap-1.5">

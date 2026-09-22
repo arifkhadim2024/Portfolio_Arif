@@ -12,30 +12,31 @@ interface GlowingCardProps extends HTMLMotionProps<'div'> {
 export const GlowingCard: React.FC<GlowingCardProps> = ({
   children,
   className = '',
-  glowColor = 'primary',
+  glowColor = 'gold',
   bordered = true,
   ...props
 }) => {
   const glowGradients: Record<string, string> = {
-    primary: 'from-primary-500/10 via-transparent to-transparent',
-    violet: 'from-primary-500/10 via-transparent to-transparent',
-    magenta: 'from-fuchsia-500/10 via-transparent to-transparent',
-    gold: 'from-amber-500/10 via-transparent to-transparent',
-    plum: 'from-purple-900/15 via-transparent to-transparent',
-    cyan: 'from-fuchsia-500/10 via-transparent to-transparent',
-    emerald: 'from-amber-500/10 via-transparent to-transparent',
+    primary: 'from-gold-500/15 via-transparent to-transparent',
+    gold: 'from-gold-500/15 via-transparent to-transparent',
+    amber: 'from-amber-500/15 via-transparent to-transparent',
+    violet: 'from-gold-500/15 via-transparent to-transparent',
+    magenta: 'from-gold-500/15 via-transparent to-transparent',
+    plum: 'from-gold-600/15 via-transparent to-transparent',
+    cyan: 'from-gold-500/15 via-transparent to-transparent',
+    emerald: 'from-amber-500/15 via-transparent to-transparent',
   };
 
   return (
     <motion.div
       className={`relative group rounded-2xl bg-dark-card/90 dark:bg-dark-card/90 light:bg-white/95 backdrop-blur-xl ${
-        bordered ? 'border border-slate-800/80 dark:border-slate-800/80 light:border-slate-200' : ''
-      } transition-all duration-300 hover:border-slate-700/90 dark:hover:border-slate-700/90 light:hover:border-slate-300 hover:shadow-xl ${className}`}
+        bordered ? 'border border-gold-500/15 dark:border-gold-500/15 light:border-slate-200' : ''
+      } transition-all duration-300 hover:border-gold-500/40 dark:hover:border-gold-500/40 light:hover:border-gold-300 hover:shadow-xl hover:shadow-gold-950/40 ${className}`}
       {...props}
     >
-      {/* Subtle top inner gradient */}
+      {/* Subtle top inner gold gradient */}
       <div
-        className={`absolute inset-0 rounded-2xl bg-gradient-to-b ${glowGradients[glowColor]} opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`}
+        className={`absolute inset-0 rounded-2xl bg-gradient-to-b ${glowGradients[glowColor] || glowGradients.gold} opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`}
       />
       
       {/* Content wrapper */}

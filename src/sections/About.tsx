@@ -11,9 +11,9 @@ import { TiltCard } from '../components/visual/TiltCard';
 export const About: React.FC = () => {
   return (
     <section id="about" className="py-24 lg:py-32 relative bg-dark-bg/60">
-      {/* Background ambient lighting */}
-      <div className="absolute top-1/3 left-0 w-80 h-80 bg-purple-600/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-10 right-0 w-80 h-80 bg-fuchsia-600/10 rounded-full blur-[120px] pointer-events-none" />
+      {/* Background ambient gold lighting */}
+      <div className="absolute top-1/3 left-0 w-80 h-80 bg-gold-500/10 rounded-full blur-[130px] pointer-events-none" />
+      <div className="absolute bottom-10 right-0 w-80 h-80 bg-amber-500/10 rounded-full blur-[130px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeader
@@ -28,16 +28,16 @@ export const About: React.FC = () => {
             {
               title: 'Full Stack Engineering',
               desc: 'End-to-end web apps with React, Vite, Node.js & FastAPI.',
-              icon: <Code2 className="w-5 h-5 text-purple-400" />,
-              border: 'group-hover:border-purple-500/50',
-              gradient: 'from-purple-500/10 to-transparent',
+              icon: <Code2 className="w-5 h-5 text-gold-400" />,
+              border: 'group-hover:border-gold-500/50',
+              gradient: 'from-gold-500/10 to-transparent',
             },
             {
               title: 'AI & Machine Learning',
               desc: 'Deep learning pipelines, CV models & NLP semantic matchers.',
-              icon: <Brain className="w-5 h-5 text-fuchsia-400" />,
-              border: 'group-hover:border-fuchsia-500/50',
-              gradient: 'from-fuchsia-500/10 to-transparent',
+              icon: <Brain className="w-5 h-5 text-gold-300" />,
+              border: 'group-hover:border-gold-400/50',
+              gradient: 'from-gold-400/10 to-transparent',
             },
             {
               title: 'Distributed Systems',
@@ -49,9 +49,9 @@ export const About: React.FC = () => {
             {
               title: 'Modern Database Design',
               desc: 'Relational & NoSQL architectures with Postgres & MongoDB.',
-              icon: <Database className="w-5 h-5 text-pink-400" />,
-              border: 'group-hover:border-pink-500/50',
-              gradient: 'from-pink-500/10 to-transparent',
+              icon: <Database className="w-5 h-5 text-gold-400" />,
+              border: 'group-hover:border-gold-500/50',
+              gradient: 'from-gold-500/10 to-transparent',
             },
           ].map((pillar, i) => (
             <motion.div
@@ -61,14 +61,14 @@ export const About: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
             >
-              <TiltCard maxTilt={10} glareOpacity={0.2} className="h-full">
-                <div className={`glass-card-3d group p-5 rounded-2xl h-full flex flex-col justify-between border border-white/10 hover:border-purple-500/40 relative overflow-hidden`}>
+              <TiltCard maxTilt={10} glareOpacity={0.25} className="h-full">
+                <div className={`glass-card-3d group p-5 rounded-2xl h-full flex flex-col justify-between border border-gold-500/15 hover:border-gold-500/40 relative overflow-hidden`}>
                   <div className={`absolute -right-6 -bottom-6 w-28 h-28 bg-gradient-to-br ${pillar.gradient} rounded-full blur-2xl pointer-events-none`} />
                   <div className="relative z-10 space-y-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#13111C] flex items-center justify-center border border-white/10 shadow-inner group-hover:scale-110 transition-transform">
+                    <div className="w-10 h-10 rounded-xl bg-[#17120A] flex items-center justify-center border border-gold-500/20 shadow-inner group-hover:scale-110 transition-transform">
                       {pillar.icon}
                     </div>
-                    <h4 className="text-base font-bold text-[#FDFBF7] dark:text-[#FDFBF7] light:text-slate-900 group-hover:text-purple-300 transition-colors">
+                    <h4 className="text-base font-bold text-[#FFF8E7] dark:text-[#FFF8E7] light:text-slate-900 group-hover:text-gold-300 transition-colors">
                       {pillar.title}
                     </h4>
                     <p className="text-xs text-slate-400 dark:text-slate-400 light:text-slate-600 leading-relaxed">
@@ -92,11 +92,11 @@ export const About: React.FC = () => {
               transition={{ duration: 0.4, delay: idx * 0.1 }}
             >
               <TiltCard maxTilt={8} glareOpacity={0.25} className="h-full">
-                <div className="glass-card-3d p-6 text-center rounded-2xl h-full flex flex-col justify-center border border-white/10 hover:border-purple-500/40 hover:shadow-xl hover:shadow-purple-900/20">
-                  <div className="text-3xl sm:text-4xl lg:text-5xl font-black bg-gradient-to-r from-purple-400 via-fuchsia-400 to-amber-300 bg-clip-text text-transparent mb-1 font-mono">
+                <div className="glass-card-3d p-6 text-center rounded-2xl h-full flex flex-col justify-center border border-gold-500/15 hover:border-gold-500/40 hover:shadow-xl hover:shadow-gold-950/30">
+                  <div className="text-3xl sm:text-4xl lg:text-5xl font-black bg-gradient-to-r from-gold-400 via-gold-300 to-amber-300 bg-clip-text text-transparent mb-1 font-mono">
                     {stat.value}
                   </div>
-                  <div className="text-sm font-bold text-[#FDFBF7] dark:text-[#FDFBF7] light:text-slate-900 mb-1">
+                  <div className="text-sm font-bold text-[#FFF8E7] dark:text-[#FFF8E7] light:text-slate-900 mb-1">
                     {stat.label}
                   </div>
                   {stat.description && (
@@ -120,8 +120,8 @@ export const About: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="lg:col-span-7 space-y-5"
           >
-            <div className="glass-card-3d p-6 sm:p-8 rounded-3xl space-y-4 border border-white/10">
-              <h3 className="text-xl sm:text-2xl font-bold text-[#FDFBF7] dark:text-[#FDFBF7] light:text-slate-900 flex items-center gap-2.5">
+            <div className="glass-card-3d p-6 sm:p-8 rounded-3xl space-y-4 border border-gold-500/15">
+              <h3 className="text-xl sm:text-2xl font-bold text-[#FFF8E7] dark:text-[#FFF8E7] light:text-slate-900 flex items-center gap-2.5">
                 <Sparkles className="w-5 h-5 text-accent-gold" />
                 <span>Architecting Software with Purpose</span>
               </h3>
@@ -137,28 +137,28 @@ export const About: React.FC = () => {
 
             {/* Career Interests & Currently Learning */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="glass-card-3d p-5 rounded-2xl border border-white/10">
-                <div className="flex items-center gap-2 text-purple-300 font-bold text-sm mb-3">
+              <div className="glass-card-3d p-5 rounded-2xl border border-gold-500/15">
+                <div className="flex items-center gap-2 text-gold-300 font-bold text-sm mb-3">
                   <Compass className="w-4 h-4 text-accent-gold" />
                   <span>Career Interests</span>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {profileData.careerInterests.map((interest, i) => (
-                    <Badge key={i} variant="primary" size="sm">
+                    <Badge key={i} variant="gold" size="sm">
                       {interest}
                     </Badge>
                   ))}
                 </div>
               </div>
 
-              <div className="glass-card-3d p-5 rounded-2xl border border-white/10">
-                <div className="flex items-center gap-2 text-fuchsia-300 font-bold text-sm mb-3">
-                  <BookOpen className="w-4 h-4 text-accent-magenta" />
+              <div className="glass-card-3d p-5 rounded-2xl border border-gold-500/15">
+                <div className="flex items-center gap-2 text-amber-300 font-bold text-sm mb-3">
+                  <BookOpen className="w-4 h-4 text-accent-amber" />
                   <span>Currently Learning</span>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {profileData.currentlyLearning.map((item, i) => (
-                    <Badge key={i} variant="magenta" size="sm">
+                    <Badge key={i} variant="amber" size="sm">
                       {item}
                     </Badge>
                   ))}
@@ -190,12 +190,12 @@ export const About: React.FC = () => {
               transition={{ duration: 0.4, delay: idx * 0.1 }}
             >
               <TiltCard maxTilt={8} glareOpacity={0.2} className="h-full">
-                <div className="glass-card-3d p-5 h-full flex flex-col justify-between rounded-2xl border border-white/10 hover:border-purple-500/40 transition-all">
+                <div className="glass-card-3d p-5 h-full flex flex-col justify-between rounded-2xl border border-gold-500/15 hover:border-gold-500/40 transition-all">
                   <div>
-                    <div className="w-10 h-10 rounded-xl bg-purple-500/15 border border-purple-500/30 text-purple-300 flex items-center justify-center mb-3">
+                    <div className="w-10 h-10 rounded-xl bg-gold-500/15 border border-gold-500/30 text-gold-300 flex items-center justify-center mb-3">
                       <IconRenderer name={fact.icon} className="w-5 h-5" />
                     </div>
-                    <h4 className="text-base font-bold text-[#FDFBF7] dark:text-[#FDFBF7] light:text-slate-900 mb-1">
+                    <h4 className="text-base font-bold text-[#FFF8E7] dark:text-[#FFF8E7] light:text-slate-900 mb-1">
                       {fact.title}
                     </h4>
                     <p className="text-xs sm:text-sm text-slate-400 dark:text-slate-400 light:text-slate-600 leading-relaxed">

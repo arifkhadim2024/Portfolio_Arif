@@ -33,7 +33,7 @@ export const Button: React.FC<ButtonProps> = ({
   className = '',
   ...props
 }) => {
-  const baseStyles = "relative inline-flex items-center justify-center font-semibold rounded-2xl transition-all duration-300 select-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500/40 disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden";
+  const baseStyles = "relative inline-flex items-center justify-center font-semibold rounded-2xl transition-all duration-300 select-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-gold-500/40 disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden";
 
   const sizeStyles = {
     sm: "px-3.5 py-1.5 text-xs sm:text-sm gap-1.5",
@@ -42,12 +42,12 @@ export const Button: React.FC<ButtonProps> = ({
   };
 
   const variantStyles = {
-    primary: "bg-gradient-to-r from-purple-700 via-purple-600 to-fuchsia-600 text-[#FDFBF7] shadow-lg shadow-purple-900/40 border border-purple-400/30 hover:shadow-purple-700/50 hover:border-purple-300/60 hover:brightness-110 active:scale-[0.98]",
-    glow: "bg-purple-600 text-[#FDFBF7] shadow-glow-primary hover:bg-purple-700 hover:shadow-purple-500/50 border border-purple-400/40 active:scale-[0.98]",
-    gold: "bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-500 text-[#070709] font-bold shadow-lg shadow-amber-900/30 border border-amber-300/50 hover:brightness-110 active:scale-[0.98]",
-    secondary: "bg-[#0D0C12]/90 hover:bg-[#161421] text-[#FDFBF7] border border-purple-500/25 hover:border-purple-400/50 shadow-md active:scale-[0.98] backdrop-blur-md",
-    outline: "bg-transparent hover:bg-purple-500/10 text-[#FDFBF7] border border-purple-500/30 hover:border-purple-400/60 active:scale-[0.98]",
-    ghost: "bg-transparent hover:bg-purple-500/10 text-slate-300 hover:text-[#FDFBF7] active:scale-[0.98]",
+    primary: "bg-gradient-to-r from-gold-700 via-gold-500 to-gold-400 text-[#070709] font-bold shadow-lg shadow-gold-950/40 border border-gold-300/60 hover:shadow-gold-500/30 hover:brightness-110 active:scale-[0.98]",
+    glow: "bg-gold-500 text-[#070709] font-bold shadow-glow-gold hover:bg-gold-400 hover:shadow-gold-400/60 border border-gold-300/70 active:scale-[0.98]",
+    gold: "bg-gradient-to-r from-gold-600 via-gold-400 to-gold-300 text-[#030304] font-bold shadow-lg shadow-gold-950/50 border border-gold-200/80 hover:brightness-110 active:scale-[0.98]",
+    secondary: "bg-[#0B0A0E]/90 hover:bg-[#131118] text-[#FFF8E7] border border-gold-500/30 hover:border-gold-400/60 shadow-md active:scale-[0.98] backdrop-blur-md",
+    outline: "bg-transparent hover:bg-gold-500/10 text-[#FFF8E7] border border-gold-500/30 hover:border-gold-400/70 active:scale-[0.98]",
+    ghost: "bg-transparent hover:bg-gold-500/10 text-slate-300 hover:text-[#FFF8E7] active:scale-[0.98]",
   };
 
   const combinedClasses = `${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${fullWidth ? 'w-full' : ''} ${className}`;
