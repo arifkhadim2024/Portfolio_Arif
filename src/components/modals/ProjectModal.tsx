@@ -7,6 +7,8 @@ import { GitHubIcon } from '../common/BrandIcons';
 import { ExternalLink, CheckCircle2, AlertCircle, Sparkles, TrendingUp, Cpu } from 'lucide-react';
 import { ProjectVisualBanner } from '../visual/ProjectVisualBanner';
 
+import { NeuroSenseWSN3D } from '../3d/NeuroSenseWSN3D';
+
 interface ProjectModalProps {
   project: Project | null;
   isOpen: boolean;
@@ -23,42 +25,52 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
   return (
     <Modal isOpen={isOpen} onClose={onClose} maxWidth="3xl">
       <div className="space-y-6">
-        {/* Project Thematic Visual Banner */}
-        <div className="relative rounded-2xl overflow-hidden border border-gold-500/30 shadow-2xl">
-          <ProjectVisualBanner project={project} isModal />
-          <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between z-20">
-            <Badge variant="gold" size="md">
-              {project.category}
-            </Badge>
-            {project.featured && (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#0B0A0E]/95 text-gold-300 backdrop-blur shadow-lg border border-gold-400/40">
-                <Sparkles className="w-3.5 h-3.5 text-accent-gold" />
-                Featured Project
-              </span>
-            )}
+        {/* Project Thematic Visual Banner or 3D Interactive Simulation */}
+        {project.id === 'neurosense-wsn' ? (
+          <div className="space-y-2">
+            <NeuroSenseWSN3D isCompact />
+            <div className="flex items-center justify-between text-[11px] font-mono text-[#888888]">
+              <span>INTERACTIVE 3D SIMULATION ACTIVE</span>
+              <span>100 NODES // SINK // ANN CLUSTERS</span>
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="relative rounded-2xl overflow-hidden border border-black/10 dark:border-white/10 shadow-md">
+            <ProjectVisualBanner project={project} isModal />
+            <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between z-20 pointer-events-none">
+              <span className="px-3 py-1 rounded-md text-xs font-mono uppercase tracking-wider bg-[#111111]/90 text-[#F2F1ED] backdrop-blur-sm">
+                {project.category}
+              </span>
+              {project.featured && (
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-mono uppercase tracking-wider bg-[#F2F1ED]/90 text-[#111111] dark:bg-[#111111]/90 dark:text-[#F2F1ED] backdrop-blur-sm">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  Featured Project
+                </span>
+              )}
+            </div>
+          </div>
+        )}
 
         {/* Title & Tagline */}
-        <div>
-          <h3 className="text-2xl sm:text-3xl font-extrabold text-[#FFF8E7] dark:text-[#FFF8E7] light:text-slate-900 tracking-tight">
+        <div className="space-y-1">
+          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-display uppercase tracking-tight text-[#111111] dark:text-[#F2F1ED]">
             {project.title}
           </h3>
-          <p className="text-sm sm:text-base text-gold-400 font-medium mt-1">
+          <p className="text-xs sm:text-sm font-mono uppercase text-[#777777] tracking-wider">
             {project.tagline}
           </p>
         </div>
 
         {/* Metrics Grid if available */}
         {project.metrics && project.metrics.length > 0 && (
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 p-4 rounded-2xl bg-[#0B0A0E]/90 dark:bg-[#0B0A0E]/90 light:bg-slate-100/90 border border-gold-500/20 shadow-inner">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 p-4 rounded-xl border border-black/10 dark:border-white/10 bg-white/50 dark:bg-neutral-900/50">
             {project.metrics.map((metric, idx) => (
-              <div key={idx} className="text-center p-2.5 rounded-xl bg-[#17120A]/80 border border-gold-500/15">
-                <div className="text-lg sm:text-xl font-extrabold text-gold-300 flex items-center justify-center gap-1.5 font-mono">
-                  <TrendingUp className="w-4 h-4 text-accent-gold" />
+              <div key={idx} className="text-center p-3 rounded-lg border border-black/5 dark:border-white/5 bg-black/[0.02] dark:bg-white/[0.02]">
+                <div className="text-lg sm:text-xl font-bold font-mono text-[#111111] dark:text-[#F2F1ED] flex items-center justify-center gap-1.5">
+                  <TrendingUp className="w-3.5 h-3.5 text-[#111111] dark:text-[#F2F1ED]" />
                   <span>{metric.value}</span>
                 </div>
-                <div className="text-xs text-slate-400 font-medium mt-0.5">
+                <div className="text-[11px] font-mono text-[#888888] uppercase tracking-wider mt-0.5">
                   {metric.label}
                 </div>
               </div>
@@ -67,7 +79,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
         )}
 
         {/* Full Description */}
-        <div className="text-sm sm:text-base text-slate-300 dark:text-slate-300 light:text-slate-700 leading-relaxed">
+        <div className="text-sm sm:text-base text-[#555555] dark:text-[#AAAAAA] leading-relaxed font-body">
           <p>{project.description}</p>
         </div>
 
@@ -75,24 +87,24 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
         {(project.problemSolved || project.solution) && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {project.problemSolved && (
-              <div className="p-4 rounded-2xl bg-amber-950/20 border border-amber-500/25 space-y-2">
-                <div className="flex items-center gap-2 text-amber-400 font-bold text-sm">
+              <div className="p-5 rounded-xl border border-black/10 dark:border-white/10 bg-white/50 dark:bg-neutral-900/50 space-y-2">
+                <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#111111] dark:text-[#F2F1ED]">
                   <AlertCircle className="w-4 h-4 flex-shrink-0" />
-                  <span>The Engineering Challenge</span>
+                  <span>Engineering Challenge</span>
                 </div>
-                <p className="text-xs sm:text-sm text-slate-300 dark:text-slate-300 light:text-slate-700 leading-relaxed">
+                <p className="text-xs sm:text-sm text-[#555555] dark:text-[#AAAAAA] leading-relaxed font-body">
                   {project.problemSolved}
                 </p>
               </div>
             )}
 
             {project.solution && (
-              <div className="p-4 rounded-2xl bg-gold-950/25 border border-gold-500/30 space-y-2">
-                <div className="flex items-center gap-2 text-gold-300 font-bold text-sm">
-                  <Sparkles className="w-4 h-4 flex-shrink-0 text-accent-gold" />
+              <div className="p-5 rounded-xl border border-black/10 dark:border-white/10 bg-white/50 dark:bg-neutral-900/50 space-y-2">
+                <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#111111] dark:text-[#F2F1ED]">
+                  <Sparkles className="w-4 h-4 flex-shrink-0" />
                   <span>Architecture & Solution</span>
                 </div>
-                <p className="text-xs sm:text-sm text-slate-300 dark:text-slate-300 light:text-slate-700 leading-relaxed">
+                <p className="text-xs sm:text-sm text-[#555555] dark:text-[#AAAAAA] leading-relaxed font-body">
                   {project.solution}
                 </p>
               </div>
@@ -103,17 +115,17 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
         {/* Key Features List */}
         {project.keyFeatures && project.keyFeatures.length > 0 && (
           <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-400 light:text-slate-600 flex items-center gap-2">
-              <Cpu className="w-4 h-4 text-gold-400" />
-              <span>Key Technical Highlights</span>
+            <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-[#888888] flex items-center gap-2">
+              <Cpu className="w-3.5 h-3.5 text-[#111111] dark:text-[#F2F1ED]" />
+              <span>Key Technical Deliverables</span>
             </h4>
             <ul className="space-y-2">
               {project.keyFeatures.map((feature, idx) => (
                 <li
                   key={idx}
-                  className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-300 dark:text-slate-300 light:text-slate-700"
+                  className="flex items-start gap-2.5 text-xs sm:text-sm text-[#555555] dark:text-[#AAAAAA]"
                 >
-                  <CheckCircle2 className="w-4 h-4 text-accent-gold flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#111111] dark:text-[#F2F1ED] flex-shrink-0 mt-0.5" />
                   <span>{feature}</span>
                 </li>
               ))}
@@ -123,12 +135,12 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
 
         {/* Technologies Used */}
         <div className="space-y-2.5">
-          <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-400 light:text-slate-600">
+          <h4 className="text-xs font-mono uppercase tracking-widest text-[#888888]">
             Stack & Dependencies
           </h4>
           <div className="flex flex-wrap gap-1.5">
             {project.technologies.map((tech) => (
-              <Badge key={tech} variant="primary" size="sm">
+              <Badge key={tech} variant="neutral" size="sm">
                 {tech}
               </Badge>
             ))}
@@ -136,14 +148,14 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
         </div>
 
         {/* Action Buttons */}
-        <div className="pt-4 border-t border-gold-500/20 flex flex-wrap items-center justify-end gap-3">
+        <div className="pt-6 border-t border-black/10 dark:border-white/10 flex flex-wrap items-center justify-end gap-3">
           {project.githubUrl && (
             <Button
               variant="secondary"
               size="md"
               href={project.githubUrl}
               target="_blank"
-              icon={<GitHubIcon size={16} />}
+              icon={<GitHubIcon size={15} />}
             >
               Source Code
             </Button>
@@ -155,10 +167,10 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
               size="md"
               href={project.liveUrl}
               target="_blank"
-              icon={<ExternalLink className="w-4 h-4" />}
+              icon={<ExternalLink className="w-3.5 h-3.5" />}
               iconPosition="right"
             >
-              Launch Live App
+              Launch Live Application
             </Button>
           )}
         </div>

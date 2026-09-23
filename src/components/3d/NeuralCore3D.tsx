@@ -42,14 +42,14 @@ export const NeuralCore3D: React.FC<NeuralCore3DProps> = ({
     container.appendChild(renderer.domElement);
 
     // 2. Restrained Editorial Cosmic Lights (Charcoal + Subtle Warm Metallic + Off-White)
-    const ambientLight = new THREE.AmbientLight(0xf2f0ea, 0.5);
+    const ambientLight = new THREE.AmbientLight(0xf2f0ea, 0.4);
     scene.add(ambientLight);
 
-    const warmKeyLight = new THREE.PointLight(0xb9a16b, 4.2, 50);
+    const warmKeyLight = new THREE.PointLight(0x888888, 3.5, 50);
     warmKeyLight.position.set(10, 12, 12);
     scene.add(warmKeyLight);
 
-    const offWhiteRimLight = new THREE.PointLight(0xf2f0ea, 3.2, 50);
+    const offWhiteRimLight = new THREE.PointLight(0xf2f0ea, 2.5, 50);
     offWhiteRimLight.position.set(-10, -8, 10);
     scene.add(offWhiteRimLight);
 
@@ -81,7 +81,7 @@ export const NeuralCore3D: React.FC<NeuralCore3DProps> = ({
     // B. Inner Subtle Glowing Nucleus
     const innerNucleusGeo = new THREE.SphereGeometry(1.6, 24, 24);
     const innerNucleusMat = new THREE.MeshBasicMaterial({
-      color: 0xb9a16b,
+      color: 0x555555,
       wireframe: true,
       transparent: true,
       opacity: 0.25,
@@ -89,12 +89,12 @@ export const NeuralCore3D: React.FC<NeuralCore3DProps> = ({
     const innerNucleus = new THREE.Mesh(innerNucleusGeo, innerNucleusMat);
     coreGroup.add(innerNucleus);
 
-    // C. Orbital Magnetic Energy Rings (Subtle Warm Metallic & Off-White)
+    // C. Orbital Magnetic Energy Rings (Subtle Monochromatic)
     const ring1Geo = new THREE.TorusGeometry(4.6, 0.025, 16, 100);
     const ring1Mat = new THREE.MeshBasicMaterial({
-      color: 0xb9a16b,
+      color: 0x333333,
       transparent: true,
-      opacity: 0.45,
+      opacity: 0.35,
     });
     const ring1 = new THREE.Mesh(ring1Geo, ring1Mat);
     ring1.rotation.x = Math.PI / 3;
@@ -102,9 +102,9 @@ export const NeuralCore3D: React.FC<NeuralCore3DProps> = ({
 
     const ring2Geo = new THREE.TorusGeometry(5.4, 0.02, 16, 100);
     const ring2Mat = new THREE.MeshBasicMaterial({
-      color: 0xf2f0ea,
+      color: 0x888888,
       transparent: true,
-      opacity: 0.35,
+      opacity: 0.25,
     });
     const ring2 = new THREE.Mesh(ring2Geo, ring2Mat);
     ring2.rotation.x = -Math.PI / 4;

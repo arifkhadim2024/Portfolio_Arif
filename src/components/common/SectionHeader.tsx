@@ -13,34 +13,33 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
   badge,
   title,
   subtitle,
-  align = 'center',
+  align = 'left',
   className = '',
 }) => {
   const isCenter = align === 'center';
 
   return (
-    <div className={`mb-12 md:mb-16 ${isCenter ? 'text-center mx-auto max-w-3xl' : 'max-w-3xl'} ${className}`}>
+    <div className={`mb-16 md:mb-24 ${isCenter ? 'text-center mx-auto max-w-4xl' : 'max-w-5xl'} ${className}`}>
       {badge && (
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4 }}
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold tracking-widest uppercase mb-4 bg-[#161616] text-[#E8E6E0] border border-[#B9A16B]/25 backdrop-blur-md shadow-sm"
+          className="inline-flex items-center gap-2 mb-4 text-xs font-mono font-medium tracking-widest uppercase text-[#888888] dark:text-[#777777]"
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-[#B9A16B] animate-pulse shadow-[0_0_6px_#B9A16B]" />
-          {badge}
+          <span>[ {badge} ]</span>
         </motion.div>
       )}
 
       <motion.h2
-        initial={{ opacity: 0, y: 15 }}
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-        className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#F2F0EA] dark:text-[#F2F0EA] light:text-slate-900 font-display"
+        transition={{ duration: 0.5, delay: 0.05 }}
+        className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-[#111111] dark:text-[#F2F1ED] leading-[0.92] uppercase font-display"
       >
-        <span className="text-gradient-editorial">{title}</span>
+        {title}
       </motion.h2>
 
       {subtitle && (
@@ -48,17 +47,14 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-4 text-base sm:text-lg text-slate-300 dark:text-slate-300 light:text-slate-600 leading-relaxed font-normal"
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="mt-6 text-base sm:text-lg md:text-xl text-[#666666] dark:text-[#999999] leading-relaxed font-normal max-w-2xl font-body"
         >
           {subtitle}
         </motion.p>
       )}
 
-      <div className={`mt-5 flex items-center gap-1.5 ${isCenter ? 'justify-center' : 'justify-start'}`}>
-        <div className="h-0.5 w-12 rounded-full bg-gradient-to-r from-[#B9A16B] via-[#E8E6E0] to-transparent" />
-        <div className="h-0.5 w-2 rounded-full bg-[#B9A16B] shadow-[0_0_6px_#B9A16B]" />
-      </div>
+      <div className={`mt-8 md:mt-12 w-full border-b border-black/10 dark:border-white/10`} />
     </div>
   );
 };

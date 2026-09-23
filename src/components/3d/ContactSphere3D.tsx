@@ -32,46 +32,46 @@ export const ContactSphere3D: React.FC<ContactSphere3DProps> = ({ className = ''
     renderer.setClearColor(0x000000, 0);
     container.appendChild(renderer.domElement);
 
-    // 2. Lighting (Metallic Gold & Champagne)
-    const ambientLight = new THREE.AmbientLight(0xfff8e7, 0.5);
+    // 2. Lighting (Neutral Studio Lights)
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
     scene.add(ambientLight);
 
-    const goldPointLight = new THREE.PointLight(0xd4af37, 5.0, 40);
-    goldPointLight.position.set(6, 6, 10);
-    scene.add(goldPointLight);
+    const keyLight = new THREE.PointLight(0xffffff, 4.0, 40);
+    keyLight.position.set(6, 6, 10);
+    scene.add(keyLight);
 
-    const champagneRimLight = new THREE.PointLight(0xf3e8cb, 4.0, 40);
-    champagneRimLight.position.set(-6, -6, 10);
-    scene.add(champagneRimLight);
+    const fillLight = new THREE.PointLight(0x888888, 3.0, 40);
+    fillLight.position.set(-6, -6, 10);
+    scene.add(fillLight);
 
-    // 3. Central Pulsing Equilibrium Sphere (Molten Gold Core with Bronze Shell)
+    // 3. Central Pulsing Equilibrium Sphere (Obsidian Core)
     const beaconGroup = new THREE.Group();
     scene.add(beaconGroup);
 
     const sphereGeo = new THREE.SphereGeometry(2.5, 32, 32);
     const sphereMat = new THREE.MeshStandardMaterial({
-      color: 0xd4af37,
-      emissive: 0xb89628,
-      emissiveIntensity: 0.55,
-      roughness: 0.25,
-      metalness: 0.85,
+      color: 0x111111,
+      emissive: 0x050505,
+      emissiveIntensity: 0.3,
+      roughness: 0.3,
+      metalness: 0.8,
     });
     const sphere = new THREE.Mesh(sphereGeo, sphereMat);
     beaconGroup.add(sphere);
 
-    // Outer wireframe shell in Champagne Gold
+    // Outer wireframe shell in Charcoal
     const shellGeo = new THREE.IcosahedronGeometry(3.6, 1);
     const shellMat = new THREE.MeshBasicMaterial({
-      color: 0xf3e8cb,
+      color: 0x444444,
       wireframe: true,
       transparent: true,
-      opacity: 0.35,
+      opacity: 0.25,
     });
     const shell = new THREE.Mesh(shellGeo, shellMat);
     beaconGroup.add(shell);
 
-    // 4. Inward Converging Particle Vortex (Gold & Champagne Dust)
-    const particleCount = 120;
+    // 4. Inward Converging Particle Vortex (Monochrome Dust)
+    const particleCount = 100;
     const particlePositions = new Float32Array(particleCount * 3);
     const particleInitialRadii = new Float32Array(particleCount);
     const particleSpeeds = new Float32Array(particleCount);
@@ -94,11 +94,10 @@ export const ContactSphere3D: React.FC<ContactSphere3DProps> = ({ className = ''
     const vortexGeo = new THREE.BufferGeometry();
     vortexGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
     const vortexMat = new THREE.PointsMaterial({
-      color: 0xf5c542,
-      size: 0.18,
+      color: 0x333333,
+      size: 0.14,
       transparent: true,
-      opacity: 0.85,
-      blending: THREE.AdditiveBlending,
+      opacity: 0.6,
     });
     const vortex = new THREE.Points(vortexGeo, vortexMat);
     beaconGroup.add(vortex);
@@ -126,7 +125,7 @@ export const ContactSphere3D: React.FC<ContactSphere3DProps> = ({ className = ''
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     window.addEventListener('resize', handleResize);
 
-    // 5. Animation Loop (Calm equilibrium dynamics)
+    // 5. Animation Loop
     let animationFrameId: number;
     const clock = new THREE.Clock();
 
@@ -135,20 +134,20 @@ export const ContactSphere3D: React.FC<ContactSphere3DProps> = ({ className = ''
       const elapsed = clock.getElapsedTime();
 
       if (!prefersReducedMotion) {
-        beaconGroup.rotation.y += (targetX * 0.4 - beaconGroup.rotation.y) * 0.05 + 0.003;
+        beaconGroup.rotation.y += (targetX * 0.4 - beaconGroup.rotation.y) * 0.05 + 0.002;
         beaconGroup.rotation.x += (targetY * 0.4 - beaconGroup.rotation.x) * 0.05;
 
-        shell.rotation.y = -elapsed * 0.2;
-        shell.rotation.z = elapsed * 0.15;
+        shell.rotation.y = -elapsed * 0.15;
+        shell.rotation.z = elapsed * 0.1;
 
-        // Slow calm pulsing of the equilibrium sphere
-        const scale = 1 + Math.sin(elapsed * 1.8) * 0.06;
+        // Slow calm pulsing
+        const scale = 1 + Math.sin(elapsed * 1.5) * 0.04;
         sphere.scale.set(scale, scale, scale);
 
-        // Update vortex particle positions (converge toward center and re-emerge)
+        // Update vortex particle positions
         const posArray = vortexGeo.attributes.position.array as Float32Array;
         for (let i = 0; i < particleCount; i++) {
-          particleAngles[i] += 0.015;
+          particleAngles[i] += 0.012;
           particleInitialRadii[i] -= particleSpeeds[i];
 
           if (particleInitialRadii[i] < 2.6) {
@@ -156,7 +155,7 @@ export const ContactSphere3D: React.FC<ContactSphere3DProps> = ({ className = ''
           }
 
           posArray[i * 3] = Math.cos(particleAngles[i]) * particleInitialRadii[i];
-          posArray[i * 3 + 1] = Math.sin(elapsed * 1.0 + i) * 2.5;
+          posArray[i * 3 + 1] = Math.sin(elapsed * 0.8 + i) * 2.0;
           posArray[i * 3 + 2] = Math.sin(particleAngles[i]) * particleInitialRadii[i];
         }
         vortexGeo.attributes.position.needsUpdate = true;

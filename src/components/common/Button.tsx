@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 import type { HTMLMotionProps } from 'framer-motion';
 
 type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'glow' | 'gold';
@@ -17,6 +17,7 @@ interface ButtonProps extends Omit<HTMLMotionProps<'button'>, 'children'> {
   download?: boolean | string;
   fullWidth?: boolean;
   className?: string;
+  magnetic?: boolean;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -31,23 +32,50 @@ export const Button: React.FC<ButtonProps> = ({
   download,
   fullWidth = false,
   className = '',
+  magnetic = true,
   ...props
 }) => {
-  const baseStyles = "relative inline-flex items-center justify-center font-semibold rounded-2xl transition-all duration-300 select-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#B9A16B]/40 disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden";
+  const elementRef = useRef<HTMLButtonElement | HTMLAnchorElement | null>(null);
+
+  // Magnetic Physics
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const springConfig = { damping: 18, stiffness: 220, mass: 0.15 };
+  const smoothX = useSpring(mouseX, springConfig);
+  const smoothY = useSpring(mouseY, springConfig);
+
+  const handlePointerMove = (e: React.PointerEvent) => {
+    if (!magnetic || !elementRef.current) return;
+    const rect = elementRef.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    const deltaX = (e.clientX - centerX) * 0.25;
+    const deltaY = (e.clientY - centerY) * 0.25;
+    mouseX.set(deltaX);
+    mouseY.set(deltaY);
+  };
+
+  const handlePointerLeave = () => {
+    if (!magnetic) return;
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
+  const baseStyles = "relative inline-flex items-center justify-center font-mono font-medium tracking-wider uppercase transition-colors duration-200 select-none cursor-pointer focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed group";
 
   const sizeStyles = {
-    sm: "px-3.5 py-1.5 text-xs sm:text-sm gap-1.5",
-    md: "px-5 py-2.5 text-sm sm:text-base gap-2",
-    lg: "px-7 py-3.5 text-base sm:text-lg gap-2.5",
+    sm: "px-3.5 py-1.5 text-[11px] gap-1.5 rounded-lg",
+    md: "px-5 py-2.5 text-xs gap-2 rounded-xl",
+    lg: "px-6 py-3.5 text-xs sm:text-sm gap-2.5 rounded-xl",
   };
 
   const variantStyles = {
-    primary: "bg-[#B9A16B] text-[#080808] font-bold shadow-lg shadow-black/70 border border-[#B9A16B] hover:bg-[#9E8652] hover:shadow-[#B9A16B]/20 active:scale-[0.98]",
-    glow: "bg-[#B9A16B] text-[#080808] font-bold shadow-editorial-accent hover:bg-[#9E8652] border border-[#B9A16B] active:scale-[0.98]",
-    gold: "bg-[#B9A16B] text-[#080808] font-bold shadow-lg shadow-black/70 border border-[#B9A16B] hover:bg-[#9E8652] active:scale-[0.98]",
-    secondary: "bg-[#0F0F0F]/90 hover:bg-[#161616] text-[#F2F0EA] border border-[#B9A16B]/25 hover:border-[#B9A16B]/50 shadow-md active:scale-[0.98] backdrop-blur-md",
-    outline: "bg-transparent hover:bg-[#B9A16B]/10 text-[#F2F0EA] border border-[#B9A16B]/25 hover:border-[#B9A16B]/60 active:scale-[0.98]",
-    ghost: "bg-transparent hover:bg-[#B9A16B]/10 text-slate-300 hover:text-[#F2F0EA] active:scale-[0.98]",
+    primary: "bg-[#111111] text-[#F2F1ED] border border-[#111111] hover:bg-neutral-800 dark:bg-[#F2F1ED] dark:text-[#111111] dark:border-[#F2F1ED] dark:hover:bg-neutral-200 shadow-sm",
+    glow: "bg-[#111111] text-[#F2F1ED] border border-[#111111] hover:bg-neutral-800 dark:bg-[#F2F1ED] dark:text-[#111111] dark:border-[#F2F1ED] shadow-sm",
+    gold: "bg-[#111111] text-[#F2F1ED] border border-[#111111] hover:bg-neutral-800 dark:bg-[#F2F1ED] dark:text-[#111111] dark:border-[#F2F1ED] shadow-sm",
+    secondary: "bg-transparent text-[#111111] border border-black/20 hover:border-black hover:bg-[#111111] hover:text-[#F2F1ED] dark:text-[#F2F1ED] dark:border-white/20 dark:hover:border-white dark:hover:bg-[#F2F1ED] dark:hover:text-[#111111]",
+    outline: "bg-transparent text-[#111111] border border-black/20 hover:border-black hover:bg-[#111111] hover:text-[#F2F1ED] dark:text-[#F2F1ED] dark:border-white/20 dark:hover:border-white dark:hover:bg-[#F2F1ED] dark:hover:text-[#111111]",
+    ghost: "bg-transparent text-[#111111] hover:text-[#666666] dark:text-[#F2F1ED] dark:hover:text-[#999999]",
   };
 
   const combinedClasses = `${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${fullWidth ? 'w-full' : ''} ${className}`;
@@ -55,31 +83,37 @@ export const Button: React.FC<ButtonProps> = ({
   if (href) {
     return (
       <motion.a
+        ref={elementRef as React.RefObject<HTMLAnchorElement>}
         href={href}
         target={target}
         rel={rel || (target === '_blank' ? 'noopener noreferrer' : undefined)}
         download={download}
+        style={{ x: smoothX, y: smoothY }}
+        onPointerMove={handlePointerMove}
+        onPointerLeave={handlePointerLeave}
         className={combinedClasses}
-        whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
       >
-        {icon && iconPosition === 'left' && <span className="flex-shrink-0">{icon}</span>}
+        {icon && iconPosition === 'left' && <span className="flex-shrink-0 transition-transform group-hover:-translate-x-0.5">{icon}</span>}
         <span>{children}</span>
-        {icon && iconPosition === 'right' && <span className="flex-shrink-0">{icon}</span>}
+        {icon && iconPosition === 'right' && <span className="flex-shrink-0 transition-transform group-hover:translate-x-0.5">{icon}</span>}
       </motion.a>
     );
   }
 
   return (
     <motion.button
+      ref={elementRef as React.RefObject<HTMLButtonElement>}
+      style={{ x: smoothX, y: smoothY }}
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
       className={combinedClasses}
-      whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       {...props}
     >
-      {icon && iconPosition === 'left' && <span className="flex-shrink-0">{icon}</span>}
+      {icon && iconPosition === 'left' && <span className="flex-shrink-0 transition-transform group-hover:-translate-x-0.5">{icon}</span>}
       <span>{children}</span>
-      {icon && iconPosition === 'right' && <span className="flex-shrink-0">{icon}</span>}
+      {icon && iconPosition === 'right' && <span className="flex-shrink-0 transition-transform group-hover:translate-x-0.5">{icon}</span>}
     </motion.button>
   );
 };

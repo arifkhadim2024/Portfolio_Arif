@@ -15,7 +15,7 @@ export const Modal: React.FC<ModalProps> = ({
   onClose,
   title,
   children,
-  maxWidth = '2xl',
+  maxWidth = '3xl',
 }) => {
   // ESC key listener & body scroll lock
   useEffect(() => {
@@ -57,29 +57,29 @@ export const Modal: React.FC<ModalProps> = ({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/80 backdrop-blur-md"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm"
             aria-hidden="true"
           />
 
           {/* Modal Content Dialog */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            initial={{ opacity: 0, scale: 0.96, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ type: 'spring', duration: 0.35, bounce: 0.15 }}
-            className={`relative w-full ${maxWidthStyles[maxWidth]} my-8 rounded-2xl bg-dark-card dark:bg-dark-card light:bg-white border border-slate-700/80 dark:border-slate-700/80 light:border-slate-300 shadow-2xl overflow-hidden z-10`}
+            exit={{ opacity: 0, scale: 0.96, y: 15 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className={`relative w-full ${maxWidthStyles[maxWidth]} my-8 rounded-3xl bg-[#F2F1ED] dark:bg-[#141414] text-[#111111] dark:text-[#F2F1ED] border border-black/15 dark:border-white/15 shadow-2xl overflow-hidden z-10`}
             role="dialog"
             aria-modal="true"
           >
             {/* Header */}
             {title && (
-              <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 dark:border-slate-800 light:border-slate-200">
-                <h3 className="text-xl font-bold text-white dark:text-white light:text-slate-900">
+              <div className="flex items-center justify-between px-6 sm:px-8 py-5 border-b border-black/10 dark:border-white/10">
+                <h3 className="text-xl font-bold font-display uppercase tracking-tight text-[#111111] dark:text-[#F2F1ED]">
                   {title}
                 </h3>
                 <button
                   onClick={onClose}
-                  className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+                  className="p-2 rounded-lg text-[#666666] hover:text-[#111111] dark:text-[#888888] dark:hover:text-[#F2F1ED] hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer"
                   aria-label="Close modal"
                 >
                   <X className="w-5 h-5" />
@@ -90,15 +90,15 @@ export const Modal: React.FC<ModalProps> = ({
             {!title && (
               <button
                 onClick={onClose}
-                className="absolute top-4 right-4 z-20 p-2 rounded-full bg-slate-900/80 text-slate-300 hover:text-white hover:bg-slate-800 border border-slate-700/60 backdrop-blur transition-colors"
+                className="absolute top-4 right-4 z-20 p-2 rounded-full bg-[#111111]/80 text-[#F2F1ED] hover:bg-[#111111] border border-white/20 backdrop-blur-sm transition-colors cursor-pointer"
                 aria-label="Close modal"
               >
-                <X className="w-5 h-5" />
+                <X className="w-4 h-4" />
               </button>
             )}
 
             {/* Body */}
-            <div className="p-6 max-h-[80vh] overflow-y-auto custom-scrollbar">
+            <div className="p-6 sm:p-8 max-h-[82vh] overflow-y-auto custom-scrollbar">
               {children}
             </div>
           </motion.div>

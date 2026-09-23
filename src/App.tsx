@@ -45,8 +45,8 @@ export const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-dark-bg text-dark-text dark:bg-dark-bg dark:text-dark-text light:bg-light-bg light:text-light-text font-sans antialiased selection:bg-gold-500/30 selection:text-gold-200">
-      {/* Short Cinematic Loading Sequence */}
+    <div className="relative min-h-screen bg-[#F2F1ED] text-[#111111] dark:bg-[#0E0E0E] dark:text-[#F2F1ED] font-sans antialiased selection:bg-[#111111] selection:text-[#F2F1ED] dark:selection:bg-[#F2F1ED] dark:selection:text-[#111111]">
+      {/* Minimal Editorial Loading Sequence */}
       {isLoading && <LoadingScreen onLoaded={() => setIsLoading(false)} />}
 
       {/* Global Interactive 3D WebGL Particle Constellation */}

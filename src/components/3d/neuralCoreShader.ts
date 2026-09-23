@@ -8,10 +8,10 @@ export const NeuralCoreShader = {
     uCursorIntensity: { value: 0.0 },
     uRippleOrigin: { value: new THREE.Vector3(0, 0, 0) },
     uRippleTime: { value: 10.0 }, // Large initial value = no active ripple
-    uWarmAccent: { value: new THREE.Color('#B9A16B') },
-    uOffWhite: { value: new THREE.Color('#F2F0EA') },
+    uWarmAccent: { value: new THREE.Color('#444444') },
+    uOffWhite: { value: new THREE.Color('#F2F1ED') },
     uCharcoal: { value: new THREE.Color('#222222') },
-    uDeepBase: { value: new THREE.Color('#080808') },
+    uDeepBase: { value: new THREE.Color('#111111') },
     uLightPos: { value: new THREE.Vector3(12.0, 14.0, 10.0) },
   },
 

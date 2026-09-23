@@ -22,11 +22,11 @@ export function createMagneticParticles(
   const speeds = new Float32Array(particleCount);
   const inclinations = new Float32Array(particleCount);
 
-  const warmAccentCol = new THREE.Color('#B9A16B');
-  const offWhiteCol = new THREE.Color('#F2F0EA');
-  const champagneCol = new THREE.Color('#E8E6E0');
-  const deepBronzeCol = new THREE.Color('#695730');
-  const palette = [warmAccentCol, offWhiteCol, champagneCol, deepBronzeCol];
+  const charcoalCol = new THREE.Color('#333333');
+  const offWhiteCol = new THREE.Color('#F2F1ED');
+  const midGrayCol = new THREE.Color('#666666');
+  const lightGrayCol = new THREE.Color('#999999');
+  const palette = [charcoalCol, offWhiteCol, midGrayCol, lightGrayCol];
 
   for (let i = 0; i < particleCount; i++) {
     const i3 = i * 3;

@@ -2,6 +2,32 @@ import type { Project } from '../types';
 
 export const projectsData: Project[] = [
   {
+    id: "neurosense-wsn",
+    title: "NeuroSense WSN",
+    tagline: "ANN-Optimized & PSO-Hybrid 3D Wireless Sensor Network Simulation",
+    description: "An advanced scientific 3D Wireless Sensor Network (WSN) digital twin and optimization suite. It leverages Artificial Neural Networks (ANN) for intelligent node clustering and Particle Swarm Optimization (PSO) for energy-efficient multi-hop packet routing across 100 autonomous sensor nodes.",
+    problemSolved: "WSN deployments in remote spatial environments suffer from premature energy depletion, hot-spot bottleneck failures, and suboptimal spatial coverage when using static routing algorithms.",
+    solution: "Engineered a hybrid ANN-PSO telemetry framework that dynamically elects cluster heads based on residual energy density and computes optimal multi-hop transmission paths, extending overall network operational lifetime by +38.5% with 99.4% packet delivery reliability.",
+    keyFeatures: [
+      "100 autonomous sensor node 3D spatial simulation with live energy telemetry",
+      "ANN-driven cluster head election and spatial sensing coverage optimization",
+      "PSO-Hybrid multi-hop packet routing with dynamic RF pathfinding",
+      "Interactive 4-view 3D camera system (Top, Perspective, Sink, Network) with node raycasting HUD",
+      "Real-time packet transmission modeling (Sensor → Cluster Head → Base Station Sink)"
+    ],
+    technologies: ["Three.js", "Python", "ANN Clustering", "PSO Routing", "TypeScript", "WebGL", "React", "Tailwind CSS"],
+    category: "AI / ML",
+    githubUrl: "https://github.com/arifkhadim2024/NeuroSense-WSN",
+    liveUrl: "https://github.com/arifkhadim2024/NeuroSense-WSN",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=80",
+    featured: true,
+    metrics: [
+      { label: "Nodes Simulated", value: "100 Nodes" },
+      { label: "Lifetime Gain", value: "+38.5%" },
+      { label: "Packet Delivery", value: "99.4%" }
+    ]
+  },
+  {
     id: "neurovision-ai",
     title: "NeuroVision AI",
     tagline: "Multi-Modal AI Diagnostic & Medical Image Analysis Suite",

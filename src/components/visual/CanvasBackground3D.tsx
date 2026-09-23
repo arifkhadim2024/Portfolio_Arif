@@ -31,30 +31,29 @@ export const CanvasBackground3D: React.FC = () => {
     renderer.setClearColor(0x000000, 0);
     container.appendChild(renderer.domElement);
 
-    // 2. Cosmic Dust & Micro Constellation (Restrained Editorial Colors)
-    const particleCount = prefersReducedMotion ? 40 : 120;
+    // 2. Cosmic Paper Dust & Subtle Grid Nodes (Monochrome Ink)
+    const particleCount = prefersReducedMotion ? 30 : 80;
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
     const scales = new Float32Array(particleCount);
 
-    const warmAccentCol = new THREE.Color('#B9A16B');
-    const offWhiteCol = new THREE.Color('#F2F0EA');
-    const champagneCol = new THREE.Color('#E8E6E0');
-    const deepBronzeCol = new THREE.Color('#695730');
-    const colorPalette = [warmAccentCol, offWhiteCol, champagneCol, deepBronzeCol];
+    const inkCol = new THREE.Color('#111111');
+    const grayCol = new THREE.Color('#777777');
+    const lightGrayCol = new THREE.Color('#AAAAAA');
+    const colorPalette = [inkCol, grayCol, lightGrayCol];
 
     for (let i = 0; i < particleCount; i++) {
       const i3 = i * 3;
-      positions[i3] = (Math.random() - 0.5) * 130;
-      positions[i3 + 1] = (Math.random() - 0.5) * 130;
-      positions[i3 + 2] = (Math.random() - 0.5) * 90;
+      positions[i3] = (Math.random() - 0.5) * 140;
+      positions[i3 + 1] = (Math.random() - 0.5) * 140;
+      positions[i3 + 2] = (Math.random() - 0.5) * 80;
 
       const selectedColor = colorPalette[Math.floor(Math.random() * colorPalette.length)];
       colors[i3] = selectedColor.r;
       colors[i3 + 1] = selectedColor.g;
       colors[i3 + 2] = selectedColor.b;
 
-      scales[i] = Math.random() * 1.8 + 0.8;
+      scales[i] = Math.random() * 1.5 + 0.5;
     }
 
     const particleGeometry = new THREE.BufferGeometry();
@@ -65,17 +64,16 @@ export const CanvasBackground3D: React.FC = () => {
     // Custom Particle Canvas Texture
     const createParticleTexture = () => {
       const canvas = document.createElement('canvas');
-      canvas.width = 64;
-      canvas.height = 64;
+      canvas.width = 32;
+      canvas.height = 32;
       const ctx = canvas.getContext('2d');
       if (ctx) {
-        const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
-        gradient.addColorStop(0, 'rgba(242, 240, 234, 1)');
-        gradient.addColorStop(0.35, 'rgba(185, 161, 107, 0.7)');
-        gradient.addColorStop(0.75, 'rgba(185, 161, 107, 0.15)');
-        gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        const gradient = ctx.createRadialGradient(16, 16, 0, 16, 16, 16);
+        gradient.addColorStop(0, 'rgba(17, 17, 17, 1)');
+        gradient.addColorStop(0.5, 'rgba(17, 17, 17, 0.4)');
+        gradient.addColorStop(1, 'rgba(17, 17, 17, 0)');
         ctx.fillStyle = gradient;
-        ctx.fillRect(0, 0, 64, 64);
+        ctx.fillRect(0, 0, 32, 32);
       }
       return new THREE.CanvasTexture(canvas);
     };
@@ -83,24 +81,22 @@ export const CanvasBackground3D: React.FC = () => {
     const particleTexture = createParticleTexture();
 
     const particleMaterial = new THREE.PointsMaterial({
-      size: 1.2,
+      size: 0.8,
       vertexColors: true,
       map: particleTexture,
       transparent: true,
-      opacity: 0.6,
-      blending: THREE.AdditiveBlending,
+      opacity: 0.25,
       depthWrite: false,
     });
 
     const particles = new THREE.Points(particleGeometry, particleMaterial);
     scene.add(particles);
 
-    // 3. Faint Constellation Lines
+    // 3. Faint Architectural Constellation Lines
     const lineMaterial = new THREE.LineBasicMaterial({
-      color: 0xb9a16b,
+      color: 0x111111,
       transparent: true,
-      opacity: 0.1,
-      blending: THREE.AdditiveBlending,
+      opacity: 0.04,
     });
 
     const lineGeometry = new THREE.BufferGeometry();
@@ -144,8 +140,8 @@ export const CanvasBackground3D: React.FC = () => {
       mouseY += (targetMouseY - mouseY) * 0.05;
 
       if (!prefersReducedMotion) {
-        particles.rotation.y = elapsedTime * 0.015 + mouseX * 0.12;
-        particles.rotation.x = -mouseY * 0.12;
+        particles.rotation.y = elapsedTime * 0.008 + mouseX * 0.08;
+        particles.rotation.x = -mouseY * 0.08;
         lines.rotation.y = particles.rotation.y;
         lines.rotation.x = particles.rotation.x;
       }
@@ -162,7 +158,7 @@ export const CanvasBackground3D: React.FC = () => {
             const dz = posArray[i * 3 + 2] - posArray[j * 3 + 2];
             const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
 
-            if (dist < 18) {
+            if (dist < 16) {
               linePositions[lineVertexIndex++] = posArray[i * 3];
               linePositions[lineVertexIndex++] = posArray[i * 3 + 1];
               linePositions[lineVertexIndex++] = posArray[i * 3 + 2];
@@ -204,7 +200,7 @@ export const CanvasBackground3D: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-60 dark:opacity-60 light:opacity-20"
+      className="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-40 dark:opacity-30"
       aria-hidden="true"
     />
   );

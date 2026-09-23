@@ -13,13 +13,13 @@ export const CursorGlow: React.FC = () => {
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
 
-  // High responsiveness for the central micro-dot
-  const dotX = useSpring(mouseX, { damping: 30, stiffness: 450 });
-  const dotY = useSpring(mouseY, { damping: 30, stiffness: 450 });
+  // Fast direct spring for central micro-dot
+  const dotX = useSpring(mouseX, { damping: 35, stiffness: 600 });
+  const dotY = useSpring(mouseY, { damping: 35, stiffness: 600 });
 
-  // Spring with slight trailing inertia for the outer ring
-  const ringX = useSpring(mouseX, { damping: 24, stiffness: 200, mass: 0.5 });
-  const ringY = useSpring(mouseY, { damping: 24, stiffness: 200, mass: 0.5 });
+  // Smooth trailing spring for outer badge/ring
+  const ringX = useSpring(mouseX, { damping: 28, stiffness: 300, mass: 0.4 });
+  const ringY = useSpring(mouseY, { damping: 28, stiffness: 300, mass: 0.4 });
 
   useEffect(() => {
     if (isTouchDevice) return;
@@ -29,7 +29,6 @@ export const CursorGlow: React.FC = () => {
       mouseY.set(e.clientY);
       if (!isVisible) setIsVisible(true);
 
-      // Check hovered element for cursor type
       const target = e.target as HTMLElement | null;
       if (!target) return;
 
@@ -42,7 +41,7 @@ export const CursorGlow: React.FC = () => {
         setCursorLabel('VIEW');
       } else if (threeDCanvas) {
         setCursorType('3d');
-        setCursorLabel('3D');
+        setCursorLabel('EXPLORE');
       } else if (clickable) {
         setCursorType('pointer');
         setCursorLabel('');
@@ -69,19 +68,8 @@ export const CursorGlow: React.FC = () => {
   if (isTouchDevice || !isVisible) return null;
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden" aria-hidden="true">
-      {/* 1. Ambient Volumetric Lighting Glow Follower (Subtle Warm Accent) */}
-      <motion.div
-        style={{
-          x: ringX,
-          y: ringY,
-          translateX: '-50%',
-          translateY: '-50%',
-        }}
-        className="w-[380px] h-[380px] rounded-full bg-gradient-to-tr from-[#B9A16B]/10 via-[#B9A16B]/5 to-transparent blur-[100px] opacity-50 dark:opacity-50 light:opacity-15"
-      />
-
-      {/* 2. Trailing Outer Ring / Badge */}
+    <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden select-none" aria-hidden="true">
+      {/* 1. Outer Badge / Trailing Ring */}
       <motion.div
         style={{
           x: ringX,
@@ -90,35 +78,35 @@ export const CursorGlow: React.FC = () => {
           translateY: '-50%',
         }}
         animate={{
-          scale: cursorType === 'project' ? 2.2 : cursorType === '3d' ? 2.0 : cursorType === 'pointer' ? 1.4 : 1,
-          borderColor:
-            cursorType === 'project'
-              ? 'rgba(185, 161, 107, 0.85)'
-              : cursorType === '3d'
-              ? 'rgba(185, 161, 107, 0.8)'
-              : cursorType === 'pointer'
-              ? 'rgba(185, 161, 107, 0.7)'
-              : 'rgba(242, 240, 234, 0.25)',
+          width: cursorType === 'project' ? 76 : cursorType === '3d' ? 68 : cursorType === 'pointer' ? 44 : 32,
+          height: cursorType === 'project' ? 76 : cursorType === '3d' ? 68 : cursorType === 'pointer' ? 44 : 32,
           backgroundColor:
-            cursorType === 'project'
-              ? 'rgba(185, 161, 107, 0.12)'
-              : cursorType === '3d'
-              ? 'rgba(185, 161, 107, 0.1)'
-              : cursorType === 'pointer'
-              ? 'rgba(185, 161, 107, 0.08)'
+            cursorType === 'project' || cursorType === '3d'
+              ? 'rgba(17, 17, 17, 0.96)'
               : 'transparent',
+          borderColor:
+            cursorType === 'project' || cursorType === '3d'
+              ? 'rgba(17, 17, 17, 1)'
+              : cursorType === 'pointer'
+              ? 'rgba(17, 17, 17, 0.5)'
+              : 'rgba(17, 17, 17, 0.25)',
+          scale: 1,
         }}
-        transition={{ type: 'spring', damping: 25, stiffness: 350 }}
-        className="w-7 h-7 rounded-full border border-[#B9A16B]/30 backdrop-blur-[2px] flex items-center justify-center shadow-lg shadow-black/40"
+        transition={{ type: 'spring', damping: 24, stiffness: 350 }}
+        className="rounded-full border flex items-center justify-center shadow-lg dark:bg-[#F2F1ED] dark:text-[#111111] dark:border-white/30 backdrop-blur-[1px]"
       >
         {cursorLabel && (
-          <span className="text-[7px] font-mono font-bold tracking-widest text-[#F2F0EA] uppercase text-center px-1">
+          <motion.span
+            initial={{ opacity: 0, scale: 0.6 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="text-[10px] font-mono font-bold tracking-widest text-[#F2F1ED] dark:text-[#111111] uppercase select-none text-center"
+          >
             {cursorLabel}
-          </span>
+          </motion.span>
         )}
       </motion.div>
 
-      {/* 3. High-Precision Central Micro-Dot (Subtle Warm Accent) */}
+      {/* 2. Precision Central Micro-Dot */}
       <motion.div
         style={{
           x: dotX,
@@ -127,10 +115,11 @@ export const CursorGlow: React.FC = () => {
           translateY: '-50%',
         }}
         animate={{
-          scale: cursorType !== 'default' ? 0 : 1,
-          opacity: cursorType !== 'default' ? 0 : 1,
+          scale: cursorType === 'project' || cursorType === '3d' ? 0 : 1,
+          opacity: cursorType === 'project' || cursorType === '3d' ? 0 : 1,
         }}
-        className="w-1.5 h-1.5 rounded-full bg-[#B9A16B] shadow-[0_0_6px_#B9A16B]"
+        transition={{ duration: 0.15 }}
+        className="w-1.5 h-1.5 rounded-full bg-[#111111] dark:bg-[#F2F1ED]"
       />
     </div>
   );

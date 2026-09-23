@@ -11,11 +11,11 @@ export const ThemeToggle: React.FC = () => {
       onClick={toggleTheme}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      className="relative p-2.5 rounded-xl bg-[#0B0A0E]/90 hover:bg-[#17120A] dark:bg-[#0B0A0E]/90 dark:hover:bg-[#17120A] light:bg-slate-200/90 light:hover:bg-slate-300/90 border border-gold-500/20 dark:border-gold-500/20 light:border-slate-300 text-slate-300 dark:text-slate-300 light:text-slate-700 transition-colors shadow-sm cursor-pointer"
+      className="relative p-2 rounded-lg border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 text-[#111111] dark:text-[#F2F1ED] transition-colors cursor-pointer"
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
       title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
     >
-      <div className="relative w-5 h-5 flex items-center justify-center">
+      <div className="relative w-4 h-4 flex items-center justify-center">
         {isDark ? (
           <motion.div
             key="moon"
@@ -24,7 +24,7 @@ export const ThemeToggle: React.FC = () => {
             exit={{ rotate: 90, opacity: 0 }}
             transition={{ duration: 0.2 }}
           >
-            <Moon className="w-5 h-5 text-gold-300 fill-gold-400/20" />
+            <Moon className="w-4 h-4 text-[#F2F1ED]" />
           </motion.div>
         ) : (
           <motion.div
@@ -34,7 +34,7 @@ export const ThemeToggle: React.FC = () => {
             exit={{ rotate: -90, opacity: 0 }}
             transition={{ duration: 0.2 }}
           >
-            <Sun className="w-5 h-5 text-amber-500 fill-amber-400/20" />
+            <Sun className="w-4 h-4 text-[#111111]" />
           </motion.div>
         )}
       </div>

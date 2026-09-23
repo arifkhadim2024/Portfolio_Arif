@@ -8,28 +8,27 @@ export const CodeSnippetCard: React.FC = () => {
   const { copied, copy } = useClipboard(2000);
 
   const snippets = {
-    profile: `const developer = {
+    profile: `const engineer = {
   name: "${profileData.name}",
-  title: "${profileData.headline.split('|')[0].trim()}",
-  focus: ["Full-Stack", "AI/ML", "Cloud Systems"],
-  passion: "Building performant, elegant software",
-  openToRoles: ${profileData.openToWork ? 'true' : 'false'},
-  status: "Available for internships & full-time"
+  role: "Full-Stack & AI Engineer",
+  education: "B.Tech in Computer Science",
+  coreFocus: ["Full-Stack Architecture", "AI/ML Models", "Cloud Tools"],
+  availableForRoles: ${profileData.openToWork ? 'true' : 'false'},
+  location: "${profileData.location}"
 };`,
-    skills: `const coreTechStack = {
-  languages: ["TypeScript", "Python", "JavaScript", "C++"],
-  frontend: ["React.js", "Next.js", "Tailwind CSS"],
-  backend: ["Node.js", "FastAPI", "Express"],
-  databases: ["PostgreSQL", "MongoDB", "Redis"],
-  ai_ml: ["PyTorch", "TensorFlow", "Scikit-Learn"]
+    skills: `const technologyStack = {
+  languages: ["Python", "TypeScript", "JavaScript", "SQL", "C++"],
+  frontend: ["React.js", "Next.js", "Tailwind CSS", "Vite"],
+  backend: ["FastAPI", "Node.js", "Express", "REST APIs"],
+  ai_ml: ["PyTorch", "Scikit-Learn", "Computer Vision", "NLP"],
+  databases: ["PostgreSQL", "MongoDB", "Redis", "Supabase"]
 };`,
     contact: `async function reachOut() {
-  const recipient = "${profileData.email}";
-  const location = "${profileData.location}";
+  const target = "${profileData.email}";
   
-  return await connect({
-    target: recipient,
-    message: "Let's build something awesome!"
+  return await dispatch({
+    recipient: target,
+    message: "Let's build something awesome."
   });
 }`
   };
@@ -39,29 +38,29 @@ export const CodeSnippetCard: React.FC = () => {
   };
 
   return (
-    <div className="relative rounded-3xl bg-[#0D0D0D]/95 border border-[#B9A16B]/20 shadow-2xl backdrop-blur-2xl overflow-hidden font-mono text-xs sm:text-sm">
+    <div className="rounded-2xl border border-black/10 dark:border-white/10 bg-[#111111] text-[#F2F1ED] shadow-sm overflow-hidden font-mono text-xs">
       {/* Window Controls Bar */}
-      <div className="flex items-center justify-between px-4 py-3.5 bg-[#080808] border-b border-[#B9A16B]/15">
+      <div className="flex items-center justify-between px-4 py-3 bg-[#0A0A0A] border-b border-white/10">
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-[#333333]" />
-          <div className="w-3 h-3 rounded-full bg-[#555555]" />
-          <div className="w-3 h-3 rounded-full bg-[#B9A16B]/80" />
-          <span className="ml-2 text-xs text-slate-400 flex items-center gap-1.5 font-mono">
-            <Terminal className="w-3.5 h-3.5 text-[#B9A16B]" />
+          <div className="w-2.5 h-2.5 rounded-full bg-[#333333]" />
+          <div className="w-2.5 h-2.5 rounded-full bg-[#444444]" />
+          <div className="w-2.5 h-2.5 rounded-full bg-[#666666]" />
+          <span className="ml-2 text-[11px] text-[#888888] flex items-center gap-1.5">
+            <Terminal className="w-3 h-3 text-[#CCCCCC]" />
             arif-khadim.ts
           </span>
         </div>
 
         {/* Tab Buttons */}
-        <div className="flex items-center gap-1 bg-[#161616] p-1 rounded-xl border border-[#B9A16B]/15">
+        <div className="flex items-center gap-1 bg-[#161616] p-0.5 rounded-lg border border-white/10">
           {(['profile', 'skills', 'contact'] as const).map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-3 py-1 rounded-lg text-xs capitalize transition-all cursor-pointer ${
+              className={`px-2.5 py-1 rounded-md text-[10px] uppercase tracking-wider transition-all cursor-pointer ${
                 activeTab === tab
-                  ? 'bg-[#B9A16B]/20 text-[#F2F0EA] font-semibold border border-[#B9A16B]/40 shadow-sm'
-                  : 'text-slate-400 hover:text-[#F2F0EA]'
+                  ? 'bg-white text-[#111111] font-bold shadow-sm'
+                  : 'text-[#888888] hover:text-[#F2F1ED]'
               }`}
             >
               {tab}
@@ -72,35 +71,35 @@ export const CodeSnippetCard: React.FC = () => {
         {/* Copy Button */}
         <button
           onClick={handleCopy}
-          className="p-1.5 rounded-xl text-slate-400 hover:text-[#F2F0EA] hover:bg-[#161616] border border-transparent hover:border-[#B9A16B]/20 transition-all cursor-pointer"
+          className="p-1 rounded-md text-[#888888] hover:text-[#F2F1ED] hover:bg-white/10 transition-colors cursor-pointer"
           title="Copy snippet"
           aria-label="Copy code snippet"
         >
-          {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+          {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
         </button>
       </div>
 
       {/* Code Area */}
       <div className="p-4 sm:p-5 overflow-x-auto">
-        <pre className="text-slate-300 leading-relaxed font-mono">
+        <pre className="text-[#DDDDDD] leading-relaxed font-mono">
           <code>
             {snippets[activeTab].split('\n').map((line, idx) => (
               <div key={idx} className="table-row">
-                <span className="table-cell select-none pr-4 text-slate-600 text-right w-6">
+                <span className="table-cell select-none pr-4 text-[#555555] text-right w-6">
                   {idx + 1}
                 </span>
                 <span className="table-cell whitespace-pre">
                   {line.includes('const') && (
-                    <span className="text-[#B9A16B] font-bold">const </span>
+                    <span className="text-white font-bold">const </span>
                   )}
                   {line.includes('async function') && (
-                    <span className="text-[#B9A16B] font-bold">async function </span>
+                    <span className="text-white font-bold">async function </span>
                   )}
                   {line.includes('return await') && (
-                    <span className="text-[#B9A16B] font-semibold">return await </span>
+                    <span className="text-[#AAAAAA] font-semibold">return await </span>
                   )}
                   {line.includes('true') && (
-                    <span className="text-[#E8E6E0] font-semibold">true</span>
+                    <span className="text-emerald-400 font-semibold">true</span>
                   )}
                   {line.includes('false') && (
                     <span className="text-rose-400 font-semibold">false</span>
@@ -116,12 +115,12 @@ export const CodeSnippetCard: React.FC = () => {
       </div>
 
       {/* Footer bar */}
-      <div className="px-4 py-2.5 bg-[#080808] border-t border-[#B9A16B]/15 flex items-center justify-between text-[11px] text-slate-500 font-mono">
-        <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-[#B9A16B] animate-pulse" />
-          <span>TypeScript Node v26</span>
+      <div className="px-4 py-2 bg-[#0A0A0A] border-t border-white/10 flex items-center justify-between text-[10px] text-[#777777] font-mono">
+        <div className="flex items-center gap-1.5">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+          <span>TypeScript // Node.js</span>
         </div>
-        <span>UTF-8 // ESM // Architecture</span>
+        <span>UTF-8 // ESM</span>
       </div>
     </div>
   );

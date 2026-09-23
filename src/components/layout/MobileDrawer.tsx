@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ExternalLink } from 'lucide-react';
+import { X, ArrowUpRight } from 'lucide-react';
 import { profileData } from '../../data/profile';
 import { socialLinks } from '../../data/social';
 import { IconRenderer } from '../common/IconRenderer';
@@ -33,7 +33,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/85 backdrop-blur-md"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm"
           />
 
           {/* Drawer panel */}
@@ -41,81 +41,80 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 250 }}
-            className="fixed top-0 right-0 bottom-0 w-4/5 max-w-sm bg-[#080808] dark:bg-[#080808] light:bg-white border-l border-[#B9A16B]/20 dark:border-[#B9A16B]/20 light:border-slate-200 p-6 flex flex-col justify-between shadow-2xl z-10 overflow-y-auto"
+            transition={{ type: 'spring', damping: 28, stiffness: 280 }}
+            className="fixed top-0 right-0 bottom-0 w-4/5 max-w-sm bg-[#F2F1ED] dark:bg-[#0E0E0E] text-[#111111] dark:text-[#F2F1ED] border-l border-black/10 dark:border-white/10 p-6 sm:p-8 flex flex-col justify-between shadow-2xl z-10 overflow-y-auto"
           >
             {/* Top Bar */}
             <div>
-              <div className="flex items-center justify-between pb-6 border-b border-[#B9A16B]/15 dark:border-[#B9A16B]/15 light:border-slate-200">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#B9A16B] via-[#222222] to-[#B9A16B]/60 flex items-center justify-center font-bold text-[#F2F0EA] text-sm">
-                    AK
-                  </div>
-                  <span className="font-bold text-base text-[#F2F0EA] dark:text-[#F2F0EA] light:text-slate-900 font-display">
-                    {profileData.name}
-                  </span>
-                </div>
+              <div className="flex items-center justify-between pb-6 border-b border-black/10 dark:border-white/10">
+                <span className="font-bold text-sm uppercase tracking-wider font-display">
+                  {profileData.name}
+                </span>
                 <button
                   onClick={onClose}
-                  className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-[#161616] transition-colors"
+                  className="p-2 rounded-lg text-[#666666] hover:text-[#111111] dark:text-[#888888] dark:hover:text-[#F2F1ED] hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer"
                   aria-label="Close menu"
                 >
                   <X className="w-5 h-5" />
                 </button>
               </div>
 
-              {/* Navigation links */}
-              <nav className="mt-6 flex flex-col gap-1.5">
-                {navItems.map((item) => {
+              {/* Navigation links in large editorial style */}
+              <nav className="mt-8 flex flex-col gap-2">
+                {navItems.map((item, idx) => {
                   const isActive = activeSection === item.id;
+                  const itemNumber = String(idx + 1).padStart(2, '0');
                   return (
                     <a
                       key={item.id}
                       href={`#${item.id}`}
                       onClick={onClose}
-                      className={`flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                      className={`flex items-baseline justify-between py-3 text-xl font-bold font-display uppercase tracking-tight transition-colors ${
                         isActive
-                          ? 'bg-[#B9A16B]/15 text-[#B9A16B] font-semibold border border-[#B9A16B]/30'
-                          : 'text-slate-300 dark:text-slate-300 light:text-slate-700 hover:bg-[#161616] hover:text-[#F2F0EA]'
+                          ? 'text-[#111111] dark:text-[#F2F1ED]'
+                          : 'text-[#888888] dark:text-[#666666] hover:text-[#111111] dark:hover:text-[#F2F1ED]'
                       }`}
                     >
                       <span>{item.label}</span>
-                      {isActive && <span className="w-1.5 h-1.5 rounded-full bg-[#B9A16B] shadow-[0_0_6px_#B9A16B]" />}
+                      <span className="text-xs font-mono text-[#999999] font-normal">
+                        ({itemNumber})
+                      </span>
                     </a>
                   );
                 })}
               </nav>
 
               {/* Resume button */}
-              <div className="mt-6 pt-6 border-t border-[#B9A16B]/15 dark:border-[#B9A16B]/15 light:border-slate-200">
+              <div className="mt-8 pt-6 border-t border-black/10 dark:border-white/10">
                 <a
                   href={profileData.resumeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#B9A16B] text-[#080808] text-sm font-bold shadow-md shadow-black/60"
+                  className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-lg bg-[#111111] text-[#F2F1ED] dark:bg-[#F2F1ED] dark:text-[#111111] text-xs font-mono uppercase tracking-wider font-semibold shadow-sm"
                 >
                   <span>View Resume</span>
-                  <ExternalLink className="w-4 h-4 text-[#080808]" />
+                  <ArrowUpRight className="w-4 h-4" />
                 </a>
               </div>
             </div>
 
             {/* Bottom Socials */}
-            <div className="pt-6 border-t border-[#B9A16B]/15 dark:border-[#B9A16B]/15 light:border-slate-200">
-              <p className="text-xs text-slate-500 mb-3 font-medium uppercase tracking-wider font-mono">
-                Connect with me
+            <div className="pt-6 border-t border-black/10 dark:border-white/10">
+              <p className="text-[11px] text-[#888888] mb-3 font-mono uppercase tracking-wider">
+                Connect Online
               </p>
-              <div className="flex items-center gap-2.5">
+              <div className="flex items-center gap-2">
                 {socialLinks.map((social) => (
                   <a
                     key={social.platform}
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2.5 rounded-xl bg-[#0D0D0D] hover:bg-[#161616] text-slate-300 hover:text-white border border-[#B9A16B]/15 transition-colors"
+                    className="p-2.5 rounded-lg border border-black/10 dark:border-white/10 text-[#666666] hover:text-[#111111] dark:text-[#888888] dark:hover:text-[#F2F1ED] hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
                     aria-label={social.platform}
+                    title={social.platform}
                   >
-                    <IconRenderer name={social.icon} className="w-4 h-4 text-[#B9A16B]" />
+                    <IconRenderer name={social.icon} className="w-4 h-4" />
                   </a>
                 ))}
               </div>

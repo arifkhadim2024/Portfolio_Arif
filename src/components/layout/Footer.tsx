@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUp, Sparkles } from 'lucide-react';
+import { ArrowUp, ArrowUpRight } from 'lucide-react';
 import { profileData } from '../../data/profile';
 import { socialLinks } from '../../data/social';
 import { IconRenderer } from '../common/IconRenderer';
@@ -12,76 +12,81 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="relative bg-[#080808] dark:bg-[#080808] light:bg-slate-100 border-t border-[#B9A16B]/15 dark:border-[#B9A16B]/15 light:border-slate-300 pt-16 pb-12 overflow-hidden">
-      {/* Ambient gradient top beam */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-[#B9A16B]/40 to-transparent" />
-
+    <footer className="relative bg-[#F2F1ED] dark:bg-[#0E0E0E] text-[#111111] dark:text-[#F2F1ED] border-t border-black/10 dark:border-white/10 pt-20 pb-12 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-[#B9A16B]/15 dark:border-[#B9A16B]/15 light:border-slate-200">
-          {/* Brand Info */}
-          <div className="md:col-span-2 space-y-4">
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#B9A16B] via-[#222222] to-[#B9A16B]/60 flex items-center justify-center font-bold text-[#F2F0EA] text-sm shadow-md shadow-black/80">
-                AK
-              </div>
-              <span className="font-extrabold text-xl text-white dark:text-white light:text-slate-900 tracking-tight text-gradient-editorial font-display">
-                {profileData.name}
-              </span>
-            </div>
+        {/* Massive Editorial Display Heading */}
+        <div className="pb-16 border-b border-black/10 dark:border-white/10">
+          <div className="text-xs font-mono uppercase tracking-widest text-[#888888] mb-4">
+            [ NEXT STEPS ]
+          </div>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+            <h2 className="text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tighter uppercase font-display leading-[0.92]">
+              Let's build <br /> together.
+            </h2>
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 text-sm sm:text-base font-mono uppercase tracking-widest text-[#111111] dark:text-[#F2F1ED] hover:underline underline-offset-8"
+            >
+              <span>Initiate Conversation</span>
+              <ArrowUpRight className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
 
-            <p className="text-sm text-slate-400 dark:text-slate-400 light:text-slate-600 max-w-md leading-relaxed font-normal">
+        {/* Multi-Column Editorial Info Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 py-16 border-b border-black/10 dark:border-white/10 text-xs font-mono">
+          {/* Brand / Bio (5 cols) */}
+          <div className="md:col-span-5 space-y-4">
+            <div className="font-bold text-sm font-display tracking-wider uppercase text-[#111111] dark:text-[#F2F1ED]">
+              {profileData.name}
+            </div>
+            <p className="text-xs text-[#666666] dark:text-[#888888] max-w-sm leading-relaxed font-body normal-case">
               {profileData.shortIntro}
             </p>
-
-            <div className="flex items-center gap-2 text-xs font-mono text-[#E8E6E0] bg-[#161616] px-3 py-1.5 rounded-xl border border-[#B9A16B]/20 w-fit">
-              <span className="w-2 h-2 rounded-full bg-[#B9A16B] animate-pulse shadow-[0_0_6px_#B9A16B]" />
-              <span>Available for engineering internships & full-time roles</span>
+            <div className="inline-flex items-center gap-2 pt-2 text-[#666666] dark:text-[#888888]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#111111] dark:bg-[#F2F1ED]" />
+              <span>Available for engineering opportunities</span>
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-200 dark:text-slate-200 light:text-slate-800 mb-4 font-mono">
-              System Navigation
+          {/* Navigation (3 cols) */}
+          <div className="md:col-span-3 space-y-3">
+            <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#888888] mb-4">
+              Directory
             </h4>
-            <ul className="space-y-2 text-sm text-slate-400 dark:text-slate-400 light:text-slate-600">
+            <ul className="space-y-2.5 text-[#666666] dark:text-[#888888] uppercase tracking-wider">
               <li>
-                <a href="#about" className="hover:text-[#B9A16B] transition-colors">
-                  About Me
+                <a href="#about" className="hover:text-[#111111] dark:hover:text-[#F2F1ED] transition-colors">
+                  01. About Me
                 </a>
               </li>
               <li>
-                <a href="#skills" className="hover:text-[#B9A16B] transition-colors">
-                  Skills & Architecture
+                <a href="#skills" className="hover:text-[#111111] dark:hover:text-[#F2F1ED] transition-colors">
+                  02. Technical Skills
                 </a>
               </li>
               <li>
-                <a href="#projects" className="hover:text-[#B9A16B] transition-colors">
-                  Featured Case Studies
+                <a href="#projects" className="hover:text-[#111111] dark:hover:text-[#F2F1ED] transition-colors">
+                  03. Selected Work
                 </a>
               </li>
               <li>
-                <a href="#experience" className="hover:text-[#B9A16B] transition-colors">
-                  Experience Timeline
+                <a href="#experience" className="hover:text-[#111111] dark:hover:text-[#F2F1ED] transition-colors">
+                  04. Experience
                 </a>
               </li>
               <li>
-                <a href="#certificates" className="hover:text-[#B9A16B] transition-colors">
-                  Certifications
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="hover:text-[#B9A16B] transition-colors">
-                  Get in Touch
+                <a href="#certificates" className="hover:text-[#111111] dark:hover:text-[#F2F1ED] transition-colors">
+                  05. Certifications
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Social Links */}
-          <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-200 dark:text-slate-200 light:text-slate-800 mb-4 font-mono">
-              Connect Online
+          {/* Socials & Connect (4 cols) */}
+          <div className="md:col-span-4 space-y-3">
+            <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#888888] mb-4">
+              Network
             </h4>
             <div className="flex flex-wrap gap-2 mb-6">
               {socialLinks.map((social) => (
@@ -90,33 +95,35 @@ export const Footer: React.FC = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-xl bg-[#0D0D0D] dark:bg-[#0D0D0D] light:bg-white text-slate-400 hover:text-[#F2F0EA] dark:hover:text-[#F2F0EA] light:hover:text-gold-700 border border-[#B9A16B]/15 hover:border-[#B9A16B]/40 transition-all hover:scale-105"
+                  className="px-3 py-1.5 rounded-lg border border-black/10 dark:border-white/10 text-[#666666] hover:text-[#111111] dark:text-[#888888] dark:hover:text-[#F2F1ED] hover:border-black/30 dark:hover:border-white/30 transition-colors inline-flex items-center gap-1.5"
                   aria-label={social.platform}
                   title={social.platform}
                 >
-                  <IconRenderer name={social.icon} className="w-4 h-4 text-[#B9A16B]" />
+                  <IconRenderer name={social.icon} className="w-3.5 h-3.5" />
+                  <span>{social.platform}</span>
                 </a>
               ))}
             </div>
 
-            <button
-              onClick={scrollToTop}
-              className="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-[#B9A16B] transition-colors cursor-pointer"
-            >
-              <span>Back to top</span>
-              <ArrowUp className="w-3.5 h-3.5 text-[#B9A16B]" />
-            </button>
+            <div>
+              <button
+                onClick={scrollToTop}
+                className="inline-flex items-center gap-2 text-xs text-[#666666] hover:text-[#111111] dark:text-[#888888] dark:hover:text-[#F2F1ED] transition-colors cursor-pointer uppercase tracking-wider"
+              >
+                <span>Back to Top</span>
+                <ArrowUp className="w-3.5 h-3.5" />
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Bottom copyright */}
-        <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-mono">
+        {/* Bottom Colophon */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#888888]">
           <p>
             © {currentYear} {profileData.name}. All rights reserved.
           </p>
-          <div className="flex items-center gap-1.5">
-            <Sparkles className="w-3.5 h-3.5 text-[#B9A16B]" />
-            <span>Built with React, TypeScript, Three.js & Tailwind CSS • Editorial Edition</span>
+          <div className="text-right">
+            <span>Editorial Edition • React / TypeScript / Vite</span>
           </div>
         </div>
       </div>
