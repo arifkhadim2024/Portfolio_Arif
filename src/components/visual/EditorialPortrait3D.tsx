@@ -70,7 +70,7 @@ export const EditorialPortrait3D: React.FC<EditorialPortrait3DProps> = ({ classN
           style={{
             transform: 'translateZ(10px)',
           }}
-          className="w-full h-full object-cover object-top filter grayscale contrast-[1.06] hover:grayscale-0 transition-all duration-700 ease-out"
+          className="w-full h-full object-cover object-top img-vibrant hover:scale-105 transition-all duration-700 ease-out"
           loading="eager"
         />
 

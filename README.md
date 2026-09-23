@@ -1,23 +1,31 @@
-# Arif Khadim — Modern Developer Portfolio
+# Arif Khadim — Creative Developer & Full-Stack Engineer Portfolio
 
-A modern, highly interactive personal portfolio website engineered with **React 18**, **TypeScript**, **Tailwind CSS**, and **Framer Motion**.
-
-![Portfolio Preview](/og-image.png)
+A pixel-faithful recreation of the **design system, layout, fluid typography, motion, and interaction style of [mrazek-tomas.cz](https://www.mrazek-tomas.cz/)**, customized with **Arif Khadim's** personal content, projects, and an interactive 3D WebGL layer.
 
 ---
 
-## 🌟 Key Highlights
+## 🌟 Architecture & Design System Highlights
 
-- **Dark-First Modern Aesthetic**: Deep space slate palette with subtle ambient gradient glows and glassmorphism.
-- **Light & Dark Mode Switcher**: Smooth animated theme toggle with persistent storage.
-- **Dynamic Hero Section**: Typewriter role transitions, glowing visual avatar treatment, and interactive particle canvas.
-- **Interactive Terminal Component**: Live code switcher highlighting developer metadata, skills, and contact logic.
-- **Category Filterable Projects & Skills**: Real-time filtering by tech stack and discipline.
-- **Deep-Dive Case Study Modal**: Problem statement, solution architecture, and metric highlights for projects.
-- **Certificate Lightbox Gallery**: Verified credentials preview with direct verification links.
-- **Validated Contact Form & Confetti**: Real-time input validation, copy-to-clipboard email trigger, and mail service integration support.
-- **100% Responsive Design**: Tailored experience for desktop, tablet, and mobile with animated drawer navigation.
-- **Zero UI-Coupled Data**: Centralized TypeScript data files inside `src/data/` for updating without modifying UI code.
+- **Design System & Color Tokens**:
+  - Exact color palette: `#23222B` (Primary Dark), `#212027` (Deep Card Surface), `#FF4848` (Brand Red Accent), `#E7E7E7` (Primary Text), and `#434345` (Dividers).
+  - Subtle repeating noise overlay texture with `background-blend-mode: overlay`.
+- **Fluid Viewport Typography Scale**:
+  - Root scaling matching the reference: `html { font-size: 0.521vw; }` on desktop with seamless responsive adjustments for tablets and mobile devices.
+  - Bold extended geometric display typography (`transducer-extended` / `Syne` / `Monument Extended` / `Space Grotesk`) and `Open Sans` / `Space Mono`.
+- **Signature Typographic Casing & Word Splits**:
+  - Inverted lowercase leading letter convention: `mAIL`, `pROFILE`, `Cin`, `gITHUB`, `lINKEDIN`, `yOUR nAME`.
+  - Stylized split words: `Partner—ship`, `tranS—parency`, `Easy—going`, `revision—less`.
+- **Motion, Transitions & Lenis Smooth Scroll**:
+  - **Lenis Smooth Scroll** synced with requestAnimationFrame for ultra-fluid scrolling.
+  - **3-Bar Staggered Wipe Page Transition** (`.transition-overlay` with 3 wiping panels) across Home, Projects, About, and Contact.
+  - Sibling dimming navigation underline effect with center-radiating red glowing gradient (`linear-gradient(270.05deg, ...)`).
+  - Signature 2-column footer cards with vertical 180° rotated typography (`writing-mode: vertical-rl`) and slide-out hover avatar (`transform: translateX(4rem)`).
+- **Interactive 3D WebGL Layer**:
+  - React Three Fiber + Drei interactive floating 3D hero artefact with mouse parallax, lerp smoothing, dynamic lighting, and DPR clamped to 2 with mobile fallback.
+- **"Let's meet" Contact Modal**:
+  - Interactive modal dialog triggered by "Get in Touch" buttons.
+  - Custom animated Nice-Select budget dropdown with options (`$3K - $5K`, `$6K - $10K`, `$11K - $15K`, `$16K - $19K`, `$20+`).
+  - Validation, confetti on success, error handling, and Formspree integration (`https://formspree.io/f/xzezbygl`).
 
 ---
 
@@ -28,7 +36,7 @@ A modern, highly interactive personal portfolio website engineered with **React 
 # Clone or navigate into the repository
 cd portfolio_Arif
 
-# Install all dependencies
+# Install dependencies
 npm install
 ```
 
@@ -39,10 +47,13 @@ npm run dev
 ```
 Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-### 3. Production Build
+### 3. Build & Verify
 ```bash
-# Build optimized static bundle
+# Type check and build optimized static bundle
 npm run build
+
+# Run linter
+npm run lint
 
 # Preview production build locally
 npm run preview
@@ -50,69 +61,36 @@ npm run preview
 
 ---
 
-## 🛠️ How to Customize Your Information
+## 🛠️ Content Customization
 
-All portfolio content is centralized in the `src/data/` folder:
+All personal information, projects, values, services, and contact settings are located in:
+📂 [`src/data/portfolioData.ts`](src/data/portfolioData.ts)
 
-| File | Description |
+| Configuration Area | Description |
 |---|---|
-| [`src/data/profile.ts`](src/data/profile.ts) | Name, headline, typewriter roles, biography, statistics, quick facts, avatar URL |
-| [`src/data/skills.ts`](src/data/skills.ts) | Programming languages, frameworks, tools, AI/ML, and databases |
-| [`src/data/projects.ts`](src/data/projects.ts) | Featured projects, case studies, metric highlights, GitHub & demo links |
-| [`src/data/experience.ts`](src/data/experience.ts) | Professional roles, internships, leadership timeline, and achievements |
-| [`src/data/education.ts`](src/data/education.ts) | Academic degrees, universities, GPA/scores, and relevant coursework |
-| [`src/data/certificates.ts`](src/data/certificates.ts) | Certifications, issuing organizations, dates, and credential IDs |
-| [`src/data/social.ts`](src/data/social.ts) | GitHub, LinkedIn, Twitter/X, Instagram URLs, and contact settings |
+| `hero` | Headline, day/night tagline reveals, greetings, and overview paragraphs |
+| `projects` | Featured projects, case studies, problem/solution breakdown, metrics, and URLs |
+| `values` | 4 cornerstone values (`Partner—ship`, `tranS—parency`, `Easy—going`, `revision—less`) |
+| `services` | "What I love to do" capabilities and core tech stacks |
+| `testimonials` | Client and peer quotes, authors, companies, and avatar URLs |
+| `experiences` | Career chronology, roles, and achievements |
+| `socials` & `cin` | Social profile links, email, phone, and registration indices |
+| `budgetOptions` | Budget dropdown ranges for the "Let's meet" modal |
+| `formEndpoint` | Formspree / backend endpoint for instant message delivery |
 
 ---
 
-## 📸 How to Replace Your Profile Photo & Resume
+## 🚢 Deployment (Vercel)
 
-### Profile Photo
-1. Place your image inside the `public/` directory (e.g. `public/avatar.jpg`).
-2. Open [`src/data/profile.ts`](src/data/profile.ts) and update:
-```typescript
-avatarUrl: "/avatar.jpg"
-```
-
-### Resume PDF
-1. Save your resume as `resume.pdf` directly into the `public/` folder.
-2. The portfolio is pre-configured to link directly to `/resume.pdf` for both in-browser preview and one-click download.
-
----
-
-## 📬 How to Connect the Contact Form
-
-To receive real email submissions:
-1. Create a free endpoint on [Formspree](https://formspree.io/) or [Web3Forms](https://web3forms.com/).
-2. Open [`src/data/social.ts`](src/data/social.ts) and set `formEndpoint`:
-```typescript
-export const contactConfig = {
-  email: "your-email@example.com",
-  location: "Your City, India",
-  responseTime: "Usually responds within 24 hours",
-  formEndpoint: "https://formspree.io/f/your-form-id", // Paste your endpoint here
-};
-```
-
----
-
-## 🚢 Deployment Guide
-
-### Deploy on Vercel (Recommended)
 1. Push your repository to GitHub.
 2. Go to [Vercel](https://vercel.com) and click **"Add New Project"**.
-3. Import this repository — Vercel will automatically detect Vite and configure build commands:
+3. Import your GitHub repository — Vercel will automatically detect Vite:
+   - **Framework Preset**: Vite
    - **Build Command**: `npm run build`
    - **Output Directory**: `dist`
 4. Click **Deploy**!
 
-### Deploy on Netlify
-1. Connect your GitHub repo on [Netlify](https://netlify.com).
-2. Set Build command to `npm run build` and Publish directory to `dist`.
-3. Deploy!
-
 ---
 
 ## 📄 License
-This project is open-source and customizable under the MIT License.
+MIT License. Crafted for **Arif Khadim**.
